@@ -1,0 +1,33 @@
+*{
+ box-sizing: border-box;
+}
+:root{
+   --light-blue : #256D85;
+   --dark-blue:#06283D;
+   --aqua:#47B5FF;
+   --light:#DFF6FF;
+}
+body{
+   width: 100vw;
+   overflow-x: hidden;
+}
+.nav-item a{
+   color: var(--dark-blue);
+   font-weight: 600;
+}
+
+.nav-item a i.bi{
+   color: var(--aqua);
+}
+#homeImg{
+   background-image: url('./img/home2.jpg');
+   background-repeat: no-repeat;
+   background-size: cover;
+   background-position: center;
+}
+.carousel-img{
+   height: 40vh;
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-position: center;
+}
