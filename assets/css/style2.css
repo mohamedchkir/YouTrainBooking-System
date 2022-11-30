@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,700;0,800;1,500;1,600&display=swap');
+
+*{
+ box-sizing: border-box;
+}
+:root{
+   --light-blue : #256D85;
+   --dark-blue:#06283D;
+   --aqua:#47B5FF;
+   --light:#DFF6FF;
+}
+body{
+   width: 100vw;
+   overflow-x: hidden;
+   font-family: 'Poppins', sans-serif;
+}
+.nav-item a{
+   color: var(--dark-blue);
+   font-weight: 600;
+}
+
+.nav-item a i.bi{
+   color: var(--aqua);
+}
+#homeImg{
+   background-image: url('../img/home2.jpg');
+   background-repeat: no-repeat;
+   background-size: cover;
+   background-position: center;
+}
+.carousel-img{
+   height: 40vh;
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-position: center;
+}
+.form-control{
+   border-radius: 20px ;
+   border-color: var(--aqua);
+   border-width: 2px;
+   padding: 10px 20px;
+   background-color: aliceblue;
+}
+.aqua{
+   color: var(--aqua);
+}
+/* .form-control::placeholder {
+   color: white;
+   opacity: 1; 
+ } */
+ 
