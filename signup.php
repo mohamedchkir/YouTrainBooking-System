@@ -29,7 +29,7 @@
   <style>
     body {
 
-      background: url('./pic/bg.png');
+      background: url('./assets/img/bg.png');
       background-color: rgb(60, 60, 60);
       background-repeat: no-repeat;
       background-size: cover;
@@ -58,7 +58,7 @@
               <form id="signup" class="needs-validation" novalidate>
                 <div>
                   <div class="d-flex  justify-content-center">
-                    <img src="pic\YouTrainTM.png" alt="logo" width="40%">
+                    <img src="./assets/img/YouTrainTM.png" alt="logo" width="40%">
                   </div>
                   <h4 class="fw-bold mb-5">Sign up now</h4>
                   <div class=" mb-4">
@@ -124,7 +124,7 @@
 
 </body>
 <!-- ================== BEGIN core-js ================== -->
-<script src="validation.js"></script>
+<script src="./assets/js/validation.js"></script>
 <!-- ================== END core-js ================== -->
 
 
