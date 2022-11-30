@@ -34,14 +34,29 @@ function makeaMargin(e) {
 // JQUERY STARTS HERE
 
 $(document).ready(function () {
-  $("gare_depart").keyup(function () {
+  $("#gare_depart").keyup(function () {
     var ville = $(this).val();
-    $.post(
-      "./include/handlers/voyagehandler.php",
-      {
-        suggestions: ville,
-      },
-      function (data, status) {}
-    );
+    if (ville == "" || ville == null) {
+      $("#cities").html("no suggesttions");
+    } else {
+      $.post(
+        "./include/handlers/voyagehandler.php",
+        {
+          suggestions: ville,
+        },
+        function (data, status) {
+          console.log(status);
+          //console.log(JSON.parse(data));
+          if (data == "") {
+            $("#cities").html("no suggesttions");
+          } else {
+            $("#cities").html(data);
+          }
+        }
+      );
+    }
+  });
+  $("#gare_depart").blur(function () {
+    $("#cities").html("");
   });
 });
