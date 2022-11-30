@@ -30,3 +30,18 @@ function makeaMargin(e) {
     );
   });
 })();
+
+// JQUERY STARTS HERE
+
+$(document).ready(function () {
+  $("gare_depart").keyup(function () {
+    var ville = $(this).val();
+    $.post(
+      "./include/handlers/voyagehandler.php",
+      {
+        suggestions: ville,
+      },
+      function (data, status) {}
+    );
+  });
+});

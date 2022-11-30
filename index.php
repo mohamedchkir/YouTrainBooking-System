@@ -94,14 +94,14 @@
                 <div class="row gy-3">
                     <div class="col-lg-6 text-start">
                         <label for="" class="form-label ms-2" style="color:#80808078;">gare de depart</label>
-                        <input class="form-control" type="text" placeholder="Casa voyageur.." required>
+                        <input class="form-control" type="text" name="gare_depart" placeholder="Casa voyageur.." required>
                         <div class="invalid-feedback ms-2">
                             veillez remplire la gare de départ.
                         </div>
                     </div>
                     <div class="col-lg-6 text-start">
                         <label for="" class="form-label ms-2" style="color:#80808078;">gare de distination (optionel)</label>
-                        <input class="form-control " type="text" placeholder="Tanger ville..">
+                        <input class="form-control " type="text" name="gare_distination" placeholder="Tanger ville..">
                     </div>
                     <div class="col-lg-6 text-start">
                         <label for="" class="form-label ms-2" style="color:#80808078;">date de départ</label>
