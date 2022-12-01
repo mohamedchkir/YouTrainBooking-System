@@ -5,7 +5,6 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="dist/css/date-time-picker-component.min.css" rel="stylesheet" />
     <!--Boostrap Icons CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
     <!-- Bootstrap CSS -->
@@ -42,13 +41,13 @@
                                </a>
                            </li>-->
                             <li class="nav-item">
-                                <a class="nav-link active py-0 px-3 " id="login" aria-current="page" href="#" style="font-weight: 500;">
+                                <a class="nav-link active py-0 px-3 " id="login" aria-current="page" href="login.php" style="font-weight: 500;">
                                     <span>Log in</span>
                                 </a>
                             </li>
                             <li class="vr" style="background-color: var(--dark-blue);width: 1px ;"></li>
                             <li class="nav-item">
-                                <a class="nav-link active py-0 px-3" aria-current="page" href="#" id="sign_up">
+                                <a class="nav-link active py-0 px-3" aria-current="page" href="signup.php" id="sign_up">
                                     <span style="background-color: var(--aqua);color: white;padding: 7px 25px;border-radius: 25px;font-weight: 500;">Sign up</span>
                                 </a>
                             </li>
@@ -90,19 +89,20 @@
             </h3>
             <p class="text-grey">Explore the world with us </p>
 
-            <form action="" class="p-lg-5 needs-validation" novalidate>
+            <form action="" method="post" class="p-lg-5 needs-validation" novalidate>
                 <div class="row gy-3">
-                    <div class="col-lg-6 text-start">
+                    <div class="col-lg-6 text-start" style="position: relative;">
                         <label for="" class="form-label ms-2" style="color:#80808078;">gare de depart</label>
-                        <input class="form-control" type="text" name="gare_depart" id="gare_depart" placeholder="Casa voyageur.." required>
+                        <input class="form-control" type="text" name="gare_depart" id="gare_depart" placeholder="Casa voyageur.." autocomplete="nope" required>
                         <div class="invalid-feedback ms-2">
                             veillez remplire la gare de départ.
                         </div>
-                        <div id="cities"></div>
+                        <div class="rounded-bottom" style="background-color:aliceblue;position:absolute; width: 94%;z-index:100;" id="cities_rst1"></div>
                     </div>
-                    <div class="col-lg-6 text-start">
+                    <div class="col-lg-6 text-start" style="position: relative;">
                         <label for="" class="form-label ms-2" style="color:#80808078;">gare de distination (optionel)</label>
-                        <input class="form-control " type="text" name="gare_distination" id="gare_distination" placeholder="Tanger ville..">
+                        <input class="form-control " type="text" name="gare_distination" id="gare_distination" placeholder="Tanger ville.." autocomplete="false">
+                        <div class="rounded-bottom" style="background-color:aliceblue;position:absolute; width: 94%;" id="cities_rst2"></div>
                     </div>
                     <div class="col-lg-6 text-start">
                         <label for="" class="form-label ms-2" style="color:#80808078;">date de départ</label>

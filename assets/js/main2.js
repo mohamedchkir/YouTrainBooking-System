@@ -34,29 +34,45 @@ function makeaMargin(e) {
 // JQUERY STARTS HERE
 
 $(document).ready(function () {
-  $("#gare_depart").keyup(function () {
-    var ville = $(this).val();
-    if (ville == "" || ville == null) {
-      $("#cities").html("no suggesttions");
-    } else {
+  handleSuggestion({ inputFiled: "#gare_depart", resltOnNode: "#cities_rst1" });
+  handleSuggestion({
+    inputFiled: "#gare_distination",
+    resltOnNode: "#cities_rst2",
+  });
+});
+
+function handleSuggestion({ inputFiled: input, resltOnNode: node }) {
+  $(input).keyup(
+    function () {
+      var ville = $(this).val();
+      // if (ville == "" || ville == null) {
+      //   $(node).html("no suggesttions");
+      // } else {
       $.post(
         "./include/handlers/voyagehandler.php",
         {
           suggestions: ville,
         },
         function (data, status) {
-          console.log(status);
-          //console.log(JSON.parse(data));
           if (data == "") {
-            $("#cities").html("no suggesttions");
+            $(node).html("no suggesttions");
           } else {
-            $("#cities").html(data);
+            $(node).html(data);
           }
         }
       );
     }
+    //}
+  );
+  $(input).blur(function () {
+    setTimeout(function () {
+      $(node).html("");
+    }, 15000);
   });
-  $("#gare_depart").blur(function () {
-    $("#cities").html("");
-  });
-});
+}
+
+function putValue(ele) {
+  let ville = ele.getAttribute("value");
+  ele.parentElement.parentElement.children[1].value = ville;
+  ele.parentElement.innerHTML = "";
+}

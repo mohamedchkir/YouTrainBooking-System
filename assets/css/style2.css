@@ -48,4 +48,46 @@ body{
    color: white;
    opacity: 1; 
  } */
+
  
+ /* TIME LINE CSS*/
+
+
+ .timeline {
+   border-left: 3px solid hsl(0, 0%, 90%);
+   position: relative;
+   list-style: none;
+ }
+ 
+ .timeline .timeline-item {
+   position: relative;
+ }
+ 
+ .timeline .timeline-item:after {
+   position: absolute;
+   display: block;
+   top: 0;
+ }
+ 
+ .timeline .timeline-item:after {
+   background-color:var(--aqua);
+   left: -38px;
+   border-radius: 50%;
+   height: 11px;
+   width: 11px;
+   content: "";
+ }
+
+ /* TIME LINE CSS*/
+
+
+ .bubble {
+   border-radius: 100%;
+   width: 10px;
+   height: 10px;
+   background-color: #fff;
+   display: block;
+   margin: 0 auto 0.5em;
+   border: 1px solid var(--aqua);
+   box-shadow: 0 5px 5px 2px #f7f5fa;
+}
