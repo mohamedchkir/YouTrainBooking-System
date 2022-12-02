@@ -110,7 +110,7 @@
        </small>
        <h3><i class="bi bi-sliders text-weight-bold aqua"></i></h3>
       </div>
-      <div class="row gy-3 p-3" style="width:100%;overflow:scroll;">
+      <div class="row gy-3 p-3" style="width:100%;overflow:auto;">
        <div class="px-5 py-3 shadow " style="background-color:white;border-radius:10px;">
         <div class="d-flex align-items-center">
          <div class="d-flex justify-content-between flex-grow-1 px-3">
