@@ -24,11 +24,9 @@
           <style>
           body{
             background: url('./assets/img/bg.png');
-             background-color: rgb(60, 60, 60);
-            background-repeat: no-repeat;
-            background-size: cover; 
-            background-blend-mode: multiply;
-
+            
+            
+            
           }
           .card{
             background-color: #f8f9fad9;
@@ -57,6 +55,7 @@
 
                                                     <h4 class="fw-bold mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h4>
                                                 </div>
+                                        <div class="text-start">
                                             <!-- Email input -->
                                             <div class="form-outline mb-4">
                                             <label class="form-label" for="form3Example3">Email address</label>
@@ -78,7 +77,7 @@
                                             </div>
                                             </div>
                                             
-                                        
+                                        </div>
                                             
                                             
                                             <!-- Submit button -->
