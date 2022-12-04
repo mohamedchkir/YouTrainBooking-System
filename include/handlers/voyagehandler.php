@@ -1,9 +1,11 @@
 <?php
 
 include_once("../autoloader.php");
+session_start();
 //include_once("../../class/CityController.class.php");
 if (isset($_POST["suggestions"])) getSuggestions();
 if (isset($_POST["search"])) getAvailableTrips();
+if (isset($_POST["search_again"])) getAvailableTrips();
 
 
 
@@ -42,6 +44,13 @@ function getAvailableTrips()
     $gare_depart = $_POST["gare_depart"];
     $gare_distination = $_POST["gare_distination"];
     $date_depart = $_POST["date_depart"];
+    if(isset($_POST["date_retour"])){
+        $date_retour =$_POST["date_retour"];
+        $date_retour_formed = (empty($date_retour)? "Non indiqué" : date('d M Y h:i', strtotime($date_retour)));
+    }else{
+        $date_retour_formed="Non Indiqué";
+    }
+
     $voyageCtr = new VoyageController();
 
 
@@ -52,5 +61,7 @@ function getAvailableTrips()
     echo "<pre>";
     echo $gare_depart."    ".$gare_distination."      ".$date_depart;
     echo "</pre>";
-    exit();
+    $date = strtotime($date_depart);
+    $_SESSION['search-info']= array("gare_depart"=>$gare_depart,"gare_distination"=>$gare_distination,"date_depart"=>$date_depart,"date_formed"=>date('d M Y h:i', $date),"date_retour"=>$date_retour_formed);
+    echo "<script>setTimeout(function (){window.location.replace('../../booking')},3000)</script>";
 }

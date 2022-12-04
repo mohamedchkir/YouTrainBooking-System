@@ -114,7 +114,7 @@
                     </div>
                     <div class="col-lg-6 text-start">
                         <label for="" class="form-label ms-2" style="color:#80808078;">date de retour (optionel)</label>
-                        <input class="form-control" type="datetime-local" placeholder="date de distination">
+                        <input class="form-control" type="datetime-local" name="date_retour">
                     </div>
                     <div class="text-start">
                         <button type="submit" class="btn text-light px-5" style="background-color:var(--aqua);border-radius: 20px;" name="search">cherchez</button>
@@ -157,6 +157,8 @@
     </script>
 </body>
 <script src="assets/js/main2.js"></script>
-
+<script>
+    document
+</script>
 
 </html>

@@ -91,3 +91,15 @@ body{
    border: 1px solid var(--aqua);
    box-shadow: 0 5px 5px 2px #f7f5fa;
 }
+
+
+/*
+span.bubble::after {
+    content: '';
+    position: absolute;
+    height: 1px;
+    width: 100%;
+    background-color: #000;
+    top: 50%;
+    transform: translateY(-50%);
+}*/

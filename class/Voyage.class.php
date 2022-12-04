@@ -9,15 +9,17 @@ class Voyage
  private $trainID;
  private $prixPourIndividu;
  private $dureeIstime;
- public function __construct($gareDepart, $gareDistination, $datetime, $trainID, $prixPourIndividu, $dureeIstime)
- {
-  $this->gareDepart = $gareDepart;
-  $this->gareDistination = $gareDistination;
-  $this->datetime = $datetime;
-  $this->trainID = $trainID;
-  $this->prixPourIndividu = $prixPourIndividu;
-  $this->dureeIstime = $dureeIstime;
- }
+
+
+    public function __construct($gareDepart, $gareDistination, $datetime, $trainID, $prixPourIndividu, $dureeIstime)
+    {
+        $this->gareDepart = $gareDepart;
+        $this->gareDistination = $gareDistination;
+        $this->datetime = $datetime;
+        $this->trainID = $trainID;
+        $this->prixPourIndividu = $prixPourIndividu;
+        $this->dureeIstime = $dureeIstime;
+    }
 
 
     public function getGareDepart()
@@ -87,5 +89,7 @@ class Voyage
     {
         $this->dureeIstime = $dureeIstime;
     }
+
+
 
 }
