@@ -4,29 +4,25 @@ class Train
 {
     private string $nom ;
     private int $capacite;
-    private int $gareActuel;
+    private int $gare_ID;
 
 
-    /**
-     * @param string $nom
-     * @param int $capacite
-     * @param int $gareActuel
-     */
+
     public function __construct(string $nom, int $capacite, int $gareActuel)
     {
         $this->nom = $nom;
         $this->capacite = $capacite;
-        $this->gareActuel = $gareActuel;
+        $this->gare_ID = $gareActuel;
     }
 
-    public function getGareActuel(): int
+    public function getGareID(): int
     {
-        return $this->gareActuel;
+        return $this->gare_ID;
     }
 
-    public function setGareActuel(int $gareActuel): void
+    public function setGareID(int $gare_ID): void
     {
-        $this->gareActuel = $gareActuel;
+        $this->gare_ID = $gare_ID;
     }
     public function getNom(): string
     {

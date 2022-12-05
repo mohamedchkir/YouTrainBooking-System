@@ -86,6 +86,7 @@
                     </a>
                 </div>
                 <div class="pt-2 px-2">
+
                     <li class="border-bottom d-flex align-items-center ">
                         <i class=" px-3 fa-solid fa-house"></i>
                         <a class="w-100" href="#">Gares</a>

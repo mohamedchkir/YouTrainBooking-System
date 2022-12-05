@@ -4,14 +4,14 @@ class TrainModel extends DB
 {
     protected function addTrainToDB(Train $train){
         $statement= $this->Connect()->prepare("INSERT INTO trains (nom,capacite,gare_id) VALUES (?,?,?);");
-        if($statement->execute(array($train->setNom(),$train->getCapacite(),$train->getGareActuel()))){
+        if($statement->execute(array($train->setNom(),$train->getCapacite(),$train->getGareID()))){
             header("location:../index.php?errStatement=notExecuted;");
             exit();
         }
     }
     protected function updateTrainInfoInDB(Train $train){
         $statement= $this->Connect()->prepare("UPDATE trains SET nom=? ,capacite=? ,gare_id=?;");
-        if($statement->execute(array($train->setNom(),$train->getCapacite(),$train->getGareActuel()))){
+        if($statement->execute(array($train->setNom(),$train->getCapacite(),$train->getGareID()))){
             header("location:../index.php?errStatement=notExecuted;");
             exit();
         }
