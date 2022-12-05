@@ -5,7 +5,7 @@ if (isset($_POST["suggestions"])) getSuggestions();
 if (isset($_POST["search"])) getAvailableTrips();
 if (isset($_POST["saveVoyage"])) saveVoyage();
 if (isset($_POST["editVoyage"])) editVoyage();
-if (isset($_POST["deleteVoyage"])) deleteVoyage();
+if (isset($_GET["id"])) deleteVoyage();
 
 
 
@@ -80,10 +80,32 @@ function saveVoyage(){
 
 
 function editVoyage(){
+    if(isset($_POST['md_id_tr'])){
+        $id = $_POST['md_id_tr'];
+        $statut = $_POST['status'];
+        $duree = $_POST['duree'];
+        $gare_depart = $_POST['gare_depart'];
+        $gare_arrivee = $_POST['gare_arrivee'];
+        $prix = $_POST['prix'];
+        $id_train = $_POST['id_train'];
+        $date = $_POST['datetime'];
+        $unique = $_POST['md_unique_id'];
 
+        $voyage = new VoyageController();
+
+        $voyage->updateVoyageInfo(new Voyage($statut,$duree,$gare_depart,$gare_arrivee,$prix,$id_train,$date,$unique),$id);
+        echo "<script>window.location.replace('../../voyage/index.php')</script>";
+    }
 }
 
 
 function deleteVoyage(){
-    
+    if(isset($_GET['id'])){
+        $id = $_GET['id'];
+
+        $voyage = new VoyageController();
+
+        $voyage->supprimerUnVoyage($id);
+        echo "<script>window.location.replace('../../voyage/index.php')</script>";
+    }
 }
