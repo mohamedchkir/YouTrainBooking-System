@@ -62,7 +62,7 @@
                 <div class="btn-group">
                     <div type="button" class="dropdown-toggle" data-toggle="dropdown" data-display="static" aria-expanded="false">
                         <a href="#">
-                            <img style="width: 40px;" class="rounded-circle" src="user.png" alt="">
+                            <img style="width: 40px;" class="rounded-circle" src="../assets/img/user.png" alt="">
                         </a>
                     </div>
                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left">
@@ -82,7 +82,7 @@
             <ul class="list-unstyled components">
                 <div>
                     <a class="navbar-brand px-3 py-5 d-flex justify-content-center" style="width: 100%;" href="#">
-                        <img style="width: 60%;" src="YouTrainTM (2).png" alt="">
+                        <img style="width: 60%;" src="../assets/img/YouTrainTM (2).png" alt="">
                     </a>
                 </div>
                 <div class="pt-2 px-2">
