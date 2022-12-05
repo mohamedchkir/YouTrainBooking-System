@@ -78,39 +78,55 @@
     <div class="wrapper">
         <!-- Sidebar  -->
         <nav id="sidebar">
-
-            <ul class="list-unstyled components">
+            <div class="d-flex flex-column mb-3 bg " style=" height: 200px;">
                 <div>
-                    <a class="navbar-brand px-3 py-5 d-flex justify-content-center" style="width: 100%;" href="#">
-                        <img style="width: 60%;" src="../assets/img/YouTrainTM (2).png" alt="">
-                    </a>
+                    <ul class="list-unstyled components">
+                        <div>
+                            <a class="navbar-brand p-2 d-flex justify-content-center" style="width: 100%;" href="#">
+                                <img style="width: 60%;" src="../assets/img/YouTrainTM (2).png" alt="">
+                            </a>
+                        </div>
+                        <div class="pt-2 px-2">
+                            <h6 class="p-2">Parametres</h6>
+                            <li class="border-bottom d-flex align-items-center ">
+                                <i class=" px-3 fa-solid fa-house"></i>
+                                <a class="w-100" href="#">Gares</a>
+                            </li>
+
+                            <li class="border-bottom d-flex align-items-center">
+                                <i class=" px-3 fa-solid fa-train"></i>
+                                <a class="w-100" href="#">Train</a>
+                            </li>
+                            <li class="border-bottom d-flex align-items-center">
+                                <i class=" px-3 fa-solid fa-map"></i>
+                                <a class="w-100" href="#">Villes</a>
+                            </li>
+
+                            <h6 class="p-2 pt-5">Gestion des voyages</h6>
+                            <li class="border-bottom d-flex align-items-center ">
+                                <i class="px-3 fa-solid fa-route"></i>
+                                <a class="w-100" href="#">Voyages</a>
+                            </li>
+                            <h6 class="p-2 pt-5">Gestion des utilisateurs</h6>
+                            <li class="border-bottom d-flex align-items-center ">
+                                <i class=" px-3 fa-solid fa-people-group"></i>
+                                <a class="w-100" href="#">gestion des roles</a>
+                            </li>
+                        </div>
+
+                    </ul>
                 </div>
-                <div class="pt-2 px-2">
-                    <li class="border-bottom d-flex align-items-center ">
-                        <i class=" px-3 fa-solid fa-house"></i>
-                        <a class="w-100" href="#">Gares</a>
-                    </li>
-
-                    <li class="border-bottom d-flex align-items-center">
-                        <i class=" px-3 fa-solid fa-train"></i>
-                        <a class="w-100" href="#">Train</a>
-                    </li>
-                    <li class="border-bottom d-flex align-items-center">
-                        <i class=" px-3 fa-solid fa-map"></i>
-                        <a class="w-100" href="#">City</a>
-                    </li>
+                <div>
+                    <ul class="list-unstyled CTAs">
+                        <li>
+                            <a href="" class="logout">Log Out</a>
+                        </li>
+                        <li>
+                            <a href="" class="article">About Team</a>
+                        </li>
+                    </ul>
                 </div>
-
-            </ul>
-
-            <ul class="list-unstyled CTAs">
-                <li>
-                    <a href="" class="logout">Log Out</a>
-                </li>
-                <li>
-                    <a href="" class="article">About Team</a>
-                </li>
-            </ul>
+            </div>
         </nav>
 
         <!-- Page Content  -->
