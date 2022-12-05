@@ -90,7 +90,7 @@
             </h3>
             <p class="text-grey">Explore the world with us </p>
 
-            <form action="./include/handlers/voyagehandler.php" method="post" class="p-lg-5 needs-validation" novalidate>
+            <form action="./include/handlers/voyagehandler.php" method="post" class="p-lg-5 needs-validation" novalidate autocomplete="off">
                 <div class="row gy-3">
                     <div class="col-lg-6 text-start" style="position: relative;">
                         <label for="" class="form-label ms-2" style="color:#80808078;">gare de depart</label>
@@ -98,12 +98,14 @@
                         <div class="invalid-feedback ms-2">
                             veillez remplire la gare de départ.
                         </div>
+                        <input type="hidden" value="" name="id_ville_gare_depart">
                         <div class="rounded-bottom" style="background-color:aliceblue;position:absolute; width: 94%;z-index:100;max-height:31vh;overflow:auto;" id="cities_rst1"></div>
                     </div>
                     <div class="col-lg-6 text-start" style="position: relative;">
                         <label for="" class="form-label ms-2" style="color:#80808078;">gare de distination (optionel)</label>
                         <input class="form-control " type="text" name="gare_distination" id="gare_distination" placeholder="Tanger ville.." autocomplete="false">
                         <div class="rounded-bottom" style="background-color:aliceblue;position:absolute; width: 94%;max-height:31vh;overflow:auto;" id="cities_rst2"></div>
+                        <input type="hidden" value="" name="id_ville_gare_distination">
                     </div>
                     <div class="col-lg-6 text-start">
                         <label for="" class="form-label ms-2" style="color:#80808078;">date de départ</label>

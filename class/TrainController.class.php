@@ -8,7 +8,7 @@ class TrainController extends TrainModel
     }
     public function updateTrainInfo(Train $train,int $id){
         $this->ProcessValidation($train);
-        $this->addTrainToDB($train);
+        $this->updateTrainInfo($train,$id);
     }
     public function deleteTrain($id){
         if(!is_numeric($id)){
@@ -16,6 +16,11 @@ class TrainController extends TrainModel
         }else{
             $this->deleteTrainFromDB($id);
         }
+    }
+
+    public function updateTrainStutus($id, $newStatus_id)
+    {
+       $this->updateTrainStutusInDB($id, $newStatus_id);
     }
 
     public function getAllTrains(){
@@ -39,9 +44,9 @@ class TrainController extends TrainModel
 
     private function verfyInputs(Train $trainInfo):array{   // array contains validation boolean and message of validation
 
-        if(empty($trainInfo->getNom())|| empty($trainInfo->getCapacite())){
+        if(empty($trainInfo->getNom())|| empty($trainInfo->getGareID()|| $trainInfo->getGareID())){
             return array(false,"all field should be filled !");
-        }elseif (filter_var($trainInfo->getNom(),FILTER_SANITIZE_STRING) || is_numeric($trainInfo->getCapacite()) || $trainInfo->setCapacite()<0){
+        }elseif (filter_var($trainInfo->getNom(),FILTER_SANITIZE_FULL_SPECIAL_CHARS) || !is_numeric($trainInfo->getCapacite()) || $trainInfo->getCapacite()<0){
             return array(false,"invalid data entered !");
         }
         return array(true,"");

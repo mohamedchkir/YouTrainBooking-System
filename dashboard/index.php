@@ -116,31 +116,6 @@
 
                     </ul>
                 </div>
-                <div class="pt-2 px-2">
-
-                    <li class="border-bottom d-flex align-items-center ">
-                        <i class=" px-3 fa-solid fa-house"></i>
-                        <a class="w-100" href="#">Gares</a>
-                    </li>
-
-                    <li class="border-bottom d-flex align-items-center">
-                        <i class=" px-3 fa-solid fa-train"></i>
-                        <a class="w-100" href="#">Train</a>
-                    </li>
-                    <li class="border-bottom d-flex align-items-center">
-                        <i class=" px-3 fa-solid fa-map"></i>
-                        <a class="w-100" href="#">City</a>
-                    </li>
-                <div>
-                    <ul class="list-unstyled CTAs">
-                        <li>
-                            <a href="" class="logout">Log Out</a>
-                        </li>
-                        <li>
-                            <a href="" class="article">About Team</a>
-                        </li>
-                    </ul>
-                </div>
             </div>
         </nav>
 

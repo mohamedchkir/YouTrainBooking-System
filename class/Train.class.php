@@ -5,15 +5,28 @@ class Train
     private string $nom ;
     private int $capacite;
     private int $gare_ID;
+    private int $status_ID;
 
 
-
-    public function __construct(string $nom, int $capacite, int $gareActuel)
+    public function __construct(string $nom, int $capacite, int $gare_ID, int $status_ID)
     {
         $this->nom = $nom;
         $this->capacite = $capacite;
-        $this->gare_ID = $gareActuel;
+        $this->gare_ID = $gare_ID;
+        $this->status_ID = $status_ID;
     }
+
+
+    public function getStatusID(): int
+    {
+        return $this->status_ID;
+    }
+
+    public function setStatusID(int $status_ID): void
+    {
+        $this->status_ID = $status_ID;
+    }
+
 
     public function getGareID(): int
     {

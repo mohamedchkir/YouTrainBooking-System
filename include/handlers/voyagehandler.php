@@ -36,7 +36,7 @@ function getSuggestions()
    $condition = strpos(strtolower($c['ville']), strtolower($sugg)) !== false;
   }
   if ($condition) {
-   echo "<input type='button' class='btn w-100 border-bottom' onclick='putValue(this)'  value='" . $c["ville"] . "'>";
+   echo "<input type='button' class='btn w-100 border-bottom' onclick='putValue(this)' ville_id='".$c['id']."' value='" . $c["ville"] . "'>";
   }
  }
  //echo json_encode($cities);

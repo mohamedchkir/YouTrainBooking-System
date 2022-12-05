@@ -38,6 +38,9 @@ $(document).ready(function () {
   handleSuggestion({ inputFiled: "#gare_distination", resltOnNode: "#cities_rst2",treattedIn:"./include/handlers/voyagehandler.php"});
   handleSuggestion({ inputFiled: "#gare_depart_reseach", resltOnNode: "#cities_rst1",treattedIn:"../include/handlers/voyagehandler.php"});
   handleSuggestion({ inputFiled: "#gare_distination_reseach", resltOnNode: "#cities_rst2",treattedIn:"../include/handlers/voyagehandler.php"});
+  /*train*/
+  handleSuggestion({ inputFiled: "#id_gare", resltOnNode: "#cities_rst2",treattedIn:"../handlers/voyagehandler.php"});
+
 
 
 });
@@ -74,6 +77,8 @@ function handleSuggestion({ inputFiled: input, resltOnNode: node,treattedIn:phpf
 
 function putValue(ele) {
   let ville = ele.getAttribute("value");
+  let ville_id =ele.getAttribute("ville_id");
   ele.parentElement.parentElement.children[1].value = ville;
+  ele.parentElement.parentElement.children[3].setAttribute("value",ville_id);
   ele.parentElement.innerHTML = "";
 }
