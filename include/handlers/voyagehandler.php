@@ -1,11 +1,11 @@
 <?php
 
 include_once("../autoloader.php");
-//include_once("../../class/CityController.class.php");
 if (isset($_POST["suggestions"])) getSuggestions();
 if (isset($_POST["search"])) getAvailableTrips();
-
-
+if (isset($_POST["saveVoyage"])) saveVoyage();
+if (isset($_POST["editVoyage"])) editVoyage();
+if (isset($_POST["deleteVoyage"])) deleteVoyage();
 
 
 
@@ -53,4 +53,37 @@ function getAvailableTrips()
     echo $gare_depart."    ".$gare_distination."      ".$date_depart;
     echo "</pre>";
     exit();
+}
+
+
+function saveVoyage(){
+
+    $statut = $_POST['status'];
+    $duree = $_POST['duree'];
+    $gare_depart = $_POST['gare_depart'];
+    $gare_arrivee = $_POST['gare_arrivee'];
+    $prix = $_POST['prix'];
+    $id_train = $_POST['id_train'];
+    $date=$_POST['datetime'];
+    $unique= uniqid();
+
+    // $UniqueIdForBothAllerRotour,$gareDepart, $gareDistination, $datetime, $trainID, $prixPourIndividu, $dureeIstime)
+    $voyage = new VoyageController();
+    //aller
+    $voyage->ajouterUnVoyage(new Voyage($statut,$duree,$gare_depart,$gare_arrivee,$prix,$id_train,$date,$unique));
+    //roteur
+    $voyage->ajouterUnVoyage(new Voyage($statut,$duree,$gare_arrivee,$gare_depart,$prix,$id_train,$date,$unique));
+
+    echo "<script>window.location.replace('../../voyage/index.php')</script>";
+
+}
+
+
+function editVoyage(){
+
+}
+
+
+function deleteVoyage(){
+    
 }
