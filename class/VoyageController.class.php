@@ -20,14 +20,16 @@ class VoyageController extends VoyageModel
     // set Status call fun
         
  }
- public function updateVoyageInfo(Voyage $voyage)
+ public function updateVoyageInfo(Voyage $voyage,$id)
  {
     
      // do some verification
+     $this->editVoyageInDB($voyage,$id);
  }
  public function supprimerUnVoyage($id)
  {
      // do some verification
+     $this->deleteVoyageInDB($id);
  }
  public function getAvailableTrains($gareDepart, $gareDistination, $datetime): array
  {
