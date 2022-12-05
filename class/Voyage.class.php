@@ -3,24 +3,52 @@
 
 class Voyage
 {
- private $gareDepart;
- private $gareDistination;
- private $datetime;
- private $trainID;
- private $prixPourIndividu;
- private $dureeIstime;
+
+    private $gareDepart;
+    private $datetime;
+    private $gareDistination;
+    private $trainID;
+    private $prixPourIndividu;
+    private $dureeIstime;
+    private $statut;
+    private $uniqueIdForBothAllerRotour;
+    private int $frequence;
+
+ public function __construct($statut,$dureeIstime,$gareDepart, $gareDistination,$prixPourIndividu, $trainID,$datetime,$uniqueIdForBothAllerRotour)
+ {
+  $this->statut = $statut;
+  $this->dureeIstime = $dureeIstime;
+  $this->gareDepart = $gareDepart;
+  $this->gareDistination = $gareDistination;
+  $this->prixPourIndividu = $prixPourIndividu;
+  $this->trainID = $trainID;
+  $this->datetime = $datetime;
+  $this->uniqueIdForBothAllerRotour = $uniqueIdForBothAllerRotour;
+
+ }
 
 
-    public function __construct($gareDepart, $gareDistination, $datetime, $trainID, $prixPourIndividu, $dureeIstime)
+    public function getStatut()
     {
-        $this->gareDepart = $gareDepart;
-        $this->gareDistination = $gareDistination;
-        $this->datetime = $datetime;
-        $this->trainID = $trainID;
-        $this->prixPourIndividu = $prixPourIndividu;
-        $this->dureeIstime = $dureeIstime;
+        return $this->statut;
     }
 
+
+    public function setStatut($statut)
+    {
+        $this->statut = $statut;
+    }
+
+    public function getDureeIstime()
+    {
+        return $this->dureeIstime;
+    }
+
+
+    public function setDureeIstime($dureeIstime)
+    {
+        $this->dureeIstime = $dureeIstime;
+    }
 
     public function getGareDepart()
     {
@@ -79,16 +107,17 @@ class Voyage
     }
 
 
-    public function getDureeIstime()
-    {
-        return $this->dureeIstime;
+
+    public function getUniqueIdForBothAllerRotour(){
+        return $this->uniqueIdForBothAllerRotour;
+    }
+
+    public function setUniqueIdForBothAllerRotour($id){
+        $this->uniqueIdForBothAllerRotour=$id;
     }
 
 
-    public function setDureeIstime($dureeIstime)
-    {
-        $this->dureeIstime = $dureeIstime;
-    }
+    
 
 
 
