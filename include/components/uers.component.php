@@ -3,7 +3,7 @@ include_once('../../class/UserController.class.php');
 $test = new UserController();
 // var_dump($test->getVoyage());
 $res = $test->getUser();
-var_dump($res)
+// var_dump($res)
 
 ?>
 <!DOCTYPE html>
@@ -30,24 +30,39 @@ var_dump($res)
         <thead>
         <tr>
             <th scope="col">#ID</th>
-            <th scope="col">First Name</th>
-            <th scope="col">Last Name</th>
+            <th scope="col">Image</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Prenom</th>
+            <th scope="col">Tel</th>
+            <th scope="col">Compte</th>
             <th scope="col">Email</th>
-            <th scope="col">Sign Up At</th>
-            <th scope="col">Status</th>
+            <th scope="col">Password</th>
             <th scope="col">Action</th>
         </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>12</td>
-                <td>rachid</td>
-                <td>daoudi</td>
-                <td>Email@gmail.com</td>
-                <td>azeza</td>
-                <td>dis</td>
-                <td>test</td>
-            </tr>
+        <?php foreach ($res as $t) {
+          // if($t['status']==1){
+          //   $t['status']="disponible";
+          // }else{
+          //   $t['status']="Non disponible";
+          // }
+          echo 
+              '<tr id="'.$t['id'].'">
+                <td>'.$t['id'].'</td>
+                <td><img class="rounded-circle" src=' alt="user photo" style="width: 80px;height: 80px"></td>
+                <td>'.$t['nom'].'</td>
+                <td>'.$t['prenom'].'</td>
+                <td>'.$t['tel'].'</td>
+                <td>'.$t['compte_Bancaire'].'</td>
+                <td>'.$t['email'].'</td>
+                <td>'.$t['password'].'</td>
+                <td>
+                  <button type="submit" class="btn btn-outline-primary"data-bs-toggle="modal" data-bs-target="#AddVoyage" onclick="edit('.$t['id'].')"><i class="fa-regular fa-pen-to-square"></i></button>
+                </td>
+              </tr>';
+          }
+        ?>
         </tbody>
     </table>
 </div>
