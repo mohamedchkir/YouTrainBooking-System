@@ -3,7 +3,7 @@
     $test = new VoyageController();
     // var_dump($test->getVoyage());
     $res = $test->getVoyage();
-    var_dump($res)
+    // var_dump($res)
 
 
 ?>

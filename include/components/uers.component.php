@@ -1,5 +1,9 @@
 <?php
-
+include_once('../../class/UserController.class.php');
+$test = new UserController();
+// var_dump($test->getVoyage());
+$res = $test->getUser();
+var_dump($res)
 
 ?>
 <!DOCTYPE html>
