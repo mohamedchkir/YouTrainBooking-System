@@ -26,9 +26,19 @@
 
 
 
+
         }
 
         .card {
+
+            background-color: rgb(60, 60, 60);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-blend-mode: multiply;
+                    
+            
+          }
+          .card{
             background-color: #f8f9fad9;
         }
     </style>
@@ -42,6 +52,7 @@
                 <div class="col-lg-6 mb-5 mb-lg-0 ">
                     <div class="card ">
                         <div class="card-body px-4 py-5 px-md-5">
+
 
 
                             <form id="login" class="needs-validation" novalidate>
@@ -85,6 +96,52 @@
                                     <p>Not a member? <a class="text-decoration-none" href="signup.php">Register</a></p>
                                 </div>
                             </form>
+
+
+                              
+                                   
+                                    <form id="login" class="needs-validation" method="POST" novalidate>
+                                                <div>
+                                                    <div class="d-flex  justify-content-center">
+                                                    <img src="./assets/img/YouTrainTM.png" alt="logo" width="40%">
+                                                    </div>
+
+                                                    <h4 class="fw-bold mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h4>
+                                                </div>
+                                        <div class="text-start">
+                                            <!-- Email input -->
+                                            <div class="form-outline mb-4">
+                                            <label class="form-label" for="form3Example3">Email address</label>
+                                            <input type="email" name="email" id="email" class="form-control" required />                                           
+                                            <div class="valid-feedback">
+                                                Looks Good!
+                                            </div>
+                                            <div class="invalid-feedback">
+                                                Adress email is required to sign into your account.
+                                            </div>
+                                            </div>
+                            
+                                            <!-- Password input -->
+                                            <div class="form-outline mb-4">
+                                            <label class="form-label" for="form3Example4">Password</label>
+                                            <input type="password" id="password" name="password" class="form-control" required />
+                                            <div class="invalid-feedback">
+                                                Enter a valid password !!
+                                            </div>
+                                            </div>
+                                            
+                                        </div>
+                                            
+                                            
+                                            <!-- Submit button -->
+                                            <button type="submit" name="login" class="btn btn-outline-dark btn-block mb-4 w-100">
+                                            Log in
+                                            </button>
+                                            <div >
+                                                <p>Not a member? <a class="text-decoration-none" href="signup.php">Register</a></p>
+                                            </div>
+                                    </form>
+                                    
 
                         </div>
                     </div>

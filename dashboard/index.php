@@ -116,16 +116,6 @@
 
                     </ul>
                 </div>
-                <div>
-                    <ul class="list-unstyled CTAs">
-                        <li>
-                            <a href="" class="logout">Log Out</a>
-                        </li>
-                        <li>
-                            <a href="" class="article">About Team</a>
-                        </li>
-                    </ul>
-                </div>
             </div>
         </nav>
 

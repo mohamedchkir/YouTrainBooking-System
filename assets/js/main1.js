@@ -1,3 +1,4 @@
+
 //SIDEBAR
 $(document).ready(function () {
     $('#sidebarCollapse').on('click', function () {
@@ -9,3 +10,4 @@ $(document).ready(function () {
 $(document).ready(function () {
     $('#example').DataTable();
 });
+

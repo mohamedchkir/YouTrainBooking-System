@@ -14,9 +14,17 @@ class DB
 
  protected function Connect()
  {
-  $con = 'mysql:host=' . $this->host . ';dbname=' . $this->db_name . ';';
-  $PDO = new PDO($con, $this->username, $this->password);
-  $PDO->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-  return $PDO;
+    try
+    {    
+        $con = 'mysql:host=' . $this->host . ';dbname=' . $this->db_name . ';';
+        $PDO = new PDO($con, $this->username, $this->password);
+        $PDO->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+        return $PDO;
+    }
+    catch (PDOException $ex)
+    {
+        return "error";
+    }
+  
  }
 }
