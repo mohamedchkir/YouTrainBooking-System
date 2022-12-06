@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,700;0,800;1,500;1,600&display=swap');
+
+:root{
+    --light-blue : #256D85;
+    --dark-blue:#06283D;
+    --aqua:#47B5FF;
+    --light:#DFF6FF;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+.form-control ,.form-select
+{
+border-radius: 20px ;
+border-color: var(--aqua);
+border-width: 2px;
+padding: 10px 20px;
+background-color: aliceblue;
+}
+
+.aqua{
+    color: var(--aqua);
+}
