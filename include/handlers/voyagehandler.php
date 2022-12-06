@@ -54,7 +54,7 @@ function getAvailableTrips()
     }else{
         $date_retour_formed="Non Indiqué";
     }
-
+    $gare_distination = empty($gare_distination) ? "Distination non indiqué": $gare_distination;
     $voyageCtr = new VoyageController();
 
 

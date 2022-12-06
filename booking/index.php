@@ -1,6 +1,10 @@
 <?php
 session_start();
 
+if(!isset($_SESSION['search-info'])){
+    header("location:../");
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -270,7 +274,7 @@ session_start();
 
           <!-------4----->
 
-          <div class="px-5 py-3 shadow " style="background-color:white;border-radius:10px;">
+          <di class="px-5 py-3 shadow " style="background-color:white;border-radius:10px;">
               <div class="d-flex align-items-center">
                   <div class="d-flex justify-content-between flex-grow-1 px-3">
                       <div>
@@ -308,7 +312,7 @@ session_start();
                   </h3>
                   <h6 class="p-3">Atlas</h6>
               </div>
-          </div>
+          </di>
       </div>
      </div>
     </div>

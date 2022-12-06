@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="en">
+<?php
 
+?>
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">

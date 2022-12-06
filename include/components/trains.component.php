@@ -27,7 +27,7 @@
                </div>
                <div class="col-lg-6 text-start" style="position: relative;">
                    <label for="" class="form-label ms-2" style="color:#80808078;">La gare</label>
-                   <input class="form-control " type="text" name="id_gare" id="id_gare" placeholder="exemple : Gare tanger ville.." autocomplete="false">
+                   <input class="form-control " type="text" name="id_gare" id="id_gare" placeholder="exemple : Gare tanger ville.." autocomplete="false" required >
                    <div class="rounded-bottom" style="background-color:aliceblue;position:absolute; width: 94%;max-height:31vh;overflow:auto;" id="cities_rst2"></div>
                    <input type="hidden" value="" name="id_gare">
                </div>
@@ -44,7 +44,7 @@
                </div>
                <div class="col-lg-6 text-start">
                    <label for="" class="form-label ms-2" style="color:#80808078;">Capacité</label>
-                   <input class="form-control" type="number" name="capacite" placeholder="exemple 52 place">
+                   <input class="form-control" type="number" name="capacite" placeholder="exemple 52 place" required min="1">
                </div>
                <div class="text-start">
                    <button type="submit" class="btn text-light px-5" style="background-color:var(--aqua);border-radius: 20px;" name="save-train">save</button>
