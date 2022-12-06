@@ -1,5 +1,6 @@
 <?php
 
+
 include_once("../autoloader.php");
 if (isset($_POST["suggestions"])) getSuggestions();
 if (isset($_POST["search"])) getAvailableTrips();

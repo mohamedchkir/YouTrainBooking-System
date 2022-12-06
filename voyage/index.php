@@ -25,11 +25,11 @@
 
 <body>
 <section style="height:94vh ;" class="container">
-    <div class="w-100 mb-5 row">
+    <div class="w-75 mb-5 row">
       <div class="col-8">
       <form action="../include/handlers/voyagehandler.php" method="POST">
           <div>
-            <p>Voyage Aller</p>
+            <p class="aqua" style="font-weight: bold; color:#47B5FF;">Voyage Aller</p>
           </div>
           <div class="form-group">
             <label for="status" class="col-form-label">Status:</label>
@@ -61,7 +61,7 @@
           </div>
           <div class="form-group">
             <label for="prix" class="col-form-label">prix:</label>
-            <input type="number" class="form-control" id="duree" name="prix">
+            <input type="number" class="form-control" id="duree" name="prix" step="0.1">
           </div>
           <div class="form-group">
             <label for="id_train" class="col-form-label">Train:</label>
@@ -75,8 +75,8 @@
             <label for="datetime" class="col-form-label">datetime:</label>
             <input type="datetime-local" class="form-control" id="datetime" name="datetime">
           </div>
-          <div class="modal-footer">
-            <button type="submit" class="btn btn-outline-primary w-25" name="saveVoyage">Save</button>
+          <div class="mt-3 d-flex justify-content-center">
+            <button type="submit" class="btn text-light px-5" style="background-color:var(--aqua);border-radius: 20px;" name="saveVoyage">Save</button>
           </div>
         </form>
       </div>
@@ -84,18 +84,18 @@
         <div class="w-100">
           <form action="" method="POST">
             <div>
-              <p>Voyage Roteur</p>
+              <p class="aqua" style="font-weight: bold; color:#47B5FF;">Voyage Roteur</p>
             </div>
             <div class="form-group">
               <label for="status" class="col-form-label">gare depart:</label>
-              <select name="status" id="status" class="form-select">
+              <select name="status" id="status" class="form-select" disabled>
                 <option selected>Open this select menu</option>
                 <option value="1">disponible</option>
                 <option value="0">non disponible</option>
               </select>
 
               <label for="gare_depart" class="col-form-label">gare arrivee:</label>
-              <select name="gare_depart" id="gare_depart" class="form-select">
+              <select name="gare_depart" id="gare_depart" class="form-select" disabled>
                 <option selected>Open this select menu</option>
                 <option value="">Agadir</option>
                 <option value="">Casa</option>
@@ -105,7 +105,26 @@
         </div>
       </div>
   </div>
-    
+  <?php if(isset($_SESSION['message'])):  ?>
+      <div class="alert alert-success alert-dismissible fade show w-100">
+          <strong>successfully!</strong>
+          <?php 
+              echo $_SESSION['message']; 
+              unset($_SESSION['message']);
+          ?>
+          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+  <?php endif ?>
+  <?php if(isset($_SESSION['error'])):  ?>
+      <div class="alert alert-danger alert-dismissible fade show w-100">
+          <strong>Erreur!</strong>
+          <?php 
+              echo $_SESSION['error']; 
+              unset($_SESSION['error']);
+          ?>
+          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+  <?php endif ?>
     <table id="example" class="table table-striped" style="width:100%">
       <thead>
         <tr>
@@ -146,14 +165,7 @@
         ?>
       </tbody>
     </table>
-
-
 </section>
-
-
-
-
-
 <!-- Modal -->
 <div class="modal fade" id="AddVoyage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
