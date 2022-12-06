@@ -24,8 +24,11 @@
           <style>
           body{
             background: url('./assets/img/bg.png');
-            
-            
+            background-color: rgb(60, 60, 60);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-blend-mode: multiply;
+                    
             
           }
           .card{
@@ -47,7 +50,7 @@
                         <div class="card-body px-4 py-5 px-md-5">
                               
                                    
-                                        <form id="login" class="needs-validation" novalidate>
+                                    <form id="login" class="needs-validation" method="POST" novalidate>
                                                 <div>
                                                     <div class="d-flex  justify-content-center">
                                                     <img src="./assets/img/YouTrainTM.png" alt="logo" width="40%">
@@ -87,7 +90,7 @@
                                             <div >
                                                 <p>Not a member? <a class="text-decoration-none" href="signup.php">Register</a></p>
                                             </div>
-                                        </form>
+                                    </form>
                                     
                         </div>
             </div>

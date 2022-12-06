@@ -3,10 +3,10 @@
 class DB
 {
 
- private $host = "sql108.epizy.com";
- private $db_name = "epiz_33104775_YouTrain";
- private $username = "epiz_33104775";
- private $password = "CPcVETRiPhWat";
+ private $host = "localhost";
+ private $db_name = "youtrain";
+ private $username = "root";
+ private $password = "";
 
  public function Connect()
  {
