@@ -76,8 +76,8 @@ function saveVoyage(){
 
     $statut = $_POST['status'];
     $duree = $_POST['duree'];
-    $gare_depart = $_POST['gare_depart'];
-    $gare_arrivee = $_POST['gare_arrivee'];
+    $gare_depart = $_POST['id_gare_arrivee'];
+    $gare_arrivee = $_POST['id_gare_arrivee'];
     $prix = $_POST['prix'];
     $id_train = $_POST['id_train'];
     $date=$_POST['datetime'];

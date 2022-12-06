@@ -41,14 +41,16 @@ $(document).ready(function () {
   /*train*/
   handleSuggestion({ inputFiled: "#id_gare", resltOnNode: "#cities_rst2",treattedIn:"../handlers/voyagehandler.php"});
 
-
-
+  /* voyage */
+  handleSuggestion({inputFiled: "#gare_depart", resltOnNode: "#res", treattedIn: "../include/handlers/voyagehandler.php"});
+  handleSuggestion({inputFiled: "#gare_arrivee", resltOnNode: "#res2", treattedIn: "../include/handlers/voyagehandler.php"});
 });
 
 function handleSuggestion({ inputFiled: input, resltOnNode: node,treattedIn:phpfile }) {
   $(input).keyup(
     function () {
       var ville = $(this).val();
+      console.log(ville)
       // if (ville == "" || ville == null) {
       //   $(node).html("no suggesttions");
       // } else {
