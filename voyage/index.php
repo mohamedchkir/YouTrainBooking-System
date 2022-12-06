@@ -3,6 +3,7 @@
     $test = new VoyageController();
     // var_dump($test->getVoyage());
     $res = $test->getVoyage();
+    var_dump($res)
 
 
 ?>
@@ -45,19 +46,25 @@
           </div>
           <div class="form-group">
             <label for="gare_depart" class="col-form-label">gare depart:</label>
-            <select name="gare_depart" id="gare_depart" class="form-select">
+            <input type="text" name="gare_depart"  id="gare_depart" class="form-control">
+            <!-- <select name="gare_depart" id="gare_depart" class="form-select">
               <option selected>Open this select menu</option>
               <option value="1">Agadir</option>
               <option value="2">Casa</option>
-            </select>
+            </select> -->
+            <div id="res"></div>
+            <input type="hidden" name="id_gare_depart" value="">
           </div>
           <div class="form-group">
             <label for="gare_arrivee" class="col-form-label">gare arrivee:</label>
-            <select name="gare_arrivee" id="gare_arrivee" class="form-select">
+            <input type="text" name="gare_arrivee"  id="gare_arrivee" class="form-control">
+            <!-- <select name="gare_arrivee" id="gare_arrivee" class="form-select">
               <option selected>Open this select menu</option>
               <option value="1">Agadir</option>
               <option value="2">Casa</option>
-            </select>
+            </select> -->
+            <div id="res2"></div>
+            <input type="hidden" name="id_gare_arrivee" value="">
           </div>
           <div class="form-group">
             <label for="prix" class="col-form-label">prix:</label>
@@ -149,12 +156,12 @@
           echo 
               '<tr id="'.$t['id'].'">
                 <td data="'.$t['unique_id'].'">'.$t['id'].'</td>
-                <td>'.$t['status'].'</td>
+                <td>'.$t['statusnom'].'</td>
                 <td>'.$t['duree'].'</td>
-                <td>'.$t['gare_depart'].'</td>
-                <td>'.$t['gare_arrivee'].'</td>
+                <td>'.$t['garedepart'].'</td>
+                <td>'.$t['garearrivee'].'</td>
                 <td>'.$t['prix'].'</td>
-                <td>'.$t['id_train'].'</td>
+                <td>'.$t['train'].'</td>
                 <td>'.$t['date'].'</td>
                 <td>
                   <button type="submit" class="btn btn-outline-primary"data-bs-toggle="modal" data-bs-target="#AddVoyage" onclick="edit('.$t['id'].')"><i class="fa-regular fa-pen-to-square"></i></button>
@@ -238,6 +245,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <!-- main -->
 <script src="../assets/js/main3.js"></script>
+<script src="../assets/js/main2.js"></script>
 <!-- dataTable -->
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
