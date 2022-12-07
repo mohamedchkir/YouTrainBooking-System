@@ -50,13 +50,23 @@
                         <div class="card-body px-4 py-5 px-md-5">
                               
                                    
-                                    <form id="login" class="needs-validation" method="POST" novalidate>
+                                    <form id="login" action="include/handlers/UserHandler.php" class="needs-validation py-5" method="POST" novalidate>
                                                 <div>
-                                                    <div class="d-flex  justify-content-center">
+                                                    <div class="d-flex  justify-content-center mb-4">
                                                     <img src="./assets/img/YouTrainTM.png" alt="logo" width="40%">
                                                     </div>
 
-                                                    <h4 class="fw-bold mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h4>
+                                                    <h4 class="fw-bold mb-5 pb-3" style="letter-spacing: 1px;">Sign into your account</h4>
+                                                    <?php
+                                                        if(isset($_GET["msg"])){
+                                                            echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                                                            <strong>Login Failed !</strong> ".$_GET["msg"]."
+                                                            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                                                          </div>";
+                                                        
+                                                        }
+                                                    
+                                                    ?>
                                                 </div>
                                         <div class="text-start">
                                             <!-- Email input -->
@@ -102,6 +112,8 @@
 
 </body>
     <!-- ================== BEGIN core-js ================== -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
         <script src="./assets/js/validation.js"></script>
     <!-- ================== END core-js ================== -->
 </html>
