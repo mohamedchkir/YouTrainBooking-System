@@ -3,13 +3,28 @@
 include_once("DB.php");
 
 class SignupModel extends DB{
+
+    public function setUser($first_name ,$last_name,$email,$password){
+        
+        $query = "INSERT INTO users (prenom,nom,email,password) VALUES (?,?,?,?);";
+        $statement = $this->connect()->prepare($query);
+        $hashedPwd = password_hash($password,PASSWORD_DEFAULT);
+       
+        if(!$statement->execute(array($first_name,$last_name,$email, $hashedPwd))){
+            $statement=null;
+            header("location : ../signup.php");
+            exit();
+        }
+        $statement=null;
+    }
+
     protected function Validation($email){
-       $query = "SELECT * FROM users WHERE Email =? ;";
-       $statement = $this->Connect()->prepare('SELECT * FROM users WHERE  email = ?;');
+       $query = "SELECT nom FROM users WHERE   email = ?;";
+       $statement = $this->Connect()->prepare($query);
 
        if(!$statement->execute(array($email))){
         $statement=null ;
-        echo "statement failed";
+       header("location: ../signup.php");
         exit();
     }
     
@@ -21,15 +36,6 @@ class SignupModel extends DB{
     return $resultCheck;
 }
 
-public function createUser($first_name ,$last_name,$email,$password){
-    $hashedPwd = password_hash($password,PASSWORD_DEFAULT);
-    $query = "INSERT INTO users (prenom,nom,email,password) VALUES (?,?,?,?);";
-    $statement = $this->connect()->prepare($query);
-    if(!$statement->execute(array($first_name,$last_name,$email, $hashedPwd))){
-        $statement=null;
-        header("location : ../signup.php");
-        exit();
-    }
-}
+
        
 }
