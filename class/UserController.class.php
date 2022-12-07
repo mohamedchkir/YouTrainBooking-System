@@ -17,7 +17,7 @@ class UserController extends UserModel
  }
  public function supprimerUser($id)
  {
-
+        
  }
 
  
