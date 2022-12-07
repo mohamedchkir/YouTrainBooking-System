@@ -3,12 +3,10 @@
 class Gare
 {
     private string $gareName;
-    private int $status;
     private int $villeID;
-    public function __construct($gareName, $status, $villeID)
+    public function __construct($gareName, $villeID)
     {
         $this->gareName = $gareName;
-        $this->status = $status;
         $this->villeID = $villeID;
     }
 
@@ -21,17 +19,6 @@ class Gare
     public function setGareName($gareName): void
     {
         $this->gareName = $gareName;
-    }
-
-
-    public function getStatus(): int
-    {
-        return $this->status;
-    }
-
-    public function setStatus($status): void
-    {
-        $this->status = $status;
     }
 
     public function getVilleID(): int
