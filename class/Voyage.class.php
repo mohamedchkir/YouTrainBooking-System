@@ -3,7 +3,7 @@
 
 class Voyage
 {
-    
+
     private $gareDepart;
     private $datetime;
     private $gareDistination;
@@ -118,5 +118,7 @@ class Voyage
 
 
     
+
+
 
 }
