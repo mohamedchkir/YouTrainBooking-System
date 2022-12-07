@@ -23,7 +23,7 @@ class DB
     }
     catch (PDOException $ex)
     {
-        return "error";
+        return $ex;
     }
   
  }

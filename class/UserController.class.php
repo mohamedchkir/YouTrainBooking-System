@@ -10,9 +10,9 @@ class UserController extends UserModel
     return $this->getAllUser();
  }
 
- public function updateUser(User $user,$id)
+ public function updateUser($role,$id)
  {
-    
+    return $this->updateRoleInDB($role,$id);
      // do some verification
  }
  public function supprimerUser($id)

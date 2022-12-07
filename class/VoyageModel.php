@@ -42,14 +42,15 @@ class VoyageModel extends DB
 
 
     protected function editVoyageInDB(Voyage $voyage,$id){
-        $status = $voyage->getStatut();
-        $duree = $voyage->getDureeIstime();
-        $gare_depart = $voyage->getGareDepart();
-        $gare_arrivee = $voyage->getGareDistination();
-        $prix = $voyage->getPrixPourIndividu();
-        $id_train = $voyage->getTrainID();
-        $date = $voyage->getDatetime();
+        
         try{
+            $status = $voyage->getStatut();
+            $duree = $voyage->getDureeIstime();
+            $gare_depart = $voyage->getGareDepart();
+            $gare_arrivee = $voyage->getGareDistination();
+            $prix = $voyage->getPrixPourIndividu();
+            $id_train = $voyage->getTrainID();
+            $date = $voyage->getDatetime();
             $sql="UPDATE `voyages` SET `status`=?,`duree`=?,`gare_depart`=?,`gare_arrivee`=?,`prix`=?,`id_train`=?,`date`=? WHERE id =$id";
             $resultat =$this->connect()->prepare($sql);
             $resultat->execute(array($status,$duree,$gare_depart,$gare_arrivee,$prix,$id_train,$date));
@@ -72,6 +73,7 @@ class VoyageModel extends DB
             $_SESSION['error']="Voyage has been not delete";
             $error = $er->getMessage();
             echo $er->getMessage();
+            
         }
         return $error;
     }

@@ -165,8 +165,11 @@
                 <td>'.$t['date'].'</td>
                 <td>
                   <button type="submit" class="btn btn-outline-primary"data-bs-toggle="modal" data-bs-target="#AddVoyage" onclick="edit('.$t['id'].')"><i class="fa-regular fa-pen-to-square"></i></button>
-                  <a type="submit" href="../include/handlers/voyagehandler.php?id='. $t['id'].'" class="btn btn-outline-danger" name="deleteVoyage"><i class="fa-solid fa-trash"></i></a>
-                </td>
+                  <form action="../include/handlers/voyagehandler.php" method="POST">
+                  <input type="hidden" name="md_id_tr" value="'.$t['id'].'">
+                  <button type="submit" class="btn btn-outline-danger" name="deleteVoyage"><i class="fa-solid fa-trash"></i></button>
+                  </form>
+                  </td>
               </tr>';
           }
         ?>

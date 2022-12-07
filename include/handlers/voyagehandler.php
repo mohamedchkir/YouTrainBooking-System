@@ -12,10 +12,21 @@ if (isset($_POST["search_again"])) getAvailableTrips();
 if (isset($_POST["search"])) getAvailableTrips();
 if (isset($_POST["saveVoyage"])) saveVoyage();
 if (isset($_POST["editVoyage"])) editVoyage();
-if (isset($_GET["id"])) deleteVoyage();
+if (isset($_POST["deleteVoyage"])) deleteVoyage();
 
 
-
+//function validation input 
+function Validation($input){
+    //Supprime les espaces debut et fin 
+    $input = trim($input);
+    //Supprimer quote string (\n \t \)
+    $input = stripcslashes($input);
+    //Convertit les balise html en string
+    $input = htmlspecialchars($input);
+    //Supprime les espaces center
+    $input = preg_replace('/\s+/',' ', $input);
+    return $input;
+}
 
 function getSuggestions()
 {
@@ -74,16 +85,16 @@ function getAvailableTrips()
 
 function saveVoyage(){
 
-    $statut = $_POST['status'];
-    $duree = $_POST['duree'];
-    $gare_depart = $_POST['id_gare_arrivee'];
-    $gare_arrivee = $_POST['id_gare_arrivee'];
-    $prix = $_POST['prix'];
-    $id_train = $_POST['id_train'];
-    $date=$_POST['datetime'];
+    $statut = Validation($_POST['status']);
+    $duree = Validation($_POST['duree']);
+    $gare_depart = Validation($_POST['id_gare_arrivee']);
+    $gare_arrivee = Validation($_POST['id_gare_arrivee']);
+    $prix = Validation($_POST['prix']);
+    $id_train = Validation($_POST['id_train']);
+    $date=Validation($_POST['datetime']);
     $unique= uniqid();
 
-    // $UniqueIdForBothAllerRotour,$gareDepart, $gareDistination, $datetime, $trainID, $prixPourIndividu, $dureeIstime)
+    
     $voyage = new VoyageController();
     //aller
     $voyage->ajouterUnVoyage(new Voyage($statut,$duree,$gare_depart,$gare_arrivee,$prix,$id_train,$date,$unique));
@@ -97,15 +108,15 @@ function saveVoyage(){
 
 function editVoyage(){
     if(isset($_POST['md_id_tr'])){
-        $id = $_POST['md_id_tr'];
-        $statut = $_POST['status'];
-        $duree = $_POST['duree'];
-        $gare_depart = $_POST['gare_depart'];
-        $gare_arrivee = $_POST['gare_arrivee'];
-        $prix = $_POST['prix'];
-        $id_train = $_POST['id_train'];
-        $date = $_POST['datetime'];
-        $unique = $_POST['md_unique_id'];
+        $id = Validation($_POST['md_id_tr']);
+        $statut = Validation($_POST['status']);
+        $duree = Validation($_POST['duree']);
+        $gare_depart = Validation($_POST['gare_depart']);
+        $gare_arrivee = Validation($_POST['gare_arrivee']);
+        $prix = Validation($_POST['prix']);
+        $id_train = Validation($_POST['id_train']);
+        $date = Validation($_POST['datetime']);
+        $unique = Validation($_POST['md_unique_id']);
 
         $voyage = new VoyageController();
 
@@ -116,12 +127,9 @@ function editVoyage(){
 
 
 function deleteVoyage(){
-    if(isset($_GET['id'])){
-        $id = $_GET['id'];
-
-        $voyage = new VoyageController();
-
-        $voyage->supprimerUnVoyage($id);
-        echo "<script>window.location.replace('../../voyage/index.php')</script>";
-    }
+    $id = Validation($_POST['md_id_tr']);
+    
+    $voyage = new VoyageController();
+    $voyage->supprimerUnVoyage($id);
+    echo "<script>window.location.replace('../../voyage/index.php')</script>";
 }
