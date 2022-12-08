@@ -52,13 +52,25 @@
 
         <div class="col-lg-6 mb-5 mb-lg-0 ">
           <div class="card">
-            <div class="card-body px-4 py-5 px-md-5 pt-0">
+            <div class="card-body px-4 py-5 px-md-5 ">
                   <form action="include/handlers/UserHandler.php" id="signup" class="needs-validation" method="POST" novalidate>
                       
-                          <div class="d-flex  justify-content-center">
+                          <div class="d-flex  justify-content-center mb-4">
                             <img src="./assets/img/YouTrainTM.png" alt="logo" width="40%">
                           </div>
                           <h4 class="fw-bold mb-5">Sign up now</h4>
+
+
+                                      <?php
+                                          if(isset($_GET["msg"])){
+                                              echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                                              <strong>Sign Up Failed !</strong> ".$_GET["msg"]."
+                                              <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                                            </div>";
+                                          
+                                          }
+                                      
+                                      ?>
 
                           <div class="text-start">
                               <div class=" mb-4">
@@ -136,6 +148,7 @@
 
 </body>
 <!-- ================== BEGIN core-js ================== -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 <script src="./assets/js/validation.js"></script>
 <!-- ================== END core-js ================== -->
 
