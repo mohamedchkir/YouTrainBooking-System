@@ -28,6 +28,7 @@ function Validation($input){
     return $input;
 }
 
+
 function getSuggestions()
 {
  $sugg = $_POST["suggestions"];

@@ -2,6 +2,7 @@
 
 include_once('DB.php');
 
+
 class VoyageModel extends DB
 {
     protected function getAvailableTrainsFromDB($gareDepart, $gareDistination, $datetime)

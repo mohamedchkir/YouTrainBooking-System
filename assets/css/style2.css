@@ -9,6 +9,10 @@
    --aqua:#47B5FF;
    --light:#DFF6FF;
 }
+
+.light-blue{
+   color: var(--light-blue);
+}
 body{
    width: 100vw;
    overflow-x: hidden;
@@ -130,3 +134,6 @@ span.bubble1::after {
     background: #048888;
 }
 
+#shoppingOrdersSpan{
+    position: absolute;
+}
