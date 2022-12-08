@@ -1,8 +1,11 @@
+<?php
 session_start();
 include_once("../include/autoloader.php");
 if(!isset($_SESSION['search-info'])){
     header("location:../");
 }
+
+
 
 ?>
 
@@ -52,7 +55,7 @@ if(!isset($_SESSION['search-info'])){
       <li class="nav-item">
        <a class="nav-link active py-0 px-3 d-flex" aria-current="page" href="#">
         <h4><i class="bi bi-person me-2"></i></h4>
-        <i>Mounir El Bakkali</i>
+        <i>Mounir El-Bakkali</i>
        </a>
       </li>
       <li class="vr" style="background-color: var(--dark-blue);width: 1px ;"></li>
