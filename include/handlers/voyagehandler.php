@@ -50,17 +50,12 @@ function getSuggestions()
   if (empty($sugg)) {
    $condition = true;
   } else {
-      if($whatToGet=="villes"){
-          $condition = strpos(strtolower($c['ville']), strtolower($sugg)) !== false;
-      }elseif ($whatToGet=="gares"){
           $condition = strpos(strtolower($c['nom']), strtolower($sugg)) !== false;
-      }
+
   }
-  if ($condition && $whatToGet=="gares") {
-   echo "<input type='button' class='btn w-100 border-bottom' onclick='putValue(this)' ville_id='".$c['id_Ville']."' value='" . $c["nom"] . "'>";
-  }else{
-       
-      echo "<input type='button' class='btn w-100 border-bottom' onclick='putValue(this)' ville_id='".$c['id']."' value='" . $c["nom"] . "'>";
+
+  if ($condition) {
+   echo "<input type='button' class='btn w-100 border-bottom' onclick='putValue(this)' ville_id='".$c['id']."' value='" . $c["nom"] . "'>";
   }
  }
  //echo json_encode($cities);
