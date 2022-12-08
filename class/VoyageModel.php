@@ -13,7 +13,14 @@ class VoyageModel extends DB
     }
 
     protected function getAllVoyage(){
+        // "SELECT v.*,s.nom as status,g.nom as gare_depart, ga.nom as gare_arriveefrom voyages as v INNER JOIN status as s on v.status = s.id
+        // INNER JOIN gares as g on v.gare_depart=g.id 
+        // INNER join  gares as ga on v.gare_arrivee=ga.id "
         $sql = "SELECT * from voyages";
+        $sql = "SELECT v.*,s.nom as statusnom ,g.nom as garedepart, ga.nom as garearrivee,t.nom as train from voyages as v INNER JOIN status as s on v.status = s.id
+        INNER JOIN gares as g on v.gare_depart=g.id 
+        INNER join  gares as ga on v.gare_arrivee=ga.id
+        INNER JOIN trains as t on v.id_train=t.id";
         $statement = $this->Connect()->prepare($sql);
         $statement->execute();
         $res = $statement->fetchAll();

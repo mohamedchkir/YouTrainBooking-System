@@ -1,4 +1,3 @@
-<?php
 session_start();
 include_once("../include/autoloader.php");
 if(!isset($_SESSION['search-info'])){
