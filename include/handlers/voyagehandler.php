@@ -5,7 +5,7 @@ include_once("../autoloader.php");
 
 
 //include_once("../../class/CityController.class.php");
-if (isset($_POST["suggestions"])) getSuggestions();
+if (isset($_POST["suggestions"]) && isset($_POST['whatToGet'])) getSuggestions();
 if (isset($_POST["search"])) getAvailableTrips();
 if (isset($_POST["search_again"])) getAvailableTrips();
 
@@ -32,26 +32,34 @@ function Validation($input){
 function getSuggestions()
 {
  $sugg = $_POST["suggestions"];
- $gareContr = new GareController();
- $gares = $gareContr->getAllGare();
- // foreach ($cities as $city) {
- //  print_r($city["ville"]);
- // }
+ $whatToGet =$_POST['whatToGet'];
 
- // exit();
- //$cities = array("casa", "tanger", "tetouen", "castia", "rabat", "sale", "kenitra");
+
+
+ $variantToget=array();
+ if($whatToGet=="villes"){
+     $cityContr = new CityController();
+     $variantToget= $cityContr->getAllCities();
+ }elseif ($whatToGet=="gares"){
+     $gareContr = new GareController();
+     $variantToget = $gareContr->getAllGare();
+ }
  $condition = true;
 
- //var_dump($gares);
-
- foreach ($gares as $c) {
+ foreach ($variantToget as $c) {
   if (empty($sugg)) {
    $condition = true;
   } else {
-   $condition = strpos(strtolower($c['nom']), strtolower($sugg)) !== false;
+      if($whatToGet=="villes"){
+          $condition = strpos(strtolower($c['ville']), strtolower($sugg)) !== false;
+      }elseif ($whatToGet=="gares"){
+          $condition = strpos(strtolower($c['nom']), strtolower($sugg)) !== false;
+      }
   }
-  if ($condition) {
+  if ($condition && $whatToGet=="gares") {
    echo "<input type='button' class='btn w-100 border-bottom' onclick='putValue(this)' ville_id='".$c['id_Ville']."' value='" . $c["nom"] . "'>";
+  }else{
+      echo "<input type='button' class='btn w-100 border-bottom' onclick='putValue(this)' ville_id='".$c['id']."' value='" . $c["ville"] . "'>";
   }
  }
  //echo json_encode($cities);
