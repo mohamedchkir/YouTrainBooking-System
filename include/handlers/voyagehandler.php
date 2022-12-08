@@ -139,7 +139,6 @@ function editVoyage(){
 
 function deleteVoyage(){
     $id = Validation($_POST['md_id_tr']);
-
     $voyage = new VoyageController();
     $voyage->supprimerUnVoyage($id);
     echo "<script>window.location.replace('../../voyage/index.php')</script>";

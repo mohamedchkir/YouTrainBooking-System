@@ -150,7 +150,7 @@
                 <td>
                   <button type="submit" class="btn btn-outline-primary"data-bs-toggle="modal" data-bs-target="#AddVoyage" onclick="edit('.$t['id'].')"><i class="fa-regular fa-pen-to-square"></i></button>
                   <form action="../include/handlers/voyagehandler.php" method="POST">
-                  <input type="hidden" id="md_id_tr" name="md_id_tr" value="'.$t['id'].'">
+                  <input type="hidden" id="md_id_tr" name="md_id_tr" value="'.$t['unique_id'].'">
                     <button type="submit" class="btn btn-outline-danger" name="deleteVoyage"><i class="fa-solid fa-trash"></i></button>
                   </form>
                 </td>

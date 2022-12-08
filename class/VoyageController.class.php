@@ -42,7 +42,6 @@ class VoyageController extends VoyageModel
  public function supprimerUnVoyage($id)
  {
      // do some verification
-     
 
     try{
         $this->deleteVoyageInDB($id);
