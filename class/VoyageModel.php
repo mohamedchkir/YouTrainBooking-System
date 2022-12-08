@@ -41,8 +41,6 @@ class VoyageModel extends DB
 
     protected function editVoyageInDB(Voyage $voyage,$id){
         try{
-            // var_dump($voyage,$id);
-            // die();
             $status = $voyage->getStatut();
             $duree = $voyage->getDureeIstime();
             $gare_depart = $voyage->getGareDepart();
@@ -60,11 +58,10 @@ class VoyageModel extends DB
     }
 
     protected function deleteVoyageInDB($id){
-
         try{
-            $sql="DELETE FROM `voyages` WHERE id=$id";
+            $sql="DELETE FROM `voyages` WHERE unique_id=?";
             $resultat =$this->connect()->prepare($sql);
-            $resultat->execute();
+            $resultat->execute(array($id));
         }catch (PDOException $er){
             $error = $er->getMessage();
             echo $er->getMessage();
