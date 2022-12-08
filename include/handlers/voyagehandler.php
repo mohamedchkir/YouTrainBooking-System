@@ -51,9 +51,7 @@ function getSuggestions()
    $condition = true;
   } else {
           $condition = strpos(strtolower($c['nom']), strtolower($sugg)) !== false;
-
   }
-
   if ($condition) {
    echo "<input type='button' class='btn w-100 border-bottom' onclick='putValue(this)' ville_id='".$c['id']."' value='" . $c["nom"] . "'>";
   }
