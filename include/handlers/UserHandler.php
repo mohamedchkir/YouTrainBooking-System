@@ -1,8 +1,7 @@
 <?php
 
 include_once("../autoloader.php");
-// signup -------------------------------
-// signup -------------------------------
+
 if(isset($_POST["signup"]))
 {
 
@@ -41,7 +40,7 @@ if(isset($_POST["login"]))
    // Running error handlers and user signup
     $LoginCtr->LoginUr();
    // Going back to the front page
-    // header("location: ../index.php");
+
 }
 // login---------------------------------
 // login---------------------------------

@@ -1,35 +1,56 @@
 <?php
+session_start();
 
 include_once('VoyageModel.php');
-// include_once('../include/handlers/voyagehandler.php');
+
+
 
 class VoyageController extends VoyageModel
 {
  public function getVoyage(){
     
     return $this->getAllVoyage();
+
  }
 
  public function ajouterUnVoyage(Voyage $voyage)
  {
-     // do some verification
+    // do some verification
     //  if($voyage->setGareDepart($voyage->getGareDepart())==""){
 
     //  }
-    $this->addVoyageInDB($voyage);
+    
     // set Status call fun
+    try{
+        $this->addVoyageInDB($voyage);
+        $_SESSION['message']="Voyage has been added successfully";
+    }catch(PDOException $er){
+        $_SESSION['error']="Voyage has been not added";
+    }
         
  }
  public function updateVoyageInfo(Voyage $voyage,$id)
  {
     
      // do some verification
-     $this->editVoyageInDB($voyage,$id);
+    try{
+        $this->editVoyageInDB($voyage,$id);
+        $_SESSION['message']="Voyage has been update successfully";
+    }catch(PDOException $er){
+        $_SESSION['error']="Voyage has been not update";
+    }
  }
  public function supprimerUnVoyage($id)
  {
      // do some verification
-     $this->deleteVoyageInDB($id);
+     
+
+    try{
+        $this->deleteVoyageInDB($id);
+        $_SESSION['message']="Voyage has been delete successfully";
+    }catch(PDOException $er){
+        $_SESSION['error']="Voyage has been not delete";
+    }
  }
  public function getAvailableTrains($gareDepart, $gareDistination, $datetime): array
  {

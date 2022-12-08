@@ -20,5 +20,11 @@ class DB
         $PDO->setAttribute(PDO::ERRMODE_EXCEPTION,PDO::ERRMODE_EXCEPTION);
         //throw new PDOException("Something goes wrong ");
         return $PDO;
+    }
+    catch (PDOException $ex)
+    {
+        return $ex;
+    }
+
  }
 }

@@ -3,7 +3,7 @@
     $test = new VoyageController();
     // var_dump($test->getVoyage());
     $res = $test->getVoyage();
-    var_dump($res)
+    // var_dump($res)
 
 
 
@@ -29,13 +29,13 @@
   <section style="height:94vh ;" class="container">
     <div class="w-75 mb-5 row">
       <div class="col-8">
-        <form action="../include/handlers/voyagehandler.php" method="POST">
+      <form action="../include/handlers/voyagehandler.php" method="POST">
           <div>
             <p class="aqua" style="font-weight: bold; color:#47B5FF;">Voyage Aller</p>
           </div>
           <div class="form-group">
             <label for="status" class="col-form-label">Status:</label>
-            <select name="status" id="status" class="form-select">
+            <select name="status" id="status" class="form-select" required>
               <!-- <option >Open this select menu</option> -->
               <option selected value="1">disponible</option>
               <option value="2">non disponible</option>
@@ -43,11 +43,11 @@
           </div>
           <div class="form-group">
             <label for="duree" class="col-form-label">duree:</label>
-            <input type="number" class="form-control" id="duree" name="duree">
+            <input type="number" class="form-control" id="duree" name="duree" required>
           </div>
           <div class="form-group">
             <label for="gare_depart" class="col-form-label">gare depart:</label>
-            <input type="text" name="gare_depart"  id="gare_depart" class="form-control">
+            <input type="text" name="gare_depart"  id="gare_depart" class="form-control" required>
             <!-- <select name="gare_depart" id="gare_depart" class="form-select">
               <option selected>Open this select menu</option>
               <option value="1">Agadir</option>
@@ -58,7 +58,7 @@
           </div>
           <div class="form-group">
             <label for="gare_arrivee" class="col-form-label">gare arrivee:</label>
-            <input type="text" name="gare_arrivee"  id="gare_arrivee" class="form-control">
+            <input type="text" name="gare_arrivee"  id="gare_arrivee" class="form-control" required>
             <!-- <select name="gare_arrivee" id="gare_arrivee" class="form-select">
               <option selected>Open this select menu</option>
               <option value="1">Agadir</option>
@@ -69,11 +69,11 @@
           </div>
           <div class="form-group">
             <label for="prix" class="col-form-label">prix:</label>
-            <input type="number" class="form-control" id="duree" name="prix" step="0.1">
+            <input type="number" class="form-control" id="duree" name="prix" step="0.1" required>
           </div>
           <div class="form-group">
             <label for="id_train" class="col-form-label">Train:</label>
-            <select name="id_train" id="id_train" class="form-select">
+            <select name="id_train" id="id_train" class="form-select" required>
               <option selected>Open this select menu</option>
               <option value="1">TVG</option>
               <option value="2">ONCF</option>
@@ -81,7 +81,7 @@
           </div>
           <div class="form-group">
             <label for="datetime" class="col-form-label">datetime:</label>
-            <input type="datetime-local" class="form-control" id="datetime" name="datetime">
+            <input type="datetime-local" class="form-control" id="datetime" name="datetime" required>
           </div>
           <div class="mt-3 d-flex justify-content-center">
             <button type="submit" class="btn text-light px-5" style="background-color:var(--aqua);border-radius: 20px;" name="saveVoyage">Save</button>
@@ -166,77 +166,76 @@
                 <td>'.$t['train'].'</td>
                 <td>'.$t['date'].'</td>
                 <td>
-                  <button type="submit" class="btn btn-outline-primary"data-bs-toggle="modal" data-bs-target="#AddVoyage" onclick="editGare(' . $t['id'] . ')"><i class="fa-regular fa-pen-to-square"></i></button>
-                  <a type="submit" href="../include/handlers/voyagehandler.php?id=' . $t['id'] . '" class="btn btn-outline-danger" name="deleteVoyage"><i class="fa-solid fa-trash"></i></a>
+                  <button type="submit" class="btn btn-outline-primary"data-bs-toggle="modal" data-bs-target="#AddVoyage" onclick="edit('.$t['id'].')"><i class="fa-regular fa-pen-to-square"></i></button>
+                  <a type="submit" href="../include/handlers/voyagehandler.php?id='. $t['id'].'" class="btn btn-outline-danger" name="deleteVoyage"><i class="fa-solid fa-trash"></i></a>
                 </td>
               </tr>';
         }
         ?>
       </tbody>
     </table>
-  </section>
-  <!-- Modal -->
-  <div class="modal fade" id="AddVoyage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Edit Voyage</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form action="../include/handlers/voyagehandler.php" method="POST">
-            <input type="hidden" id="md_id_tr" name="md_id_tr" value="">
-            <input type="hidden" id="md_unique_id" name="md_unique_id" value="">
-            <div class="form-group">
-              <label for="status" class="col-form-label">Status:</label>
-              <select name="status" id="md_status" class="form-select">
-                <option selected>Open this select menu</option>
-                <option value="1">disponible</option>
-                <option value="2">non disponible</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="duree" class="col-form-label">duree:</label>
-              <input type="number" class="form-control" id="md_duree" name="duree">
-            </div>
-            <div class="form-group">
-              <label for="gare_depart" class="col-form-label">gare depart:</label>
-              <select name="gare_depart" id="md_gare_depart" class="form-select">
-                <option selected>Open this select menu</option>
-                <option value="1">Agadir</option>
-                <option value="2">Casa</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="gare_arrivee" class="col-form-label">gare arrivee:</label>
-              <select name="gare_arrivee" id="md_gare_arrivee" class="form-select">
-                <option selected>Open this select menu</option>
-                <option value="1">Agadir</option>
-                <option value="2">Casa</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="prix" class="col-form-label">prix:</label>
-              <input type="number" class="form-control" id="md_prix" name="prix">
-            </div>
-            <div class="form-group">
-              <label for="id_train" class="col-form-label">Train:</label>
-              <select name="id_train" id="md_id_train" class="form-select">
-                <option selected>Open this select menu</option>
-                <option value="1">TVG</option>
-                <option value="2">ONCF</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="datetime" class="col-form-label">datetime:</label>
-              <input type="datetime-local" class="form-control" id="md_datetime" name="datetime">
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary" name="editVoyage">Edit</button>
-            </div>
-          </form>
-        </div>
+</section>
+<!-- Modal -->
+<div class="modal fade" id="AddVoyage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Edit Voyage</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="../include/handlers/voyagehandler.php" method="POST">
+          <input type="hidden" id="md_id_tr" name="md_id_tr" value="">
+          <input type="hidden" id="md_unique_id" name="md_unique_id" value="">
+        <div class="form-group">
+            <label for="status" class="col-form-label">Status:</label>
+            <select name="status" id="md_status" class="form-select">
+              <option selected>Open this select menu</option>
+              <option  value="1">disponible</option>
+              <option value="2">non disponible</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="duree" class="col-form-label">duree:</label>
+            <input type="number" class="form-control" id="md_duree" name="duree">
+          </div>
+          <div class="form-group">
+            <label for="gare_depart" class="col-form-label">gare depart:</label>
+            <select name="gare_depart" id="md_gare_depart" class="form-select">
+              <option selected>Open this select menu</option>
+              <option value="1">Agadir</option>
+              <option value="2">Casa</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="gare_arrivee" class="col-form-label">gare arrivee:</label>
+            <select name="gare_arrivee" id="md_gare_arrivee" class="form-select">
+              <option selected>Open this select menu</option>
+              <option value="1">Agadir</option>
+              <option value="2">Casa</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="prix" class="col-form-label">prix:</label>
+            <input type="number" class="form-control" id="md_prix" name="prix">
+          </div>
+          <div class="form-group">
+            <label for="id_train" class="col-form-label">Train:</label>
+            <select name="id_train" id="md_id_train" class="form-select">
+              <option selected>Open this select menu</option>
+              <option value="1">TVG</option>
+              <option value="2">ONCF</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="datetime" class="col-form-label">datetime:</label>
+            <input type="datetime-local" class="form-control" id="md_datetime" name="datetime">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary" name="editVoyage">Edit</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -248,6 +247,7 @@
 <!-- main -->
 <script src="../assets/js/main3.js"></script>
 <script src="../assets/js/main2.js"></script>
+<script src="../assets/js/validation.js"></script>
 <!-- dataTable -->
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
@@ -256,5 +256,5 @@
 <!-- Font Awesome JS -->
 <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
 <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-
+<!-- parsley -->
 </html>
