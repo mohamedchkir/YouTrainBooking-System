@@ -11,7 +11,7 @@ class TrainModel extends DB
     }
     protected function updateTrainInfoInDB(Train $train,$id){
         $statement= $this->Connect()->prepare("UPDATE trains SET nom=? ,capacite=? ,gare_id=?,status=? WHERE id = ?;");
-        if($statement->execute(array($train->setNom(),$train->getCapacite(),$train->getGareID(),$train->getStatusID(),$id))){
+        if($statement->execute(array($train->getNom(),$train->getCapacite(),$train->getGareID(),$train->getStatusID(),$id))){
             header("location:../index.php?errStatement=notExecuted;");
             exit();
         }
