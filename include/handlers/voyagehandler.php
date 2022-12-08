@@ -95,6 +95,9 @@ function saveVoyage(){
     $date=Validation($_POST['datetime']);
     $unique= uniqid();
 
+    // var_dump($statut,$duree,$gare_depart,$gare_arrivee,$prix,$id_train,$date,$unique);
+    //     die;
+
     
     $voyage = new VoyageController();
     //aller
@@ -110,14 +113,17 @@ function saveVoyage(){
 function editVoyage(){
     if(isset($_POST['md_id_tr'])){
         $id = Validation($_POST['md_id_tr']);
-        $statut = Validation($_POST['status']);
-        $duree = Validation($_POST['duree']);
-        $gare_depart = Validation($_POST['gare_depart']);
-        $gare_arrivee = Validation($_POST['gare_arrivee']);
-        $prix = Validation($_POST['prix']);
-        $id_train = Validation($_POST['id_train']);
-        $date = Validation($_POST['datetime']);
+        $statut = Validation($_POST['md_status']);
+        $duree = Validation($_POST['md_duree']);
+        $gare_depart = Validation($_POST['md_gare_depart']);
+        $gare_arrivee = Validation($_POST['md_gare_arrivee']);
+        $prix = Validation($_POST['md_prix']);
+        $id_train = Validation($_POST['md_id_train']);
+        $date = Validation($_POST['md_datetime']);
         $unique = Validation($_POST['md_unique_id']);
+
+        // var_dump($statut,$duree,$gare_depart,$gare_arrivee,$prix,$id_train,$date,$unique);
+        // die;
 
         $voyage = new VoyageController();
 

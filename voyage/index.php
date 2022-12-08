@@ -29,7 +29,7 @@
   <section style="height:94vh ;" class="container">
     <div class="w-75 mb-5 row">
       <div class="col-8">
-      <form action="../include/handlers/voyagehandler.php" method="POST">
+      <form action="../include/handlers/voyagehandler.php" class="needs-validation" method="POST" novalidate>
           <div>
             <p class="aqua" style="font-weight: bold; color:#47B5FF;">Voyage Aller</p>
           </div>
@@ -167,7 +167,10 @@
                 <td>'.$t['date'].'</td>
                 <td>
                   <button type="submit" class="btn btn-outline-primary"data-bs-toggle="modal" data-bs-target="#AddVoyage" onclick="edit('.$t['id'].')"><i class="fa-regular fa-pen-to-square"></i></button>
-                  <a type="submit" href="../include/handlers/voyagehandler.php?id='. $t['id'].'" class="btn btn-outline-danger" name="deleteVoyage"><i class="fa-solid fa-trash"></i></a>
+                  <form action="../include/handlers/voyagehandler.php" method="POST">
+                  <input type="hidden" id="md_id_tr" name="md_id_tr" value="'.$t['id'].'">
+                    <button type="submit" class="btn btn-outline-danger" name="deleteVoyage"><i class="fa-solid fa-trash"></i></button>
+                  </form>
                 </td>
               </tr>';
         }
@@ -184,12 +187,12 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="../include/handlers/voyagehandler.php" method="POST">
+        <form action="../include/handlers/voyagehandler.php" method="POST" class="needs-validation" method="POST" novalidate>
           <input type="hidden" id="md_id_tr" name="md_id_tr" value="">
-          <input type="hidden" id="md_unique_id" name="md_unique_id" value="">
+          <input type="hidden" id="md_unique_id" name="md_unique_id" value="" required>
         <div class="form-group">
             <label for="status" class="col-form-label">Status:</label>
-            <select name="status" id="md_status" class="form-select">
+            <select name="md_status" id="md_status" class="form-select" required>
               <option selected>Open this select menu</option>
               <option  value="1">disponible</option>
               <option value="2">non disponible</option>
@@ -197,11 +200,11 @@
           </div>
           <div class="form-group">
             <label for="duree" class="col-form-label">duree:</label>
-            <input type="number" class="form-control" id="md_duree" name="duree">
+            <input type="number" class="form-control" id="md_duree" name="md_duree" required>
           </div>
           <div class="form-group">
             <label for="gare_depart" class="col-form-label">gare depart:</label>
-            <select name="gare_depart" id="md_gare_depart" class="form-select">
+            <select name="md_gare_depart" id="md_gare_depart" class="form-select" required>
               <option selected>Open this select menu</option>
               <option value="1">Agadir</option>
               <option value="2">Casa</option>
@@ -209,7 +212,7 @@
           </div>
           <div class="form-group">
             <label for="gare_arrivee" class="col-form-label">gare arrivee:</label>
-            <select name="gare_arrivee" id="md_gare_arrivee" class="form-select">
+            <select name="md_gare_arrivee" id="md_gare_arrivee" class="form-select" required>
               <option selected>Open this select menu</option>
               <option value="1">Agadir</option>
               <option value="2">Casa</option>
@@ -217,11 +220,11 @@
           </div>
           <div class="form-group">
             <label for="prix" class="col-form-label">prix:</label>
-            <input type="number" class="form-control" id="md_prix" name="prix">
+            <input type="number" class="form-control" id="md_prix" name="md_prix" required>
           </div>
           <div class="form-group">
             <label for="id_train" class="col-form-label">Train:</label>
-            <select name="id_train" id="md_id_train" class="form-select">
+            <select name="md_id_train" id="md_id_train" class="form-select" required>
               <option selected>Open this select menu</option>
               <option value="1">TVG</option>
               <option value="2">ONCF</option>
@@ -229,7 +232,7 @@
           </div>
           <div class="form-group">
             <label for="datetime" class="col-form-label">datetime:</label>
-            <input type="datetime-local" class="form-control" id="md_datetime" name="datetime">
+            <input type="datetime-local" class="form-control" id="md_datetime" name="md_datetime" required>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
