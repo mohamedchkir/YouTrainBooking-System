@@ -6,7 +6,7 @@ $(document).ready(function () {
 
 
 function edit(i){
-     let unique=document.getElementById(i).children[0].getAttribute('data');;
+    let unique=document.getElementById(i).children[0].getAttribute('data');;
     let id = document.getElementById(i).children[0].innerHTML;
     let status = document.getElementById(i).children[1].innerHTML;
     let duree = document.getElementById(i).children[2].innerHTML;
@@ -15,7 +15,7 @@ function edit(i){
     let prix = document.getElementById(i).children[5].innerHTML;
     let id_train = document.getElementById(i).children[6].innerHTML;
     let date = document.getElementById(i).children[7].innerHTML;
-    //  console.log(unique)
+    console.log(id)
 
     document.querySelector("#md_id_tr").value = id;
     document.querySelector("#md_status").value=status;

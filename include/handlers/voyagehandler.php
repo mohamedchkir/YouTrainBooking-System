@@ -59,7 +59,8 @@ function getSuggestions()
   if ($condition && $whatToGet=="gares") {
    echo "<input type='button' class='btn w-100 border-bottom' onclick='putValue(this)' ville_id='".$c['id_Ville']."' value='" . $c["nom"] . "'>";
   }else{
-      echo "<input type='button' class='btn w-100 border-bottom' onclick='putValue(this)' ville_id='".$c['id']."' value='" . $c["ville"] . "'>";
+       
+      echo "<input type='button' class='btn w-100 border-bottom' onclick='putValue(this)' ville_id='".$c['id']."' value='" . $c["nom"] . "'>";
   }
  }
  //echo json_encode($cities);
