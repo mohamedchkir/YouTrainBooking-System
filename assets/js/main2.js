@@ -46,6 +46,9 @@ $(document).ready(function () {
   //$("#ville").click(function () { alert("i am here") })
 
 
+
+
+
   /* voyage */
   handleSuggestion({inputFiled: "#gare_depart", resltOnNode: "#res", treattedIn: "../include/handlers/voyagehandler.php"});
   handleSuggestion({inputFiled: "#gare_arrivee", resltOnNode: "#res2", treattedIn: "../include/handlers/voyagehandler.php"});
@@ -88,4 +91,15 @@ function putValue(ele) {
   ele.parentElement.parentElement.children[1].value = ville;
   ele.parentElement.parentElement.children[3].setAttribute("value", ville_id);
   ele.parentElement.innerHTML = "";
+}
+
+
+function bookTicket({id:id_voyage,from:ville_depart,to:vill_dis,date:date,prix:price}){
+  console.log({id:id_voyage,from:ville_depart,to:vill_dis,date:date,prix:price});
+  let count = parseInt($("#order_counter").next().attr("counter"));
+  $("#order_counter").text(count+1);
+  $("#order_counter").next().attr("counter",count+1)
+  //$.get("../include/handlers/voyageHandler.php",{getOrderCount:true,function(data,status){}})
+
+  console.log();
 }

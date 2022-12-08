@@ -17,6 +17,7 @@ if (isset($_GET["id"])) deleteVoyage();
 
 
 
+
 function getSuggestions()
 {
  $sugg = $_POST["suggestions"];
