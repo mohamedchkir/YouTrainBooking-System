@@ -42,14 +42,16 @@ function getSuggestions()
  //$cities = array("casa", "tanger", "tetouen", "castia", "rabat", "sale", "kenitra");
  $condition = true;
 
+ //var_dump($gares);
+
  foreach ($gares as $c) {
   if (empty($sugg)) {
    $condition = true;
   } else {
-   $condition = strpos(strtolower($c['ville']), strtolower($sugg)) !== false;
+   $condition = strpos(strtolower($c['nom']), strtolower($sugg)) !== false;
   }
   if ($condition) {
-   echo "<input type='button' class='btn w-100 border-bottom' onclick='putValue(this)' ville_id='".$c['id_ville']."' value='" . $c["nom"] . "'>";
+   echo "<input type='button' class='btn w-100 border-bottom' onclick='putValue(this)' ville_id='".$c['id_Ville']."' value='" . $c["nom"] . "'>";
   }
  }
  //echo json_encode($cities);
