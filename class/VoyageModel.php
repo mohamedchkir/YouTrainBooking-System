@@ -40,8 +40,9 @@ class VoyageModel extends DB
 
 
     protected function editVoyageInDB(Voyage $voyage,$id){
-        
         try{
+            // var_dump($voyage,$id);
+            // die();
             $status = $voyage->getStatut();
             $duree = $voyage->getDureeIstime();
             $gare_depart = $voyage->getGareDepart();

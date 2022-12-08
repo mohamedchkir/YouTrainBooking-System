@@ -31,7 +31,6 @@ class VoyageController extends VoyageModel
  }
  public function updateVoyageInfo(Voyage $voyage,$id)
  {
-    
      // do some verification
     try{
         $this->editVoyageInDB($voyage,$id);
