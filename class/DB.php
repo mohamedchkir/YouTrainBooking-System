@@ -14,8 +14,8 @@ class DB
 
  protected function Connect()
  {
-     try {
 
+     try {
 
         $con = 'mysql:host=' . $this->host . ';dbname=' . $this->db_name . ';';
         $PDO = new PDO($con, $this->username, $this->password);

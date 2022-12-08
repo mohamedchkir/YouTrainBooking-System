@@ -34,15 +34,15 @@ function makeaMargin(e) {
 // JQUERY STARTS HERE
 
 $(document).ready(function () {
-  handleSuggestion({ inputFiled: "#gare_depart", resltOnNode: "#cities_rst1", treattedIn: "./include/handlers/voyagehandler.php" });
-  handleSuggestion({ inputFiled: "#gare_distination", resltOnNode: "#cities_rst2", treattedIn: "./include/handlers/voyagehandler.php" });
-  handleSuggestion({ inputFiled: "#gare_depart_reseach", resltOnNode: "#cities_rst1", treattedIn: "../include/handlers/voyagehandler.php" });
-  handleSuggestion({ inputFiled: "#gare_distination_reseach", resltOnNode: "#cities_rst2", treattedIn: "../include/handlers/voyagehandler.php" });
+  handleSuggestion({ inputFiled: "#gare_depart", resltOnNode: "#cities_rst1", treattedIn: "./include/handlers/voyagehandler.php",whatToGet:"gares" });
+  handleSuggestion({ inputFiled: "#gare_distination", resltOnNode: "#cities_rst2", treattedIn: "./include/handlers/voyagehandler.php",whatToGet:"gares" });
+  handleSuggestion({ inputFiled: "#gare_depart_reseach", resltOnNode: "#cities_rst1", treattedIn: "../include/handlers/voyagehandler.php",whatToGet:"gares" });
+  handleSuggestion({ inputFiled: "#gare_distination_reseach", resltOnNode: "#cities_rst2", treattedIn: "../include/handlers/voyagehandler.php",whatToGet:"gares" });
   /*train*/
-  handleSuggestion({ inputFiled: "#id_gare", resltOnNode: "#cities_rst2", treattedIn: "../handlers/voyagehandler.php" });
+  handleSuggestion({ inputFiled: "#id_gare", resltOnNode: "#cities_rst2", treattedIn: "../handlers/voyagehandler.php",whatToGet:"gares" });
   // gare
-  handleSuggestion({ inputFiled: "#ville", resltOnNode: "#gareres", treattedIn: "../include/handlers/voyagehandler.php" });
-  handleSuggestion({ inputFiled: "#gare_ville", resltOnNode: "#md_gareres", treattedIn: "../include/handlers/voyagehandler.php" });
+  handleSuggestion({ inputFiled: "#ville", resltOnNode: "#gareres", treattedIn: "../include/handlers/voyagehandler.php",whatToGet:"villes" });
+  handleSuggestion({ inputFiled: "#gare_ville", resltOnNode: "#md_gareres", treattedIn: "../include/handlers/voyagehandler.php",whatToGet:"villes" });
   //$("#ville").click(function () { alert("i am here") })
 
 
@@ -50,22 +50,23 @@ $(document).ready(function () {
 
 
   /* voyage */
-  handleSuggestion({inputFiled: "#gare_depart", resltOnNode: "#res", treattedIn: "../include/handlers/voyagehandler.php"});
-  handleSuggestion({inputFiled: "#gare_arrivee", resltOnNode: "#res2", treattedIn: "../include/handlers/voyagehandler.php"});
+  handleSuggestion({inputFiled: "#gare_depart", resltOnNode: "#res", treattedIn: "../include/handlers/voyagehandler.php",whatToGet:"gares"});
+  handleSuggestion({inputFiled: "#gare_arrivee", resltOnNode: "#res2", treattedIn: "../include/handlers/voyagehandler.php",whatToGet:"gares"});
+  /* update modal voyage */
+  handleSuggestion({inputFiled: "#md_gare_depart", resltOnNode: "#md_res", treattedIn: "../include/handlers/voyagehandler.php",whatToGet:"gares"});
+  handleSuggestion({inputFiled: "#md_gare_arrivee", resltOnNode: "#md_res2", treattedIn: "../include/handlers/voyagehandler.php",whatToGet:"gares"});
 });
 
-function handleSuggestion({ inputFiled: input, resltOnNode: node, treattedIn: phpfile }) {
+function handleSuggestion({ inputFiled: input, resltOnNode: node, treattedIn: phpfile,whatToGet:villeOrGare }) {
   $(input).keyup(
     function () {
       var ville = $(this).val();
       console.log(ville)
-      // if (ville == "" || ville == null) {
-      //   $(node).html("no suggesttions");
-      // } else {
       $.post(
         phpfile,
         {
           suggestions: ville,
+          whatToGet:villeOrGare
         },
         function (data, status) {
           if (data == "") {

@@ -2,6 +2,10 @@
 
 include_once("../autoloader.php");
 
+
+if(isset($_POST['accept']))    accept();
+if(isset($_POST['deny']))      deny();
+
 if(isset($_POST["signup"]))
 {
 
@@ -44,3 +48,22 @@ if(isset($_POST["login"]))
 }
 // login---------------------------------
 // login---------------------------------
+
+
+function accept(){
+   $id = $_POST['id'];
+   $role = 1;
+
+   $user = new UserController();
+   $user->updateUser($role,$id);
+   echo "<script>window.location.replace('../components/uers.component.php')</script>";
+}
+function deny(){
+   $id = $_POST['id'];
+   $role = 0;
+
+   $user = new UserController();
+   $user->updateUser($role,$id);
+   echo "<script>window.location.replace('../components/uers.component.php')</script>";
+   
+}

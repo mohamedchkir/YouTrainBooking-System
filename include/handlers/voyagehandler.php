@@ -5,7 +5,7 @@ include_once("../autoloader.php");
 
 
 //include_once("../../class/CityController.class.php");
-if (isset($_POST["suggestions"])) getSuggestions();
+if (isset($_POST["suggestions"]) && isset($_POST['whatToGet'])) getSuggestions();
 if (isset($_POST["search"])) getAvailableTrips();
 if (isset($_POST["search_again"])) getAvailableTrips();
 
@@ -32,26 +32,28 @@ function Validation($input){
 function getSuggestions()
 {
  $sugg = $_POST["suggestions"];
- $gareContr = new GareController();
- $gares = $gareContr->getAllGare();
- // foreach ($cities as $city) {
- //  print_r($city["ville"]);
- // }
+ $whatToGet =$_POST['whatToGet'];
 
- // exit();
- //$cities = array("casa", "tanger", "tetouen", "castia", "rabat", "sale", "kenitra");
+
+
+ $variantToget=array();
+ if($whatToGet=="villes"){
+     $cityContr = new CityController();
+     $variantToget= $cityContr->getAllCities();
+ }elseif ($whatToGet=="gares"){
+     $gareContr = new GareController();
+     $variantToget = $gareContr->getAllGare();
+ }
  $condition = true;
 
- //var_dump($gares);
-
- foreach ($gares as $c) {
+ foreach ($variantToget as $c) {
   if (empty($sugg)) {
    $condition = true;
   } else {
-   $condition = strpos(strtolower($c['nom']), strtolower($sugg)) !== false;
+          $condition = strpos(strtolower($c['nom']), strtolower($sugg)) !== false;
   }
   if ($condition) {
-   echo "<input type='button' class='btn w-100 border-bottom' onclick='putValue(this)' ville_id='".$c['id_Ville']."' value='" . $c["nom"] . "'>";
+   echo "<input type='button' class='btn w-100 border-bottom' onclick='putValue(this)' ville_id='".$c['id']."' value='" . $c["nom"] . "'>";
   }
  }
  //echo json_encode($cities);
@@ -90,12 +92,15 @@ function saveVoyage(){
 
     $statut = Validation($_POST['status']);
     $duree = Validation($_POST['duree']);
-    $gare_depart = Validation($_POST['id_gare_arrivee']);
+    $gare_depart = Validation($_POST['id_gare_depart']);
     $gare_arrivee = Validation($_POST['id_gare_arrivee']);
     $prix = Validation($_POST['prix']);
     $id_train = Validation($_POST['id_train']);
     $date=Validation($_POST['datetime']);
     $unique= uniqid();
+
+    // var_dump($statut,$duree,$gare_depart,$gare_arrivee,$prix,$id_train,$date,$unique);
+    //     die;
 
     
     $voyage = new VoyageController();
@@ -112,14 +117,17 @@ function saveVoyage(){
 function editVoyage(){
     if(isset($_POST['md_id_tr'])){
         $id = Validation($_POST['md_id_tr']);
-        $statut = Validation($_POST['status']);
-        $duree = Validation($_POST['duree']);
-        $gare_depart = Validation($_POST['gare_depart']);
-        $gare_arrivee = Validation($_POST['gare_arrivee']);
-        $prix = Validation($_POST['prix']);
-        $id_train = Validation($_POST['id_train']);
-        $date = Validation($_POST['datetime']);
+        $statut = Validation($_POST['md_status']);
+        $duree = Validation($_POST['md_duree']);
+        $gare_depart = Validation($_POST['md_gare_depart']);
+        $gare_arrivee = Validation($_POST['md_gare_arrivee']);
+        $prix = Validation($_POST['md_prix']);
+        $id_train = Validation($_POST['md_id_train']);
+        $date = Validation($_POST['md_datetime']);
         $unique = Validation($_POST['md_unique_id']);
+
+        // var_dump($statut,$duree,$gare_depart,$gare_arrivee,$prix,$id_train,$date,$unique);
+        // die;
 
         $voyage = new VoyageController();
 
@@ -131,7 +139,6 @@ function editVoyage(){
 
 function deleteVoyage(){
     $id = Validation($_POST['md_id_tr']);
-
     $voyage = new VoyageController();
     $voyage->supprimerUnVoyage($id);
     echo "<script>window.location.replace('../../voyage/index.php')</script>";

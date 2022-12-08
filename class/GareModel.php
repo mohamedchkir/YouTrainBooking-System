@@ -10,7 +10,7 @@ class GareModel extends DB
     {
         // 
         $sql = "SELECT * from gares";
-        $sql = "SELECT gares.*, villes.ville as nameVille FROM gares INNER JOIN villes on gares.id_Ville=villes.id";
+        $sql = "SELECT gares.*, villes.nom as nameVille FROM gares INNER JOIN villes on gares.id_Ville=villes.id";
         $statement = $this->Connect()->prepare($sql);
         $statement->execute();
         $res = $statement->fetchAll();
