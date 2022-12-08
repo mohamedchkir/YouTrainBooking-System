@@ -15,7 +15,7 @@ class VoyageController extends VoyageModel
 
  public function ajouterUnVoyage(Voyage $voyage)
  {
-     // do some verification
+    // do some verification
     //  if($voyage->setGareDepart($voyage->getGareDepart())==""){
 
     //  }
