@@ -29,8 +29,6 @@ class VoyageModel extends DB
     protected function addVoyageInDB(Voyage $voyage){
         
         try {
-            var_dump($voyage);
-            die;
             $sql = "INSERT INTO `voyages`(`status`, `duree`, `gare_depart`, `gare_arrivee`, `prix`, `id_train`, `date`,`unique_id`) VALUES (?,?,?,?,?,?,?,?)";
             $resultat =$this->connect()->prepare($sql);
             $resultat->execute(array($voyage->getStatut(),$voyage->getDureeIstime(),$voyage->getGareDepart(),$voyage->getGareDistination(),$voyage->getPrixPourIndividu(),$voyage->getTrainID(),$voyage->getDatetime(),$voyage->getUniqueIdForBothAllerRotour()));
@@ -42,8 +40,9 @@ class VoyageModel extends DB
 
 
     protected function editVoyageInDB(Voyage $voyage,$id){
-        
         try{
+            // var_dump($voyage,$id);
+            // die();
             $status = $voyage->getStatut();
             $duree = $voyage->getDureeIstime();
             $gare_depart = $voyage->getGareDepart();

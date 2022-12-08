@@ -51,7 +51,6 @@ function getSuggestions()
    $condition = true;
   } else {
           $condition = strpos(strtolower($c['nom']), strtolower($sugg)) !== false;
-
   }
   if ($condition) {
    echo "<input type='button' class='btn w-100 border-bottom' onclick='putValue(this)' ville_id='".$c['id']."' value='" . $c["nom"] . "'>";
@@ -93,7 +92,7 @@ function saveVoyage(){
 
     $statut = Validation($_POST['status']);
     $duree = Validation($_POST['duree']);
-    $gare_depart = Validation($_POST['id_gare_arrivee']);
+    $gare_depart = Validation($_POST['id_gare_depart']);
     $gare_arrivee = Validation($_POST['id_gare_arrivee']);
     $prix = Validation($_POST['prix']);
     $id_train = Validation($_POST['id_train']);

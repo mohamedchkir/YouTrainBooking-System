@@ -52,6 +52,9 @@ $(document).ready(function () {
   /* voyage */
   handleSuggestion({inputFiled: "#gare_depart", resltOnNode: "#res", treattedIn: "../include/handlers/voyagehandler.php",whatToGet:"gares"});
   handleSuggestion({inputFiled: "#gare_arrivee", resltOnNode: "#res2", treattedIn: "../include/handlers/voyagehandler.php",whatToGet:"gares"});
+  /* update modal voyage */
+  handleSuggestion({inputFiled: "#md_gare_depart", resltOnNode: "#md_res", treattedIn: "../include/handlers/voyagehandler.php",whatToGet:"gares"});
+  handleSuggestion({inputFiled: "#md_gare_arrivee", resltOnNode: "#md_res2", treattedIn: "../include/handlers/voyagehandler.php",whatToGet:"gares"});
 });
 
 function handleSuggestion({ inputFiled: input, resltOnNode: node, treattedIn: phpfile,whatToGet:villeOrGare }) {
