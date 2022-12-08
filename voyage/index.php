@@ -6,29 +6,30 @@
     // var_dump($res)
 
 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
- <meta charset="UTF-8">
- <meta http-equiv="X-UA-Compatible" content="IE=edge">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>YouTrain Booking</title>
- <!--Boostrap Icons CDN -->
- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
- <!-- Bootstrap CSS -->
- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<link rel="stylesheet" href="../assets/css/style3.css">
-    <!-- Font Awesome-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTrain Booking</title>
+  <!--Boostrap Icons CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="../assets/css/style3.css">
+  <!-- Font Awesome-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
-<section style="height:94vh ;" class="container">
+  <section style="height:94vh ;" class="container">
     <div class="w-75 mb-5 row">
       <div class="col-8">
-      <form action="../include/handlers/voyagehandler.php" method="POST" class="needs-validation" novalidate>
+      <form action="../include/handlers/voyagehandler.php" method="POST">
           <div>
             <p class="aqua" style="font-weight: bold; color:#47B5FF;">Voyage Aller</p>
           </div>
@@ -111,27 +112,27 @@
           </form>
         </div>
       </div>
-  </div>
-  <?php if(isset($_SESSION['message'])):  ?>
+    </div>
+    <?php if (isset($_SESSION['message'])) :  ?>
       <div class="alert alert-success alert-dismissible fade show w-100">
-          <strong>successfully!</strong>
-          <?php 
-              echo $_SESSION['message']; 
-              unset($_SESSION['message']);
-          ?>
-          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <strong>successfully!</strong>
+        <?php
+        echo $_SESSION['message'];
+        unset($_SESSION['message']);
+        ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
       </div>
-  <?php endif ?>
-  <?php if(isset($_SESSION['error'])):  ?>
+    <?php endif ?>
+    <?php if (isset($_SESSION['error'])) :  ?>
       <div class="alert alert-danger alert-dismissible fade show w-100">
-          <strong>Erreur!</strong>
-          <?php 
-              echo $_SESSION['error']; 
-              unset($_SESSION['error']);
-          ?>
-          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <strong>Erreur!</strong>
+        <?php
+        echo $_SESSION['error'];
+        unset($_SESSION['error']);
+        ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
       </div>
-  <?php endif ?>
+    <?php endif ?>
     <table id="example" class="table table-striped" style="width:100%">
       <thead>
         <tr>
@@ -153,6 +154,7 @@
           // }else{
           //   $t['status']="Non disponible";
           // }
+
           echo 
               '<tr id="'.$t['id'].'">
                 <td data="'.$t['unique_id'].'">'.$t['id'].'</td>
@@ -165,13 +167,10 @@
                 <td>'.$t['date'].'</td>
                 <td>
                   <button type="submit" class="btn btn-outline-primary"data-bs-toggle="modal" data-bs-target="#AddVoyage" onclick="edit('.$t['id'].')"><i class="fa-regular fa-pen-to-square"></i></button>
-                  <form action="../include/handlers/voyagehandler.php" method="POST">
-                  <input type="hidden" name="md_id_tr" value="'.$t['id'].'">
-                  <button type="submit" class="btn btn-outline-danger" name="deleteVoyage"><i class="fa-solid fa-trash"></i></button>
-                  </form>
-                  </td>
+                  <a type="submit" href="../include/handlers/voyagehandler.php?id='. $t['id'].'" class="btn btn-outline-danger" name="deleteVoyage"><i class="fa-solid fa-trash"></i></a>
+                </td>
               </tr>';
-          }
+        }
         ?>
       </tbody>
     </table>
@@ -185,12 +184,12 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="../include/handlers/voyagehandler.php" method="POST" class="needs-validation" novalidate>
+        <form action="../include/handlers/voyagehandler.php" method="POST">
           <input type="hidden" id="md_id_tr" name="md_id_tr" value="">
-          <input type="hidden" id="md_unique_id" name="md_unique_id" value="" required>
+          <input type="hidden" id="md_unique_id" name="md_unique_id" value="">
         <div class="form-group">
             <label for="status" class="col-form-label">Status:</label>
-            <select name="status" id="md_status" class="form-select" required>
+            <select name="status" id="md_status" class="form-select">
               <option selected>Open this select menu</option>
               <option  value="1">disponible</option>
               <option value="2">non disponible</option>
@@ -198,11 +197,11 @@
           </div>
           <div class="form-group">
             <label for="duree" class="col-form-label">duree:</label>
-            <input type="number" class="form-control" id="md_duree" name="duree" required>
+            <input type="number" class="form-control" id="md_duree" name="duree">
           </div>
           <div class="form-group">
             <label for="gare_depart" class="col-form-label">gare depart:</label>
-            <select name="gare_depart" id="md_gare_depart" class="form-select" required>
+            <select name="gare_depart" id="md_gare_depart" class="form-select">
               <option selected>Open this select menu</option>
               <option value="1">Agadir</option>
               <option value="2">Casa</option>
@@ -210,7 +209,7 @@
           </div>
           <div class="form-group">
             <label for="gare_arrivee" class="col-form-label">gare arrivee:</label>
-            <select name="gare_arrivee" id="md_gare_arrivee" class="form-select" required>
+            <select name="gare_arrivee" id="md_gare_arrivee" class="form-select">
               <option selected>Open this select menu</option>
               <option value="1">Agadir</option>
               <option value="2">Casa</option>
@@ -218,11 +217,11 @@
           </div>
           <div class="form-group">
             <label for="prix" class="col-form-label">prix:</label>
-            <input type="number" class="form-control" id="md_prix" name="prix" required>
+            <input type="number" class="form-control" id="md_prix" name="prix">
           </div>
           <div class="form-group">
             <label for="id_train" class="col-form-label">Train:</label>
-            <select name="id_train" id="md_id_train" class="form-select" required>
+            <select name="id_train" id="md_id_train" class="form-select">
               <option selected>Open this select menu</option>
               <option value="1">TVG</option>
               <option value="2">ONCF</option>
@@ -230,7 +229,7 @@
           </div>
           <div class="form-group">
             <label for="datetime" class="col-form-label">datetime:</label>
-            <input type="datetime-local" class="form-control" id="md_datetime" name="datetime" required>
+            <input type="datetime-local" class="form-control" id="md_datetime" name="datetime">
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -240,7 +239,6 @@
       </div>
     </div>
   </div>
-</div>
 </body>
 
 
