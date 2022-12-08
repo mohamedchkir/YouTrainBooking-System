@@ -1,7 +1,8 @@
 <?php
 
 include_once('DB.php');
-session_start();
+
+
 
 class VoyageModel extends DB
 {

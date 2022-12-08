@@ -6,8 +6,15 @@ class CityModel extends DB
  public function getAllCities()
  {
      $query = "SELECT * FROM villes";
-     $statement = $this->Connect()->prepare($query);
-     if (!$statement->execute()) {
+     try {
+         $statement = $this->Connect()->prepare($query);
+     }catch (PDOException $ex)
+       {
+            echo "error ".$ex->getMessage() ;
+            $ex->
+         exit();
+        }
+             if (!$statement->execute()) {
          $statement = null;
          exit();
      }

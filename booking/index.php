@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+include_once("../include/autoloader.php");
 if(!isset($_SESSION['search-info'])){
     header("location:../");
 }
@@ -45,22 +45,28 @@ if(!isset($_SESSION['search-info'])){
     <a class="navbar-brand p-0 " href="../index.php">
      <img src="../assets/img/YouTrain™2.png" alt="Youtrain logo" style="width: 100px">
     </a>
-    <button onclick="makeaMargin(this)" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button  class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
      <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse justify-content-end p-2" id="navbarSupportedContent">
      <ul class="navbar-nav mb-2 mb-lg-0">
       <li class="nav-item">
-       <a class="nav-link active py-0 px-3" aria-current="page" href="#">
-        <i class="bi bi-person me-2"></i>
+       <a class="nav-link active py-0 px-3 d-flex" aria-current="page" href="#">
+        <h4><i class="bi bi-person me-2"></i></h4>
         <i>Mounir El Bakkali</i>
        </a>
       </li>
       <li class="vr" style="background-color: var(--dark-blue);width: 1px ;"></li>
       <li class="nav-item">
-       <a class="nav-link active py-0 px-3" aria-current="page" href="#">
-        <i class="bi bi-bag me-2"></i>
-        <i>My Orders</i>
+       <a class="nav-link active py-0 px-3 d-flex align-items-center" aria-current="page" href="#">
+           <h4 class="position-relative">
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 10px;" id="order_counter" >
+                0
+                </span>
+               <span style="display: none" counter="0">order counter</span>
+<!--               <span class="badge badge-danger" id="shoppingOrdersSpan">9</span>
+-->               <i class="bi bi-cart me-2"></i>
+           </h4>
 
        </a>
       </li>
@@ -81,7 +87,7 @@ if(!isset($_SESSION['search-info'])){
   </nav>
  </header>
  <section style="height:94vh ;" class="bg-light">
-  <div class="row w-100">
+  <div class="row w-100 m-0">
    <div class="col-lg-4">
     <div class="container py-3 ">
      <h3 class="aqua text-weight-bold">Your search results</h3>
@@ -136,8 +142,8 @@ if(!isset($_SESSION['search-info'])){
      </form>
     </div>
    </div>
-   <div class="col-lg-8">
-    <div class="container p-3">
+   <div class="col-lg-8 pe-0">
+    <div class="container ">
      <div>
       <div class="d-flex justify-content-between align-items-center border-bottom">
        <H2>Available Trains</H2>
@@ -146,13 +152,13 @@ if(!isset($_SESSION['search-info'])){
        </small>
        <h3><i class="bi bi-sliders text-weight-bold aqua"></i></h3>
       </div>
-      <div class="row gy-3 p-3 mt-3" style="width:100%;height:85vh;overflow:auto;">
-       <div class="px-5 py-3 shadow " style="background-color:white;border-radius:10px;">
+      <div class="row px-2 g-3 mt-3" style="width:100%;height:85vh;overflow:auto;">
+       <div class="p-3 shadow " style="background-color:#f1fcff;border-radius:10px;">
         <div class="d-flex align-items-center">
          <div class="d-flex justify-content-between flex-grow-1 px-3">
           <div>
            <p>départ</p>
-           <h3>8:30</h3>
+           <h4>8:30</h4>
            <p><?= $_SESSION['search-info']['gare_depart'] ?></p>
           </div>
           <div class="voyage-info  w-50 text-center">
@@ -169,17 +175,17 @@ if(!isset($_SESSION['search-info'])){
           </div>
           <div class="text-center">
            <p>Arrivé</p>
-           <h3>11:15</h3>
+           <h4>11:15</h4>
            <p><?= $_SESSION['search-info']['gare_distination'] ?></p>
           </div>
          </div>
          <div class=" align-items-center text-center p-4" style="border-left: 2px dotted  #80808078;">
-          <h4>1 passager</h4>
-          <h5>à partir </h5>
+          <h5>1 passager</h5>
+          <h6>à partir </h6>
           <span>
-           <h4 class="text-danger">219 DH</h4>
+           <h5 class="text-danger">219 DH</h5>
           </span>
-          <button class="btn text-light px-5 "  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAbandonedCart" style="background-color:var(--aqua);border-radius:20px;">Réserver</button>
+          <button class="btn text-light px-lg-4 "  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAbandonedCart" style="background-color:var(--aqua);border-radius:20px;" onclick="bookTicket({id:1,from:'Tanger',to:'Casablanca',date:'22/12/2022 12:30',prix:'99.99 DH'})">Réserver</button>
          </div>
         </div>
         <hr class="w-100 m-0">
