@@ -35,7 +35,6 @@ function getSuggestions()
  $whatToGet =$_POST['whatToGet'];
 
 
-
  $variantToget=array();
  if($whatToGet=="villes"){
      $cityContr = new CityController();
@@ -98,10 +97,6 @@ function saveVoyage(){
     $id_train = Validation($_POST['id_train']);
     $date=Validation($_POST['datetime']);
     $unique= uniqid();
-
-    // var_dump($statut,$duree,$gare_depart,$gare_arrivee,$prix,$id_train,$date,$unique);
-    //     die;
-
     
     $voyage = new VoyageController();
     //aller
@@ -125,9 +120,6 @@ function editVoyage(){
         $id_train = Validation($_POST['md_id_train']);
         $date = Validation($_POST['md_datetime']);
         $unique = Validation($_POST['md_unique_id']);
-
-        // var_dump($statut,$duree,$gare_depart,$gare_arrivee,$prix,$id_train,$date,$unique);
-        // die;
 
         $voyage = new VoyageController();
 

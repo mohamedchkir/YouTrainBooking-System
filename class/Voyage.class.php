@@ -117,7 +117,13 @@ class Voyage
     }
 
 
-    
+    public function getFrequence(){
+        return $this->frequence;
+    }
+
+    public function setFrequence($frequence){
+        $this->frequence=$frequence;
+    }
 
 
 
