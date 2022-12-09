@@ -5,6 +5,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" type="image/x-icon" href="https://icons.iconarchive.com/icons/google/noto-emoji-travel-places/256/42533-train-icon.png" />
+
   <title>YouTrain™ | Sign Up</title>
 
   <!-- ================== BEGIN core-css ================== -->
@@ -38,8 +40,35 @@
     }
 
     .card {
-      background-color: #f8f9fad9;
-    }
+       
+       background-color: #1d2226d9;
+       color: white;
+   
+   
+       }
+       .alert {
+       padding: 15px 10px;
+       }
+       .alert-danger {
+       --bs-alert-color: #e16470;
+       --bs-alert-bg: #d9636e00;
+       --bs-alert-border-color: #f5c2c7;
+       }
+       a{
+         color: #47b5ff;
+       }
+       .shesh{
+           background-color: #dae2e70f;
+           color: white;
+   
+       }
+       .form-control:focus {
+       color: white;
+       background-color: transparent;
+       border-color: #86b7fe;
+       outline: 0;
+       box-shadow: 0 0 0 0.25rem rgb(71 181 255 / 4%);
+       }
   </style>
 
 
@@ -56,7 +85,7 @@
                   <form action="include/handlers/UserHandler.php" id="signup" class="needs-validation" method="POST" novalidate>
                       
                           <div class="d-flex  justify-content-center mb-4">
-                            <img src="./assets/img/YouTrainTM.png" alt="logo" width="40%">
+                            <img src="./assets/img/YouTrainTM_white.png" alt="logo" width="40%">
                           </div>
                           <h4 class="fw-bold mb-5">Sign up now</h4>
 
@@ -76,7 +105,7 @@
                               <div class=" mb-4">
                                 <div class="form-outline mb-4">
                                   <label class="form-label" for="form3Example1">First Name</label>
-                                  <input type="text" name="First_name" id="name" class="form-control" required />
+                                  <input type="text" name="First_name" id="name" class="form-control shesh" required />
                                   <div class="valid-feedback">
                                     Looks Good!
                                   </div>
@@ -86,7 +115,7 @@
                                 </div>
                                 <div class="form-outline">
                                   <label class="form-label" for="form3Example1">Last name</label>
-                                  <input type="text" name="Last_name" id="name" class="form-control" required />
+                                  <input type="text" name="Last_name" id="name" class="form-control shesh" required />
                                   <div class="valid-feedback">
                                     Looks Good!
                                   </div>
@@ -98,7 +127,7 @@
                             <div class=" mb-4">
                               <div class="form-outline">
                                 <label class="form-label" for="form3Example2">Email address</label>
-                                <input type="email" name="email" id="email" class="form-control" required />
+                                <input type="email" name="email" id="email" class="form-control shesh" required />
                                 <div class="valid-feedback">
                                   Looks Good!
                                 </div>
@@ -111,7 +140,7 @@
                             <!-- Password input -->
                             <div class="form-outline mb-4">
                               <label class="form-label" for="form3Example3">Password</label>
-                              <input type="password" name="password" id="password" class="form-control" required />
+                              <input type="password" name="password" id="password" class="form-control shesh" required />
                               <div class="invalid-feedback">
                                 Enter a valid password !!
                               </div>
@@ -120,7 +149,7 @@
                             <!-- Confirm Password input -->
                             <div class="form-outline mb-4">
                               <label class="form-label" for="form3Example4">Confirm Password</label>
-                              <input type="password" name="confirm_password" id="confirm_password" class="form-control"  required />
+                              <input type="password" name="confirm_password" id="confirm_password" class="form-control shesh"  required />
                               <div class="invalid-feedback">
                                 Passwords doesn't match !!
                               </div>

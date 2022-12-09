@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,700;0,800;1,500;1,600&display=swap');
+
+*{
+ box-sizing: border-box;
+}
+:root{
+   --light-blue : #256D85;
+   --dark-blue:#06283D;
+   --aqua:#47B5FF;
+   --light:#DFF6FF;
+}
+body{
+   width: 100vw;
+   overflow-x: hidden;
+   font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+
+}
+.nav-item a{
+   color: var(--dark-blue);
+   font-weight: 600;
+}
+
+.nav-item a i.bi{
+   color: var(--aqua);
+}
+#homeImg{ 
+   background-image: url('../img/home3.png');
+   background-repeat: no-repeat;
+   background-size: cover;
+   background-position: center;
+}
+.carousel-img{
+   height: 40vh;
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-position: center;
+}
+.form-control,.form-select{
+   border-radius: 20px ;
+   border-color: var(--aqua);
+   border-width: 2px;
+   padding: 10px 20px;
+   background-color: aliceblue;
+}
+
+.aqua{
+   color: var(--aqua);
+}
+/* .form-control::placeholder {
+   color: white;
+   opacity: 1; 
+ } */
+
+ 
+ /* TIME LINE CSS*/
+
+
+ .timeline {
+   border-left: 3px solid hsl(0, 0%, 90%);
+   position: relative;
+   list-style: none;
+ }
+ 
+ .timeline .timeline-item {
+   position: relative;
+ }
+ 
+ .timeline .timeline-item:after {
+   position: absolute;
+   display: block;
+   top: 0;
+ }
+ 
+ .timeline .timeline-item:after {
+   background-color:var(--aqua);
+   left: -38px;
+   border-radius: 50%;
+   height: 11px;
+   width: 11px;
+   content: "";
+ }
+
+ /* TIME LINE CSS*/
+
+
+ .bubble {
+   border-radius: 50%;
+   width: 10px;
+   height: 10px;
+   background-color: var(--aqua);
+   display: block;
+     z-index: 100;
+   margin-left:  auto ;
+     margin-right: auto;
+   border: 1px solid var(--aqua);
+   box-shadow: 0 5px 5px 2px #f7f5fa;
+}
+
+
+span.bubble1::after {
+    content: '';
+    position: absolute;
+    height: 1px;
+    width: 100%;
+    z-index: 10;
+    background-color: var(--aqua);
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: var(--aqua);
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #048888;
+}
+
