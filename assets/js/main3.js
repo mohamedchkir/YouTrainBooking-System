@@ -3,14 +3,15 @@ $(document).ready(function () {
         $('#sidebar').toggleClass('active');
     });
 
-    // $('#gare_depart').val(
-    //     function () {
-    //         var depart = $(this).val();
-    //         var arrivee = $('#gare_arrivee').val();
-    //         console.log(depart);
-    //     }
-    // )
-    
+    $( "#gare_depart" ).blur(function() {
+        let gare_depart = $(this).val();
+        $('#gare_arrivee_roteur').val(gare_depart);
+    });
+
+    $( "#gare_arrivee" ).blur(function() {
+        let gare_arrivee = $(this).val();
+        $('#gare_depart_roteur').val(gare_arrivee);
+    });
 
 });
 
