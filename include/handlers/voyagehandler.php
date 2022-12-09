@@ -97,14 +97,24 @@ function saveVoyage(){
     $id_train = Validation($_POST['id_train']);
     $date=Validation($_POST['datetime']);
     $unique= uniqid();
-    
-    $voyage = new VoyageController();
+
+    if(empty($statut) && empty($duree) && empty($gare_depart) && empty($gare_arrivee) && empty($prix) && empty($id_train) && empty($date) && empty($unique)){
+        var_dump($duree);
+        
+        $_SESSION['error']="All is required !!!";
+    echo "<script>window.location.replace('../../voyage/index.php')</script>";
+
+    }else{
+        $voyage = new VoyageController();
     //aller
     $voyage->ajouterUnVoyage(new Voyage($statut,$duree,$gare_depart,$gare_arrivee,$prix,$id_train,$date,$unique));
     //roteur
     $voyage->ajouterUnVoyage(new Voyage($statut,$duree,$gare_arrivee,$gare_depart,$prix,$id_train,$date,$unique));
 
     echo "<script>window.location.replace('../../voyage/index.php')</script>";
+    }
+    
+    
 
 }
 
