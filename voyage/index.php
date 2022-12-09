@@ -73,6 +73,15 @@
                 <div id="res2"></div>
                 <input type="hidden" name="id_gare_arrivee" value="">
               </div>
+              <div class="form-group">
+                <label for="gare_arrivee" class="col-form-label">Frequence:</label>
+                <select name="id_train" id="id_train" class="form-select" required>
+                  <option selected>Open this select menu</option>
+                  <option value="1">Day</option>
+                  <option value="2">week</option>
+                  <option value="3">yt</option>
+                </select>
+              </div>
             </div>
             <div class="col-sm">
               <p class="aqua" style="font-weight: bold; color:#47B5FF;">Voyage Roteur</p>
