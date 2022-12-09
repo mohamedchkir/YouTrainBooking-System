@@ -22,7 +22,6 @@ class UserModel extends DB
             $_SESSION['message']="Role user has been update successfully";
         }catch(PDOException $er){
             $_SESSION['error']="Role user has been not update";
-            // $error = $er->getMessage();
             echo $er->getMessage();
         }
     }

@@ -105,7 +105,7 @@ session_start();
                             <h6 class="p-2 pt-5">Gestion des voyages</h6>
                             <li class="border-bottom d-flex align-items-center ">
                                 <i class="px-3 fa-solid fa-route"></i>
-                                <a class="w-100" href="#">Voyages</a>
+                                <a class="w-100" href="index.php?page=voyage">Voyages</a>
                             </li>
                             <h6 class="p-2 pt-5">Gestion des utilisateurs</h6>
                             <li class="border-bottom d-flex align-items-center ">
@@ -125,6 +125,11 @@ session_start();
             $page = $_GET['page'];
             if($page=="profil"){
                 include_once('../include/components/EditProfil.component.php');
+            }
+            elseif($page=="allUsers"){
+
+            }elseif($page=="voyage"){
+                include_once('../voyage/index.php');
             }
         }
         
