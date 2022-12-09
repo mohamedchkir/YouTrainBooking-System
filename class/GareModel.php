@@ -1,7 +1,7 @@
 <?php
 
 require_once('DB.php');
-session_start();
+// session_start();
 
 class GareModel extends DB
 {

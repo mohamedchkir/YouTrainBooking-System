@@ -54,7 +54,7 @@ function accept(){
 
    $user = new UserController();
    $user->updateUser($role,$id);
-   echo "<script>window.location.replace('../components/uers.component.php')</script>";
+   echo "<script>window.location.replace('../../dash/alldash.php?page=allUsers')</script>";
 }
 function deny(){
    $id = $_POST['id'];
@@ -62,6 +62,6 @@ function deny(){
 
    $user = new UserController();
    $user->updateUser($role,$id);
-   echo "<script>window.location.replace('../components/uers.component.php')</script>";
+   echo "<script>window.location.replace('../../dash/alldash.php?page=allUsers')</script>";
    
 }

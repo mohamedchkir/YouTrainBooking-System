@@ -1,6 +1,5 @@
 <?php
 include_once('DB.php');
-session_start();
 
 class UserModel extends DB
 {
