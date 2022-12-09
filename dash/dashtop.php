@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,34 +46,34 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="dashboard.php " style="color: white;">
+                <a class="nav-link" href="../dash/alldash.php?page=gare" style="color: white;">
                     <i style="color: inherit;" class="px-3 fa-solid fa-house"></i>
                     <span style="color: inherit;">Gares</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a style="color: white;" class="nav-link" href="stadium.php">
+                <a style="color: white;" class="nav-link" href="../dash/alldash.php?page=train">
                     <i style="color: inherit;" class="px-3 fa-solid fa-train"></i>
                     <span style="color: inherit;">Train</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="match.php" style="color: white;">
+                <a class="nav-link" href="../dash/alldash.php?page=voyage" style="color: white;">
                     <i class="px-3 fa-solid fa-route" style="color: inherit;"></i>
                     <span style="color:inherit;">Voyages</span></a>
             </li>
 
             <!-- Nav Item - Spec -->
             <li class="nav-item">
-                <a class="nav-link" href="spectateur.php" style="color: white;">
+                <a class="nav-link" href="../dash/alldash.php?page=allUsers" style="color: white;">
                     <i class="px-3 fa-solid fa-people-group" style="color: white;"></i>
                     <span style="color: white;">gestion des roles</span></a>
             </li>
             <!-- Nav Item - Spec -->
             <li class="nav-item">
-                <a class="nav-link" href="spectateur.php" style="color: white;">
+                <a class="nav-link" href="../dash/alldash.php?page=satistique" style="color: white;">
                     <i style="color: white;" class="px-3 fas fa-chart-bar"></i>
                     <span style="color: white;">statistiques</span></a>
             </li>
@@ -149,7 +152,7 @@
                                     <i class="fas fa-home fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Home
                                 </a>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="../dash/alldash.php?page=profil">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
@@ -169,19 +172,28 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
                     <div id="content" class="w-100">
-                        <?php if (isset($_GET['page'])) {
+                        <?php 
+                        if (isset($_GET['page'])) {
                             $page = $_GET['page'];
                             if ($page == "profil") {
                                 include_once('../include/components/EditProfil.component.php');
+                            }elseif($page == "gare"){
+                                include_once('../gare/index.php');
+                            }elseif($page == "voyage"){
+                                include_once('../voyage/index.php');
+                            }elseif($page == "allUsers"){
+                                include_once('../include/components/uers.component.php');
+                            }elseif($page == "satistique"){
+                                include_once('../include/components/statistique.php');
+                            }elseif($page == "train"){
+                                include_once('../include/components/trains.component.php');
                             }
+                        }else{
+                            // page default
+                        include_once('../voyage/index.php');
                         }
-
-                        // page default
-                        //include_once('./includes/Components/manageInstruments.component.php');
                         ?>
-
                     </div>
                 </div>
             </div>

@@ -18,7 +18,7 @@ function saveGare()
     $gare->ajouterGare(new gare($gareName, $ville));
 
     echo "<script>
-    window.location.replace('../../gare/index.php')
+    window.location.replace('../../dash/alldash.php?page=gare')
 </script>";
 }
 
@@ -32,7 +32,7 @@ function editGare()
     $gare = new GareController();
 
     $gare->editGare(new Gare($gareName, $ville), $id);
-    echo "<script>window.location.replace('../../gare/index.php')</script>";
+    echo "<script>window.location.replace('../../dash/alldash.php?page=gare')</script>";
 }
 
 //Delete gare function 
@@ -44,6 +44,6 @@ function deleteVoyage()
         $gare = new GareController();
 
         $gare->supprimerGare($id);
-        echo "<script>window.location.replace('../../gare/index.php')</script>";
+        echo "<script>window.location.replace('../../dash/alldash.php?page=gare')</script>";
     }
 }
