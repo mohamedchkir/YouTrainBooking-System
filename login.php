@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="https://icons.iconarchive.com/icons/google/noto-emoji-travel-places/256/42533-train-icon.png" />
+
     <title>YouTrain™ | Log in</title>
 
     <!-- ================== BEGIN core-css ================== -->
@@ -20,28 +22,48 @@
 
 
 <body>
-    <style>
-        body {
-            background: url('./assets/img/bg.png');
+<style>
+    body {
+
+      background: url('./assets/img/bg.png');
+      background-color: rgb(60, 60, 60);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-blend-mode: multiply;
+
+    }
+
+    .card {
+       
+    background-color: #1d2226d9;
+    color: white;
 
 
+    }
+    .alert {
+    padding: 15px 10px;
+    }
+    .alert-danger {
+    --bs-alert-color: #e16470;
+    --bs-alert-bg: #d9636e00;
+    --bs-alert-border-color: #f5c2c7;
+    }
+    a{
+      color: #47b5ff;
+    }
+    .shesh{
+        background-color: #dae2e70f;
+        color: white;
 
-
-        }
-
-        .card {
-
-            background-color: rgb(60, 60, 60);
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-blend-mode: multiply;
-                    
-            
-          }
-          .card{
-            background-color: #f8f9fad9;
-        }
-    </style>
+    }
+    .form-control:focus {
+    color: white;
+    background-color: transparent;
+    border-color: #86b7fe;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgb(71 181 255 / 4%);
+    }
+  </style>
     <!-- Section: Design Block -->
     <section class="background-radial-gradient overflow-hidden">
 
@@ -53,57 +75,11 @@
                     <div class="card ">
                         <div class="card-body px-4 py-5 px-md-5">
 
-
-
-                            <form id="login" class="needs-validation" novalidate>
-                                <div>
-                                    <div class="d-flex  justify-content-center">
-                                        <img src="./assets/img/YouTrainTM.png" alt="logo" width="40%">
-                                    </div>
-
-                                    <h4 class="fw-bold mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h4>
-                                </div>
-                                <div class="text-start">
-                                    <!-- Email input -->
-                                    <div class="form-outline mb-4">
-                                        <label class="form-label" for="form3Example3">Email address</label>
-                                        <input type="email" name="email" id="email" class="form-control" required />
-                                        <div class="valid-feedback">
-                                            Looks Good!
-                                        </div>
-                                        <div class="invalid-feedback">
-                                            Adress email is required to sign into your account.
-                                        </div>
-                                    </div>
-
-                                    <!-- Password input -->
-                                    <div class="form-outline mb-4">
-                                        <label class="form-label" for="form3Example4">Password</label>
-                                        <input type="password" id="password" name="password" class="form-control" required />
-                                        <div class="invalid-feedback">
-                                            Enter a valid password !!
-                                        </div>
-                                    </div>
-
-                                </div>
-
-
-                                <!-- Submit button -->
-                                <button type="submit" name="login" class="btn btn-outline-dark btn-block mb-4 w-100">
-                                    Log in
-                                </button>
-                                <div>
-                                    <p>Not a member? <a class="text-decoration-none" href="signup.php">Register</a></p>
-                                </div>
-                            </form>
-
-
-                              
                                    
                                     <form id="login" action="include/handlers/UserHandler.php" class="needs-validation py-5" method="POST" novalidate>
                                                 <div>
                                                     <div class="d-flex  justify-content-center mb-4">
-                                                    <img src="./assets/img/YouTrainTM.png" alt="logo" width="40%">
+                                                    <img src="./assets/img/YouTrainTM_white.png" alt="logo" width="40%">
                                                     </div>
 
                                                     <h4 class="fw-bold mb-5 pb-3" style="letter-spacing: 1px;">Sign into your account</h4>
@@ -122,7 +98,7 @@
                                             <!-- Email input -->
                                             <div class="form-outline mb-4">
                                             <label class="form-label" for="form3Example3">Email address</label>
-                                            <input type="email" name="email" id="email" class="form-control" required />                                           
+                                            <input type="email" name="email" id="email" class="form-control shesh" required />                                           
                                             <div class="valid-feedback">
                                                 Looks Good!
                                             </div>
@@ -134,7 +110,7 @@
                                             <!-- Password input -->
                                             <div class="form-outline mb-4">
                                             <label class="form-label" for="form3Example4">Password</label>
-                                            <input type="password" id="password" name="password" class="form-control" required />
+                                            <input type="password" id="password" name="password" class="form-control shesh" required />
                                             <div class="invalid-feedback">
                                                 Enter a valid password !!
                                             </div>
@@ -144,7 +120,7 @@
                                             
                                             
                                             <!-- Submit button -->
-                                            <button type="submit" name="login" class="btn btn-outline-dark btn-block mb-4 w-100">
+                                            <button type="submit" name="login" class="btn btn-outline-light btn-block my-4 w-100">
                                             Log in
                                             </button>
                                             <div >

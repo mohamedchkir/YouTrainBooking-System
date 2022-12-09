@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -66,7 +66,7 @@
                         </a>
                     </div>
                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left">
-                        <button class="dropdown-item" type="button">Edit Profil</button>
+                        <a class="dropdown-item" href="index.php?page=profil" type="button">Edit Profil</a>
                         <button class="dropdown-item" type="button">Settings</button>
                     </div>
                 </div>
@@ -90,7 +90,7 @@
                             <h6 class="p-2">Parametres</h6>
                             <li class="border-bottom d-flex align-items-center ">
                                 <i class=" px-3 fa-solid fa-house"></i>
-                                <a class="w-100" href="#">Gares</a>
+                                <a class="w-100" href="">Gares</a>
                             </li>
 
                             <li class="border-bottom d-flex align-items-center">
@@ -120,17 +120,31 @@
         </nav>
 
         <!-- Page Content  -->
-        <div id="content">
+        <div id="content" class="w-100">
+        <?php if(isset($_GET['page'])){
+            $page = $_GET['page'];
+            if($page=="profil"){
+                include_once('../include/components/EditProfil.component.php');
+            }
+        }
+        
+            // page default
+            //include_once('./includes/Components/manageInstruments.component.php');
+        ?>
         </div>
     </div>
 
+    
 
 
 
-    <script src="../assets/js/main1.js"></script>
-    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vaafb692b2aea4879b33c060e79fe94621666317369993" integrity="sha512-0ahDYl866UMhKuYcW078ScMalXqtFJggm7TmlUtp0UlD4eQk0Ixfnm5ykXKvGJNFjLMoortdseTfsRT8oCfgGA==" data-cf-beacon='{"rayId":"772aaf290cd10420","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2022.11.3","si":100}' crossorigin="anonymous"></script>
+
 
 
 </body>
+
+<script src="../assets/js/main1.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vaafb692b2aea4879b33c060e79fe94621666317369993" integrity="sha512-0ahDYl866UMhKuYcW078ScMalXqtFJggm7TmlUtp0UlD4eQk0Ixfnm5ykXKvGJNFjLMoortdseTfsRT8oCfgGA==" data-cf-beacon='{"rayId":"772aaf290cd10420","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2022.11.3","si":100}' crossorigin="anonymous"></script>
+
 
 </html>
