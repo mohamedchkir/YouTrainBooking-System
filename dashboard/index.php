@@ -7,7 +7,6 @@ session_start();
 <head>
 
     <meta charset="UTF-8">
-
     <link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
     <meta name="apple-mobile-web-app-title" content="CodePen">
     <link rel="shortcut icon" type="image/x-icon" href="https://icons.iconarchive.com/icons/google/noto-emoji-travel-places/256/42533-train-icon.png" />
@@ -15,21 +14,8 @@ session_start();
     <title> YouTrain</title>
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-
-    <!-- Font Awesome JS -->
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
     <!-- Font Awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-
-    <!-- jQuery CDN - Slim version (=without AJAX) -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <!-- Popper.JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-    <!-- Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-
     <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css'>
     <link rel="stylesheet" href="../assets/css/style1.css">
 
@@ -87,10 +73,10 @@ session_start();
                             </a>
                         </div>
                         <div class="pt-2 px-2">
-                            <h6 class="p-2">Parametres</h6>
+                            <h6 class="p-2"><strong>Parametres</strong> </h6>
                             <li class="border-bottom d-flex align-items-center ">
-                                <i class=" px-3 fa-solid fa-house"></i>
                                 <a class="w-100" href="">Gares</a>
+                                <i class=" px-3 fa-solid fa-house"></i>
                             </li>
 
                             <li class="border-bottom d-flex align-items-center">
@@ -102,15 +88,20 @@ session_start();
                                 <a class="w-100" href="#">Villes</a>
                             </li>
 
-                            <h6 class="p-2 pt-5">Gestion des voyages</h6>
+                            <h6 class="p-2 pt-5"><strong>Gestion des voyages</strong> </h6>
                             <li class="border-bottom d-flex align-items-center ">
                                 <i class="px-3 fa-solid fa-route"></i>
                                 <a class="w-100" href="#">Voyages</a>
                             </li>
-                            <h6 class="p-2 pt-5">Gestion des utilisateurs</h6>
+                            <h6 class="p-2 pt-5"><strong>Gestion des utilisateurs</strong> </h6>
                             <li class="border-bottom d-flex align-items-center ">
                                 <i class=" px-3 fa-solid fa-people-group"></i>
                                 <a class="w-100" href="#">gestion des roles</a>
+                            </li>
+                            <h6 class="p-2 pt-5"> <strong>Statistiques</strong></h6>
+                            <li class="border-bottom d-flex align-items-center ">
+                                <i class=" px-3 fa-solid fa-people-group"></i>
+                                <a class="w-100" href="#">statistiques</a>
                             </li>
                         </div>
 
@@ -121,21 +112,21 @@ session_start();
 
         <!-- Page Content  -->
         <div id="content" class="w-100">
-        <?php if(isset($_GET['page'])){
-            $page = $_GET['page'];
-            if($page=="profil"){
-                include_once('../include/components/EditProfil.component.php');
+            <?php if (isset($_GET['page'])) {
+                $page = $_GET['page'];
+                if ($page == "profil") {
+                    include_once('../include/components/EditProfil.component.php');
+                }
             }
-        }
-        
+
             // page default
             //include_once('./includes/Components/manageInstruments.component.php');
-        ?>
+            ?>
 
         </div>
     </div>
 
-    
+
 
 
 
@@ -146,6 +137,15 @@ session_start();
 
 <script src="../assets/js/main1.js"></script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vaafb692b2aea4879b33c060e79fe94621666317369993" integrity="sha512-0ahDYl866UMhKuYcW078ScMalXqtFJggm7TmlUtp0UlD4eQk0Ixfnm5ykXKvGJNFjLMoortdseTfsRT8oCfgGA==" data-cf-beacon='{"rayId":"772aaf290cd10420","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2022.11.3","si":100}' crossorigin="anonymous"></script>
+<!-- jQuery CDN - Slim version (=without AJAX) -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<!-- Popper.JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+<!-- Font Awesome JS -->
+<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 
 
 </html>

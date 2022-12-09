@@ -1,6 +1,6 @@
 <?php
 
-include_once('DB.php');
+require_once('DB.php');
 session_start();
 
 class GareModel extends DB
