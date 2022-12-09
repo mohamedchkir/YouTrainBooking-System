@@ -14,17 +14,20 @@ class DB
 
  protected function Connect()
  {
-    try
-    {    
+
+     try {
+
         $con = 'mysql:host=' . $this->host . ';dbname=' . $this->db_name . ';';
         $PDO = new PDO($con, $this->username, $this->password);
         $PDO->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+        $PDO->setAttribute(PDO::ERRMODE_EXCEPTION,PDO::ERRMODE_EXCEPTION);
+        //throw new PDOException("Something goes wrong ");
         return $PDO;
     }
     catch (PDOException $ex)
     {
-        return "error";
+        return $ex;
     }
-  
+
  }
 }

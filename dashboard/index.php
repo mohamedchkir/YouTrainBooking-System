@@ -131,6 +131,7 @@ session_start();
             // page default
             //include_once('./includes/Components/manageInstruments.component.php');
         ?>
+
         </div>
     </div>
 
