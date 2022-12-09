@@ -27,74 +27,69 @@
 
 <body>
   <section class="container">
-    <div class="w-75 mb-5 row">
-      <div class="col-8">
       <form action="../include/handlers/voyagehandler.php" class="needs-validation" method="POST" novalidate>
-          <div>
-            <p class="aqua" style="font-weight: bold; color:#47B5FF;">Voyage Aller</p>
+          <div class="row g-3">
+            <div class="col-sm">
+              <p class="aqua" style="font-weight: bold; color:#47B5FF;">Voyage Aller</p>
+              <div class="form-group">
+                <label for="status" class="col-form-label">Status:</label>
+                <select name="status" id="status" class="form-select" required>
+                  <option selected>Open this select menu</option>
+                  <option value="1">disponible</option>
+                  <option value="2">non disponible</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="prix" class="col-form-label">prix:</label>
+                <input type="number" class="form-control" id="duree" name="prix" step="0.1" required>
+              </div>
+              <div class="form-group">
+                <label for="id_train" class="col-form-label">Train:</label>
+                <select name="id_train" id="id_train" class="form-select" required>
+                  <option selected>Open this select menu</option>
+                  <option value="1">TVG</option>
+                  <option value="2">ONCF</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="datetime" class="col-form-label">datetime:</label>
+                <input type="datetime-local" class="form-control" id="datetime" name="datetime" required>
+              </div>
+            </div>
+            <div class="col-sm">
+              <div class="form-group" style="margin-top: 40px;">
+                <label for="duree" class="col-form-label">duree:</label>
+                <input type="number" class="form-control" id="duree" name="duree" >
+              </div>
+              <div class="form-group">
+                <label for="gare_depart" class="col-form-label">gare depart:</label>
+                <input type="text" name="gare_depart"  id="gare_depart" class="form-control" required>
+                <div id="res"></div>
+                <input type="hidden" name="id_gare_depart" value="">
+              </div>
+              <div class="form-group">
+                <label for="gare_arrivee" class="col-form-label">gare arrivee:</label>
+                <input type="text" name="gare_arrivee"  id="gare_arrivee" class="form-control" required>
+                <div id="res2"></div>
+                <input type="hidden" name="id_gare_arrivee" value="">
+              </div>
+            </div>
+            <div class="col-sm">
+              <p class="aqua" style="font-weight: bold; color:#47B5FF;">Voyage Roteur</p>
+              <div class="form-group">
+                <label for="status" class="col-form-label">gare depart:</label>
+                <input type="text" class="form-control" id="gare_depart_roteur" disabled>
+                <label for="gare_depart" class="col-form-label">gare arrivee:</label>
+                <input type="text" class="form-control" id="gare_arrivee_roteur" disabled>
+              </div>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="status" class="col-form-label">Status:</label>
-            <select name="status" id="status" class="form-select" required>
-              <option selected>Open this select menu</option>
-              <option value="1">disponible</option>
-              <option value="2">non disponible</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="duree" class="col-form-label">duree:</label>
-            <input type="number" class="form-control" id="duree" name="duree" required>
-          </div>
-          <div class="form-group">
-            <label for="gare_depart" class="col-form-label">gare depart:</label>
-            <input type="text" name="gare_depart"  id="gare_depart" class="form-control" required>
-            <div id="res"></div>
-            <input type="hidden" name="id_gare_depart" value="">
-          </div>
-          <div class="form-group">
-            <label for="gare_arrivee" class="col-form-label">gare arrivee:</label>
-            <input type="text" name="gare_arrivee"  id="gare_arrivee" class="form-control" required>
-            <div id="res2"></div>
-            <input type="hidden" name="id_gare_arrivee" value="">
-          </div>
-          <div class="form-group">
-            <label for="prix" class="col-form-label">prix:</label>
-            <input type="number" class="form-control" id="duree" name="prix" step="0.1" required>
-          </div>
-          <div class="form-group">
-            <label for="id_train" class="col-form-label">Train:</label>
-            <select name="id_train" id="id_train" class="form-select" required>
-              <option selected>Open this select menu</option>
-              <option value="1">TVG</option>
-              <option value="2">ONCF</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="datetime" class="col-form-label">datetime:</label>
-            <input type="datetime-local" class="form-control" id="datetime" name="datetime" required>
-          </div>
-          <div class="mt-3 d-flex justify-content-center">
+          <div class="mt-3 d-flex justify-content-center mb-3">
             <button type="submit" class="btn text-light px-5 bg-primary" style="background-color:var(--aqua);border-radius: 20px;" name="saveVoyage">Save</button>
           </div>
-        </form>
-      </div>
-      <div class="col-4">
-        <div class="w-100">
-          <form action="" method="POST">
-            <div>
-              <p class="aqua" style="font-weight: bold; color:#47B5FF;">Voyage Roteur</p>
-            </div>
-            <div class="form-group">
-              <label for="status" class="col-form-label">gare depart:</label>
-              <input type="text" class="form-control" id="gare_depart_roteur" disabled>
-
-              <label for="gare_depart" class="col-form-label">gare arrivee:</label>
-              <input type="text" class="form-control" id="gare_arrivee_roteur" disabled>
-            </div>
-          </form>
         </div>
-      </div>
-    </div>
+      </form>
+    
     <?php if (isset($_SESSION['message'])) :  ?>
       <div class="alert alert-success alert-dismissible fade show w-100">
         <strong>successfully!</strong>
@@ -227,6 +222,7 @@
 <!-- main -->
 <script src="../assets/js/main3.js"></script>
 <script src="../assets/js/main2.js"></script>
+<script src="../assets/js/main1.js"></script>
 <script src="../assets/js/validation.js"></script>
 <!-- dataTable -->
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
