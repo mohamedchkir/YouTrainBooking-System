@@ -46,34 +46,34 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="../dash/alldash.php?page=gare" style="color: white;">
+                <a class="nav-link" href="../dash/index.php?page=gare" style="color: white;">
                     <i style="color: inherit;" class="px-3 fa-solid fa-house"></i>
                     <span style="color: inherit;">Gares</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a style="color: white;" class="nav-link" href="../dash/alldash.php?page=train">
+                <a style="color: white;" class="nav-link" href="../dash/index.php?page=train">
                     <i style="color: inherit;" class="px-3 fa-solid fa-train"></i>
                     <span style="color: inherit;">Train</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="../dash/alldash.php?page=voyage" style="color: white;">
+                <a class="nav-link" href="../dash/index.php?page=voyage" style="color: white;">
                     <i class="px-3 fa-solid fa-route" style="color: inherit;"></i>
                     <span style="color:inherit;">Voyages</span></a>
             </li>
 
             <!-- Nav Item - Spec -->
             <li class="nav-item">
-                <a class="nav-link" href="../dash/alldash.php?page=allUsers" style="color: white;">
+                <a class="nav-link" href="../dash/index.php?page=allUsers" style="color: white;">
                     <i class="px-3 fa-solid fa-people-group" style="color: white;"></i>
                     <span style="color: white;">gestion des roles</span></a>
             </li>
             <!-- Nav Item - Spec -->
             <li class="nav-item">
-                <a class="nav-link" href="../dash/alldash.php?page=satistique" style="color: white;">
+                <a class="nav-link" href="../dash/index.php?page=satistique" style="color: white;">
                     <i style="color: white;" class="px-3 fas fa-chart-bar"></i>
                     <span style="color: white;">statistiques</span></a>
             </li>
@@ -152,13 +152,13 @@
                                     <i class="fas fa-home fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Home
                                 </a>
-                                <a class="dropdown-item" href="../dash/alldash.php?page=profil">
+                                <a class="dropdown-item" href="../dash/index.php?page=profil">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
 
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="../include/Logout.inc.php" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>

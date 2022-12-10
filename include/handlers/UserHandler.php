@@ -2,7 +2,6 @@
 
 include_once("../autoloader.php");
 
-
 if(isset($_POST['accept']))    accept();
 if(isset($_POST['deny']))      deny();
 
@@ -54,7 +53,7 @@ function accept(){
 
    $user = new UserController();
    $user->updateUser($role,$id);
-   echo "<script>window.location.replace('../../dash/alldash.php?page=allUsers')</script>";
+   echo "<script>window.location.replace('../../dash/index.php?page=allUsers')</script>";
 }
 function deny(){
    $id = $_POST['id'];
@@ -62,6 +61,6 @@ function deny(){
 
    $user = new UserController();
    $user->updateUser($role,$id);
-   echo "<script>window.location.replace('../../dash/alldash.php?page=allUsers')</script>";
+   echo "<script>window.location.replace('../../dash/index.php?page=allUsers')</script>";
    
 }

@@ -79,7 +79,7 @@ $res = $test->getUser();
                 <td class="text-center">'.$t['email'].'</td>
                 <td class="text-center">'.$t['password'].'</td>
                 <td class="text-center">
-                    <form action="../handlers/UserHandler.php" id="form" method="post" class="text-center">
+                    <form action="../include/handlers/UserHandler.php" id="form" method="post" class="text-center">
                       <input type="hidden" name="role" value="'.$t['id'].'">                        
                       <input type="hidden" name="id" value="'.$t['id'].'">                        
                         '.$action.'

@@ -102,7 +102,7 @@ function saveVoyage(){
         var_dump($duree);
 
         $_SESSION['error']="All is required !!!";
-    echo "<script>window.location.replace('../../dash/alldash.php?page=voyage')</script>";
+    echo "<script>window.location.replace('../../dash/index.php?page=voyage')</script>";
 
     }else{
         $voyage = new VoyageController();
@@ -111,7 +111,7 @@ function saveVoyage(){
     //roteur
     $voyage->ajouterUnVoyage(new Voyage($statut,$duree,$gare_arrivee,$gare_depart,$prix,$id_train,$date,$unique));
 
-    echo "<script>window.location.replace('../../dash/alldash.php?page=voyage')</script>";
+    echo "<script>window.location.replace('../../dash/index.php?page=voyage')</script>";
     }
     
     
@@ -134,7 +134,7 @@ function editVoyage(){
         $voyage = new VoyageController();
 
         $voyage->updateVoyageInfo(new Voyage($statut,$duree,$gare_depart,$gare_arrivee,$prix,$id_train,$date,$unique),$id);
-        echo "<script>window.location.replace('../../dash/alldash.php?page=voyage')</script>";
+        echo "<script>window.location.replace('../../dash/index.php?page=voyage')</script>";
     }
 }
 
@@ -143,5 +143,5 @@ function deleteVoyage(){
     $id = Validation($_POST['md_id_tr']);
     $voyage = new VoyageController();
     $voyage->supprimerUnVoyage($id);
-    echo "<script>window.location.replace('../../dash/alldash.php?page=voyage')</script>";
+    echo "<script>window.location.replace('../../dash/index.php?page=voyage')</script>";
 }
