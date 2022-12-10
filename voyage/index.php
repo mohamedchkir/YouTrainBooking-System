@@ -59,7 +59,7 @@
             <div class="col-sm">
               <div class="form-group" style="margin-top: 40px;">
                 <label for="duree" class="col-form-label">duree:</label>
-                <input type="number" class="form-control" id="duree" name="duree" >
+                <input type="number" class="form-control" id="duree" name="duree" required>
               </div>
               <div class="form-group">
                 <label for="gare_depart" class="col-form-label">gare depart:</label>
