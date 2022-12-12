@@ -16,7 +16,10 @@
 <script src="../assets/js/script.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-
+<script src="../assets/js/main1.js"></script>
+<script src="../assets/js/main2.js"></script>
+<script src="../assets/js/main3.js"></script>
+<script src="../assets/js/validation.js"></script>
 
 </body>
 

@@ -24,7 +24,8 @@ session_start();
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link href="../assets/css/style1.css" rel="stylesheet">
-    <link href="../assets/css/style1.css" rel="stylesheet">
+    <link href="../assets/css/style2.css" rel="stylesheet">
+    <link href="../assets/css/style3.css" rel="stylesheet">
 
 </head>
 

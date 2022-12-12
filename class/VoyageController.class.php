@@ -7,13 +7,15 @@ include_once('VoyageModel.php');
 
 class VoyageController extends VoyageModel
 {
+
+    
  public function getVoyage(){
     
     return $this->getAllVoyage();
 
  }
 
- public function ajouterUnVoyage(Voyage $voyage)
+ public function ajouterUnVoyage(Voyage $voyage,$fr)
  {
     // do some verification
     //  if($voyage->setGareDepart($voyage->getGareDepart())==""){
@@ -22,7 +24,7 @@ class VoyageController extends VoyageModel
     
     // set Status call fun
     try{
-        $this->addVoyageInDB($voyage);
+        $this->addVoyageInDB($voyage,$fr);
         $_SESSION['message']="Voyage has been added successfully";
     }catch(PDOException $er){
         $_SESSION['error']="Voyage has been not added";
