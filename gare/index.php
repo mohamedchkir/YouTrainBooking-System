@@ -66,7 +66,7 @@ $reslt = $gare->getAllGare();
                     echo
                     '<tr id="' . $g['id'] . '">
                             <td>' . $g['id'] . '</td>
-                            <td>' . $g['nom'] . '</td>
+                            <td>' . $g['nameVille'] . '</td>
                             <td ville="' . $g['id_Ville'] . '">' . $g['nameVille'] . '</td>
                             <td class="d-flex justify-content-center">
                             <button type="button" class="btn btn-outline-primary mx-2" data-bs-toggle="modal" onclick="editGare(' . $g['id'] . ')" data-bs-target="#AddGare"><i class="fa-regular fa-pen-to-square"></i></button>
