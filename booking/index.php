@@ -38,7 +38,17 @@ if(!isset($_SESSION['search-info'])){
  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
  <link rel="stylesheet" href="../assets/css/style2.css">
  <style>
-
+     div#cart {
+         position: absolute;
+         right: 0;
+         top: 0;
+         z-index: 1000;
+         background-color: #5bb7f5fa;
+         display: none;
+         /*
+         transform: translateX(537px);
+         */
+     }
  </style>
 </head>
 
@@ -69,7 +79,7 @@ if(!isset($_SESSION['search-info'])){
                 </span>
                <span style="display: none" counter="0">order counter</span>
 <!--               <span class="badge badge-danger" id="shoppingOrdersSpan">9</span>
--->               <i class="bi bi-cart me-2"></i>
+-->               <i class="bi bi-cart me-2" id="cartBtn" role="button"></i>
            </h4>
 
        </a>
@@ -373,8 +383,31 @@ if(!isset($_SESSION['search-info'])){
      </div>
  </section>
 </body>
-
 <!-- Modal: modalAbandonedCart-->
+
+<!--Cart Start-->
+<div class="container w-sm-100 w-md-75 w-lg-30 p-4" id="cart" style="height: 100vh;">
+    <div class="pb-3">
+        <i class="bi bi-x-lg text-light text-bold" role="button" id="closeCartBtn"></i>
+    </div>
+    <div class="bg-light rounded-3">
+        <div class="d-flex justify-content-between  flex-grow-1 p-3 align-items-center">
+           <div style="background: url('../assets/img/reserved-bg.jpg');background-size:cover;background-position:center;width: 100px;height: 100px"></div>
+            <div>
+                <p>De :  Tanger</p>
+                <p>vers :  Agadir</p>
+            </div>
+            <h5 class="text-center">199Dh</h5>
+            <div>
+                <i class="bi bi-x-lg text-danger btn btn-rounded" role="button" id="removeReservedBtn"></i>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!--Cart End-->
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="../assets/js/main2.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
