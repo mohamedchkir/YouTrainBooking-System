@@ -3,29 +3,29 @@
     $test = new VoyageController();
     // var_dump($test->getVoyage());
     $res = $test->getVoyage();
-    // var_dump($res)
-
-
+    // var_dump($res);
+    // exit();
+    
 
 ?>
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>YouTrain Booking</title>
+  <title>YouTrain Booking</title> -->
   <!--Boostrap Icons CDN -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <!-- <link rel="stylesheet" href="../assets/css/style3.css"> -->
   <!-- Font Awesome-->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body>
+<body> -->
   <section class="container">
       <form action="../include/handlers/voyagehandler.php" class="needs-validation" method="POST" novalidate>
           <div class="row g-3">
@@ -52,8 +52,13 @@
                 </select>
               </div>
               <div class="form-group">
-                <label for="datetime" class="col-form-label">datetime:</label>
-                <input type="datetime-local" class="form-control" id="datetime" name="datetime" required>
+              <label for="Frequence" class="col-form-label">Frequence:</label>
+                <select name="Frequence" id="Frequence" class="form-select" required>
+                  <option selected>Open this select menu</option>
+                  <option value="1">Day</option>
+                  <option value="2">week</option>
+                  <option value="3">spécifique</option>
+                </select>
               </div>
             </div>
             <div class="col-sm">
@@ -64,23 +69,18 @@
               <div class="form-group">
                 <label for="gare_depart" class="col-form-label">gare depart:</label>
                 <input type="text" name="gare_depart"  id="gare_depart" class="form-control" required>
-                <div id="res"></div>
+                <div id="res" style="max-height:33vh ;overflow:auto;position:absolute;background-color:white;width:100%;z-index:100;"></div>
                 <input type="hidden" name="id_gare_depart" value="">
               </div>
               <div class="form-group">
                 <label for="gare_arrivee" class="col-form-label">gare arrivee:</label>
                 <input type="text" name="gare_arrivee"  id="gare_arrivee" class="form-control" required>
-                <div id="res2"></div>
+                <div id="res2" style="max-height:33vh ;overflow:auto;position:absolute;background-color:white;width:100%;z-index:100;"></div>
                 <input type="hidden" name="id_gare_arrivee" value="">
               </div>
               <div class="form-group">
-                <label for="gare_arrivee" class="col-form-label">Frequence:</label>
-                <select name="id_train" id="id_train" class="form-select" required>
-                  <option selected>Open this select menu</option>
-                  <option value="1">Day</option>
-                  <option value="2">week</option>
-                  <option value="3">yt</option>
-                </select>
+              <label for="datetime" class="col-form-label">datetime:</label>
+                <input type="datetime-local" class="form-control" id="datetime" name="datetime" required>
               </div>
             </div>
             <div class="col-sm">
