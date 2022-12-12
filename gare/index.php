@@ -43,9 +43,9 @@ $reslt = $gare->getAllGare();
                     <input type="hidden" name="ville" value="">
                 </div>
 
-            </div>
-            <div class="mt-2 d-flex justify-content-center">
-                <button type="submit" class="btn text-light px-5" style="background-color:var(--aqua);border-radius: 20px;" name="saveGare">Add Gare</button>
+                <div class="mt-2 d-flex justify-content-center">
+                    <button type="submit" class="btn text-light px-5" style="background-color:var(--aqua);border-radius: 20px;" name="saveGare">Add Gare</button>
+                </div>
             </div>
     </form>
 
@@ -57,7 +57,7 @@ $reslt = $gare->getAllGare();
                     <th>Id</th>
                     <th>GareName</th>
                     <th>CityName</th>
-                    <th>action</th>
+                    <th>Action</th>
 
                 </tr>
             </thead>
@@ -66,10 +66,10 @@ $reslt = $gare->getAllGare();
                     echo
                     '<tr id="' . $g['id'] . '">
                             <td>' . $g['id'] . '</td>
-                            <td>' . $g['nom'] . '</td>
+                            <td>' . $g['nameVille'] . '</td>
                             <td ville="' . $g['id_Ville'] . '">' . $g['nameVille'] . '</td>
                             <td class="d-flex justify-content-center">
-                            <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" onclick="editGare(' . $g['id'] . ')" data-bs-target="#AddGare"><i class="fa-regular fa-pen-to-square"></i></button>
+                            <button type="button" class="btn btn-outline-primary mx-2" data-bs-toggle="modal" onclick="editGare(' . $g['id'] . ')" data-bs-target="#AddGare"><i class="fa-regular fa-pen-to-square"></i></button>
                             <form action="../include/handlers/garehandler.php" method="POST">   
                                 <input type="hidden" name="id_gare" value="' . $g['id'] . '">
                                 <button type="submit" class="btn btn-outline-danger" name="deleteGare"><i class="fa-solid fa-trash"></i></button>
