@@ -71,7 +71,15 @@ $(document).ready(function () {
       contents = $(this).html();
     }
   });
-
+  $("#cartBtn").click(function () {
+    //$("#cart").show("slow")
+    $("#cart").animate({
+      width: 'toggle'
+    });
+  });
+  $("#closeCartBtn").click(function () {
+    $("#cart").hide();
+  })
 
 });
 

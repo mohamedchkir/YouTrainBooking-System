@@ -84,8 +84,8 @@ class TrainController extends TrainModel
                      $time_to_reserve_start_on = date("H:i:s",$date->getTimestamp());
                      $time_to_reserve_end_on = date("H:i:s",$dateArrive->getTimestamp());
 
-                    // echo "time to reserve start in : ".$time_to_reserve_start_on." < time of trip start in :  ".$time_reserved_start_on."<br>";
-                    // echo "time to reserve end in : ".$time_to_reserve_end_on." < time of trip end in :  ".$time_reserved_end_on."<br>";
+                    echo "time to reserve start in : ".$time_to_reserve_start_on." < time of trip start in :  ".$time_reserved_start_on."<br>";
+                    echo "time to reserve end in : ".$time_to_reserve_end_on." < time of trip end in :  ".$time_reserved_end_on."<br>";
 
                      if(($time_to_reserve_start_on>$time_reserved_end_on && $time_to_reserve_end_on <$time_reserved_start_on) ||
                          $time_to_reserve_start_on<$time_reserved_start_on && $time_to_reserve_end_on< $time_reserved_start_on
@@ -104,8 +104,8 @@ class TrainController extends TrainModel
                      }*/
                  }elseif ($v['frequence']==2 && $frequence==2){
                     if($date->getTimestamp() >strtotime($v['date']) || $date->getTimestamp()< strtotime($v['date'])){
-                        $date_to_reserve_on = date('d/m/Y', $date->format('d/m/Y'));
-                        $date_reserved_on = date('d/m/Y', $v['date']);
+                       /* $date_to_reserve_on = date('d/m/Y', $date->format('d/m/Y'));
+                        $date_reserved_on = date('d/m/Y', $v['date']);*/
 
                         /*var_dump($date_reserved_on);
                         var_dump($date_to_reserve_on);*/
