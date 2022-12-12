@@ -7,6 +7,7 @@ session_start();
 if (isset($_POST["saveGare"])) saveGare();
 if (isset($_POST["editGare"])) editGare();
 if (isset($_POST["deleteGare"])) deleteVoyage();
+if(isset($_POST['getGares'])) getGares();
 
 //Add gare function 
 
@@ -46,4 +47,9 @@ function deleteVoyage()
         $gare->supprimerGare($id);
         echo "<script>window.location.replace('../../gare/index.php')</script>";
     }
+}
+
+function getGares(){
+    $gareCntr = new GareController();
+    echo json_encode($gareCntr->getAllGare());
 }
