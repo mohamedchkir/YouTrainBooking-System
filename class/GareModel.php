@@ -1,7 +1,12 @@
 <?php
 
-require_once('DB.php');
-// session_start();
+include_once('DB.php');
+//session_start();
+
+if(!isset($_SESSION))
+{
+    session_start();
+}
 
 class GareModel extends DB
 {
