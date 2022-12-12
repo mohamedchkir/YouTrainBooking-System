@@ -100,14 +100,25 @@ function saveVoyage(){
     $id_train = Validation($_POST['id_train']);
     $date=Validation($_POST['datetime']);
     $unique= uniqid();
+    $fr= $_POST['Frequence'];
     
-    $voyage = new VoyageController();
-    //aller
-    $voyage->ajouterUnVoyage(new Voyage($statut,$duree,$gare_depart,$gare_arrivee,$prix,$id_train,$date,$unique));
-    //roteur
-    $voyage->ajouterUnVoyage(new Voyage($statut,$duree,$gare_arrivee,$gare_depart,$prix,$id_train,$date,$unique));
+    if(empty($statut) && empty($duree) && empty($gare_depart) && empty($gare_arrivee) && empty($prix) && empty($id_train) && empty($date) && empty($unique)){
+        // var_dump($duree);
 
-    echo "<script>window.location.replace('../../voyage/index.php')</script>";
+        $_SESSION['error']="All is required !!!";
+    echo "<script>window.location.replace('../../dash/index.php?page=voyage')</script>";
+
+    }else{
+        $voyage = new VoyageController();
+    //aller
+    $voyage->ajouterUnVoyage(new Voyage($statut,$duree,$gare_depart,$gare_arrivee,$prix,$id_train,$date,$unique),$fr);
+    //roteur
+    $voyage->ajouterUnVoyage(new Voyage($statut,$duree,$gare_arrivee,$gare_depart,$prix,$id_train,$date,$unique),$fr);
+
+    echo "<script>window.location.replace('../../dash/index.php?page=voyage')</script>";
+    }
+    
+    
 
 }
 
@@ -123,11 +134,10 @@ function editVoyage(){
         $id_train = Validation($_POST['md_id_train']);
         $date = Validation($_POST['md_datetime']);
         $unique = Validation($_POST['md_unique_id']);
-
         $voyage = new VoyageController();
 
         $voyage->updateVoyageInfo(new Voyage($statut,$duree,$gare_depart,$gare_arrivee,$prix,$id_train,$date,$unique),$id);
-        echo "<script>window.location.replace('../../voyage/index.php')</script>";
+        echo "<script>window.location.replace('../../dash/index.php?page=voyage')</script>";
     }
 }
 
@@ -136,5 +146,5 @@ function deleteVoyage(){
     $id = Validation($_POST['md_id_tr']);
     $voyage = new VoyageController();
     $voyage->supprimerUnVoyage($id);
-    echo "<script>window.location.replace('../../voyage/index.php')</script>";
+    echo "<script>window.location.replace('../../dash/index.php?page=voyage')</script>";
 }

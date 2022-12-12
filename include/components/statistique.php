@@ -1,24 +1,24 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
  <meta charset="UTF-8">
  <meta http-equiv="X-UA-Compatible" content="IE=edge">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>Document</title>
+ <title>Document</title> -->
  <!--Boostrap Icons CDN -->
  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
  <!-- Bootstrap CSS -->
- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
- <link rel="stylesheet" href="../../assets/css/style2.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+ <!-- <link rel="stylesheet" href="../../assets/css/style2.css">
 </head>
 <style>
  * {
   box-sizing: border-box;
  }
-</style>
+</style> -->
 
-<body class="pt-5">
+<!-- <body class="pt-5">  -->
  <div class="container">
   <h3 class="p-0"> <i class="bi bi-cart me-2"></i>Mes statistiques</h3>
   <h5 class="p-2 text-light " style="background-color:var(--aqua) ;">Nos chiffre d'affaires</h5>
@@ -163,6 +163,6 @@
 
  </div>
 
-</body>
+<!-- </body>
 
-</html>
+</html> -->

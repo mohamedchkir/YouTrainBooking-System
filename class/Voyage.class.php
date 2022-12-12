@@ -24,6 +24,7 @@ class Voyage
   $this->trainID = $trainID;
   $this->datetime = $datetime;
   $this->uniqueIdForBothAllerRotour = $uniqueIdForBothAllerRotour;
+//   $this->frequence = $frequence;
 
  }
 
