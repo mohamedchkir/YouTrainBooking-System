@@ -2,6 +2,8 @@
 session_start();
 include_once("../include/autoloader.php");
 if(!isset($_SESSION['search-info'])){
+    echo "i am here";
+    die();
     header("location:../");
 }
 
@@ -112,7 +114,7 @@ if(!isset($_SESSION['search-info'])){
        </li>
       </ul>
      </div>
-     <form class="needs-validation" action="../include/handlers/voyagehandler.php" method="post" novalidate>
+     <form class="needs-validation" action="../include/handlers/voyagehandler.php" method="post" id="search_again" novalidate>
          <div class="row g-2">
              <div class="col-lg-6 text-start" style="position: relative;">
                  <label for="" class="form-label ms-2" style="color:#80808078;">gare de depart</label>
@@ -120,7 +122,7 @@ if(!isset($_SESSION['search-info'])){
                  <div class="invalid-feedback ms-2">
                      veillez remplire la gare de départ.
                  </div>
-                 <input type="hidden" value="" name="id_ville_gare_depart">
+                 <input type="hidden" value="" name="id_ville_gare_depart" id="id_ville_gare_depart">
                  <div class="rounded-bottom" style="background-color:aliceblue;position:absolute; width: 94%;z-index:100;max-height:31vh;overflow:auto;" id="cities_rst1"></div>
              </div>
              <div class="col-lg-6 text-start" style="position: relative;">
@@ -156,8 +158,8 @@ if(!isset($_SESSION['search-info'])){
       </div>
       <div class="row px-2 g-3 mt-3" style="width:100%;height:85vh;overflow:auto;">
        <div class="p-3 shadow " style="background-color:#f1fcff;border-radius:10px;">
-        <div class="d-flex align-items-center">
-         <div class="d-flex justify-content-between flex-grow-1 px-3">
+        <div class="row align-items-center">
+         <div class="col-lg-8 d-flex justify-content-between flex-grow-1 px-3">
           <div>
            <p>départ</p>
            <h4>8:30</h4>
@@ -181,7 +183,7 @@ if(!isset($_SESSION['search-info'])){
            <p><?= $_SESSION['search-info']['gare_distination'] ?></p>
           </div>
          </div>
-         <div class=" align-items-center text-center p-4" style="border-left: 2px dotted  #80808078;">
+         <div class="col-lg-4 align-items-center text-center p-4" style="border-left: 2px dotted  #80808078;">
           <h5>1 passager</h5>
           <h6>à partir </h6>
           <span>
@@ -376,6 +378,21 @@ if(!isset($_SESSION['search-info'])){
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="../assets/js/main2.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
+<script>
+    document.forms.namedItem("search_again").addEventListener('submit',function (e){
+        let gare_entred = $("#id_ville_gare_depart").val();
+        if(gare_entred==""){
+            e.preventDefault();
+            alert("invalid gare identiant");
+            return;
+        }
+        isGareExist(gare_entred,"../include/handlers/garehandler.php").then(data=>{
+            if(!data){
+                e.preventDefault();
+                alert("invalid gare identiant");
+            }
+        })
+    })
+</script>
 
 </html>

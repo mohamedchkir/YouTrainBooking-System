@@ -1,5 +1,5 @@
 <?php
-    session_start();
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -70,7 +70,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="../dash/index.php?page=allUsers" style="color: white;">
                     <i class="px-3 fa-solid fa-people-group" style="color: white;"></i>
-                    <span style="color: white;">gestion des roles</span></a>
+                    <span style="color: white;">Gestion des roles</span></a>
             </li>
             <!-- Nav Item - Spec -->
             <li class="nav-item">
@@ -174,25 +174,25 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <div id="content" class="w-100">
-                        <?php 
+                        <?php
                         if (isset($_GET['page'])) {
                             $page = $_GET['page'];
                             if ($page == "profil") {
                                 include_once('../include/components/EditProfil.component.php');
-                            }elseif($page == "gare"){
+                            } elseif ($page == "gare") {
                                 include_once('../gare/index.php');
-                            }elseif($page == "voyage"){
+                            } elseif ($page == "voyage") {
                                 include_once('../voyage/index.php');
-                            }elseif($page == "allUsers"){
+                            } elseif ($page == "allUsers") {
                                 include_once('../include/components/uers.component.php');
-                            }elseif($page == "satistique"){
+                            } elseif ($page == "satistique") {
                                 include_once('../include/components/statistique.php');
-                            }elseif($page == "train"){
+                            } elseif ($page == "train") {
                                 include_once('../include/components/trains.component.php');
                             }
-                        }else{
+                        } else {
                             // page default
-                        include_once('../voyage/index.php');
+                            include_once('../voyage/index.php');
                         }
                         ?>
                     </div>
