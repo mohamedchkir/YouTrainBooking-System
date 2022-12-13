@@ -8,9 +8,9 @@ $train= new TrainController();
 $v = new Voyage(1,5,1,3,32.33,1,(new DateTime())->add(new DateInterval("P2D")),"@eisjcnk");
 $v->setFrequence(2);
 $interval = new DateInterval('PT21H');
-echo $train->checkTrainAvailability((new DateTime())->add(new DateInterval("PT0H")),32,(new DateTime())->add(new DateInterval("PT1H")),2);
+// echo $train->checkTrainAvailability((new DateTime())->add(new DateInterval("PT0H")),32,(new DateTime())->add(new DateInterval("PT1H")),2);
 
-exit();
+// exit();
 ?>
 <head>
     <!-- Required meta tags -->
