@@ -15,6 +15,13 @@ class VoyageController extends VoyageModel
 
  }
 
+
+ public function get(){
+    
+    return $this->getAll();
+
+ }
+
  public function ajouterUnVoyage(Voyage $voyage,$fr)
  {
     // do some verification
@@ -92,5 +99,13 @@ class VoyageController extends VoyageModel
  }
 
  
+
+ public function getAvailableVoyage($gare_depart,$date_depart){
+     
+    $this->getAvailableVoyageInDb($gare_depart,$date_depart);
+ }
+
+
+
 }
 

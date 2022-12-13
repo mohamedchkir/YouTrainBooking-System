@@ -11,6 +11,18 @@ class VoyageModel extends DB
        $statement= $this->Connect()->prepare("SELECT * FROM voyages where ");
     }
 
+    protected function getAll(){
+        // "SELECT v.*,s.nom as status,g.nom as gare_depart, ga.nom as gare_arriveefrom voyages as v INNER JOIN status as s on v.status = s.id
+        // INNER JOIN gares as g on v.gare_depart=g.id 
+        // INNER join  gares as ga on v.gare_arrivee=ga.id"
+        // $sql = "SELECT Date_Format(date, '%M %d, %Y') from voyages";
+        $sql = "SELECT * from voyages";
+        $statement = $this->Connect()->prepare($sql);
+        $statement->execute();
+        $res = $statement->fetchAll();
+        return $res;
+    }
+
     protected function getAllVoyage(){
         // "SELECT v.*,s.nom as status,g.nom as gare_depart, ga.nom as gare_arriveefrom voyages as v INNER JOIN status as s on v.status = s.id
         // INNER JOIN gares as g on v.gare_depart=g.id 
@@ -59,6 +71,18 @@ class VoyageModel extends DB
             $sql="DELETE FROM `voyages` WHERE unique_id=?";
             $resultat =$this->connect()->prepare($sql);
             $resultat->execute(array($id));
+        }catch (PDOException $er){
+            echo $er->getMessage();
+        }
+    }
+
+    protected function getAvailableVoyageInDb($gare_depart,$date_depart){
+        try{
+            $sql="SELECT * FROM `voyage` WHERE gare_depart=? and date=?";
+            $resultat = $this->Connect()->prepare($sql);
+            $resultat->execute(array($gare_depart,$date_depart));
+            $resultat->fetchAll();
+            return $resultat;
         }catch (PDOException $er){
             echo $er->getMessage();
         }
