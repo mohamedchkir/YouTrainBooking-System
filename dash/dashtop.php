@@ -1,4 +1,5 @@
 <?php
+include_once "../class/TrainController.class.php";
 session_start();
 ?>
 <!DOCTYPE html>
@@ -22,7 +23,7 @@ session_start();
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
-    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <!-- <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
     <link href="../assets/css/style1.css" rel="stylesheet">
     <link href="../assets/css/style2.css" rel="stylesheet">
     <link href="../assets/css/style3.css" rel="stylesheet">
