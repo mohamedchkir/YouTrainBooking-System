@@ -105,10 +105,10 @@ class VoyageController extends VoyageModel
     $this->getAvailableVoyageInDb($gare_depart,$date_depart);
  }
 
- public function gatSearchVoyage(){
-    
-    $gare_depart = $_POST["id_ville_gare_depart"];
-    $date_depart = $_POST["date_depart"];
+ public function gatSearchVoyage($gare_depart,$date_depart){
+
+    // $gare_depart = $_POST["id_ville_gare_depart"];
+    // $date_depart = $_POST["date_depart"];
     
     $voyage = new VoyageController();
     $res = $voyage->get();
@@ -132,6 +132,7 @@ class VoyageController extends VoyageModel
         }else{
             echo "<script>window.location.replace('../../index.php')</script>";
         }
+        return $data;
     }
  }
 
