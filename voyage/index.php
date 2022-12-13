@@ -1,11 +1,16 @@
 <?php
   include_once('../class/VoyageController.class.php');
-    $test = new VoyageController();
-    // var_dump($test->getVoyage());
-    $res = $test->getVoyage();
+  include_once('../class/TrainController.class.php');
+    $voyage = new VoyageController();
+    $train = new TrainController();
+    $options = $train->getAllTrains();
+    // var_dump($options);
+    // die;
+    $res = $voyage->getVoyage();
     // var_dump($res);
     // exit();
     
+
 
 ?>
 <!-- <!DOCTYPE html>
@@ -77,8 +82,9 @@
               <label for="id_train" class="col-form-label">Train:</label>
                 <select name="id_train" id="id_train" class="form-select" required>
                   <option selected>Open this select menu</option>
-                  <option value="1">TVG</option>
-                  <option value="2">ONCF</option>
+                  <?php foreach ($options as $opt) {
+                    echo '<option value="'.$opt['id'].'">'.$opt['nom'].'</option>';
+                  }?>
                 </select>
               </div>
             </div>
@@ -207,8 +213,9 @@
             <label for="id_train" class="col-form-label">Train:</label>
             <select name="md_id_train" id="md_id_train" class="form-select" required>
               <option selected>Open this select menu</option>
-              <option value="1">TVG</option>
-              <option value="2">ONCF</option>
+              <?php foreach ($options as $opt) {
+                echo '<option value="'.$opt['id'].'">'.$opt['nom'].'</option>';
+              }?>
             </select>
           </div>
           <div class="form-group">
