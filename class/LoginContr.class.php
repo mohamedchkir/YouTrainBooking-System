@@ -1,20 +1,17 @@
 <?php
 include_once("../autoloader.php");
-session_start();
+if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
 
 class LoginContr extends LoginModel {
-
-  
-    private $email;
-    private $password;
-    
-
-
     public function __construct($email,$password)
     {
        
         $this->email = $email;
         $this->password = $password;
+        
        
     }
 

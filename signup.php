@@ -29,46 +29,46 @@
 
 
   <style>
-    body {
+        body {
 
-      background: url('./assets/img/bg.png');
-      background-color: rgb(60, 60, 60);
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-blend-mode: multiply;
+        background: url('./assets/img/bg.png');
+        background-color: rgb(60, 60, 60);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-blend-mode: multiply;
 
-    }
+        }
 
-    .card {
-       
-       background-color: #1d2226d9;
-       color: white;
-   
-   
-       }
-       .alert {
-       padding: 15px 10px;
-       }
-       .alert-danger {
-       --bs-alert-color: #e16470;
-       --bs-alert-bg: #d9636e00;
-       --bs-alert-border-color: #f5c2c7;
-       }
-       a{
-         color: #47b5ff;
-       }
-       .shesh{
-           background-color: #dae2e70f;
-           color: white;
-   
-       }
-       .form-control:focus {
-       color: white;
-       background-color: transparent;
-       border-color: #86b7fe;
-       outline: 0;
-       box-shadow: 0 0 0 0.25rem rgb(71 181 255 / 4%);
-       }
+        .card {
+        
+        background-color: #1d2226d9;
+        color: white;
+
+
+        }
+        .alert {
+        padding: 15px 10px;
+        }
+        .alert-danger {
+        --bs-alert-color: #e16470;
+        --bs-alert-bg: #d9636e00;
+        --bs-alert-border-color: #f5c2c7;
+        }
+        a{
+        color: #47b5ff;
+        }
+        .shesh{
+          background-color: #dae2e70f;
+          color: white;
+
+        }
+        .btn:focus-visible {
+            color: #000;
+            background-color: #ffffff;
+            border-color: #ffffff(--bs-btn-hover-border-color);
+            outline: 3;
+            box-shadow: #ffffff(--bs-btn-focus-box-shadow);
+        }
   </style>
 
 
@@ -105,7 +105,7 @@
                               <div class=" mb-4">
                                 <div class="form-outline mb-4">
                                   <label class="form-label" for="form3Example1">First Name</label>
-                                  <input type="text" name="First_name" id="name" class="form-control shesh" required />
+                                  <input type="text" name="first_name" id="name" class="form-control shesh" required />
                                   <div class="valid-feedback">
                                     Looks Good!
                                   </div>
@@ -115,7 +115,7 @@
                                 </div>
                                 <div class="form-outline">
                                   <label class="form-label" for="form3Example1">Last name</label>
-                                  <input type="text" name="Last_name" id="name" class="form-control shesh" required />
+                                  <input type="text" name="last_name" id="name" class="form-control shesh" required />
                                   <div class="valid-feedback">
                                     Looks Good!
                                   </div>
