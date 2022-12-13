@@ -1,7 +1,8 @@
-a.nav-link :hover{
-    color: #000000;
-    background-color: azure;
-}
+
 .navbar{
     background-color: #06283D;
+}
+.nav-item > a.nav-link:hover{
+    color: #000000 !important;
+    background-color:#f8f9fc !important;
 }
