@@ -31,9 +31,9 @@ class GareModel extends DB
             $_SESSION['message'] = "gare has been added successfully";
         } catch (PDOException $er) {
             $_SESSION['error'] = "gare has been not added";
-            $error = $er->getMessage();
+            echo $er->getMessage();
         }
-        return $error;
+        // return $error;
     }
 
 
@@ -48,9 +48,8 @@ class GareModel extends DB
             $_SESSION['message'] = "gare has been update successfully";
         } catch (PDOException $er) {
             $_SESSION['error'] = "gare has been not update";
-            $error = $er->getMessage();
+            echo $er->getMessage();
         }
-        return $error;
     }
 
     protected function deleteGareInDB($id)
@@ -62,8 +61,7 @@ class GareModel extends DB
             $_SESSION['message'] = "Gare has been delete successfully";
         } catch (PDOException $er) {
             $_SESSION['error'] = "Gare has been not delete";
-            $error = $er->getMessage();
+            echo $er->getMessage();
         }
-        return $error;
     }
 }
