@@ -1,19 +1,7 @@
 <!doctype html>
 <html lang="en">
 <?php
-include_once "./class/TrainController.class.php";
-include_once "./class/Voyage.class.php";
-$train= new TrainController();
-$v = new Voyage(1,5,1,3,32.33,1,(new DateTime())->add(new DateInterval("P2D")),"@eisjcnk");
-$v->setFrequence(2);
-$interval = new DateInterval('PT21H');
-// echo $train->checkTrainAvailability((new DateTime())->add(new DateInterval("PT0H")),32,(new DateTime())->add(new DateInterval("PT1H")),2);
 
-// exit();
-
-// echo $train->checkTrainAvailability((new DateTime())->add(new DateInterval("PT0H")),10,(new DateTime())->add(new DateInterval("PT5H")),2);
-
-// exit();
 
 ?>
 <head>
