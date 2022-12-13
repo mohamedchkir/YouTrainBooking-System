@@ -1,11 +1,10 @@
 <?php
 
 include_once("../autoloader.php");
-
-
 if(isset($_POST['accept']))      accept();
 if(isset($_POST['deny']))        deny();
 if(isset($_POST['savechanges'])) update();
+
 
 if(isset($_POST["signup"]))
 {
@@ -23,7 +22,7 @@ if(isset($_POST["signup"]))
 
    // Running error handlers and user signup
     $signUpCtr->SignUpUr();
-   // Going back to the front page
+   // Going back to the front pagee
     header("location: ../../login.php");
 }
 // signup -------------------------------
@@ -78,7 +77,7 @@ function accept(){
 
    $user = new UserController();
    $user->updateUser($role,$id);
-   echo "<script>window.location.replace('../components/uers.component.php')</script>";
+   echo "<script>window.location.replace('../../dash/index.php?page=allUsers')</script>";
 }
 function deny(){
    $id = $_POST['id'];
@@ -86,6 +85,6 @@ function deny(){
 
    $user = new UserController();
    $user->updateUser($role,$id);
-   echo "<script>window.location.replace('../components/uers.component.php')</script>";
+   echo "<script>window.location.replace('../../dash/index.php?page=allUsers')</script>";
    
 }

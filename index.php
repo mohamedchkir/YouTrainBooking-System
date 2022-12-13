@@ -2,6 +2,15 @@
 <html lang="en">
 <?php
 
+include_once "./class/TrainController.class.php";
+include_once "./class/Voyage.class.php";
+$train= new TrainController();
+$v = new Voyage(1,5,1,3,32.33,1,(new DateTime())->add(new DateInterval("P2D")),"@eisjcnk");
+$v->setFrequence(2);
+$interval = new DateInterval('PT21H');
+echo $train->checkTrainAvailability((new DateTime())->add(new DateInterval("PT0H")),32,(new DateTime())->add(new DateInterval("PT1H")),2);
+
+exit();
 ?>
 <head>
     <!-- Required meta tags -->
@@ -29,7 +38,7 @@
                     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                         <ul class="navbar-nav mb-2 mb-lg-0">
                             <?php
-/*                            if(isset($_SESSION["user"])){
+                            if(isset($_SESSION["user"])){
                                 echo "<li class='nav-item'>
                                    <a class='nav-link active py-0 px-3' aria-current='page' href='#'>
                                     <i class='bi bi-person me-2'></i>
@@ -44,20 +53,24 @@
         
                                        </a>
                                    </li>";
-                            }
-                            
-                            */?>
-                            <li class="nav-item">
-                                <a class="nav-link active py-0 px-3 " id="login" aria-current="page" href="login.php" style="font-weight: 500;">
+                            }else{
+                                echo "
+                                <li class='nav-item'>
+                                <a class='nav-link active py-0 px-3 ' id='login' aria-current='page' href='login.php' style='font-weight: 500;'>
                                     <span>Log in</span>
                                 </a>
-                            </li>
-                            <li class="vr" style="background-color: var(--dark-blue);width: 1px ;"></li>
-                            <li class="nav-item">
-                                <a class="nav-link active py-0 px-3" aria-current="page" href="signup.php" id="sign_up">
-                                    <span style="background-color: var(--aqua);color: white;padding: 7px 25px;border-radius: 25px;font-weight: 500;">Sign up</span>
-                                </a>
-                            </li>
+                                </li>
+                                <li class='vr' style='background-color: var(--dark-blue);width: 1px ;'></li>
+                                <li class='nav-item'>
+                                    <a class='nav-link active py-0 px-3' aria-current='page' href='signup.php' id='sign_up'>
+                                        <span style='background-color: var(--aqua);color: white;padding: 7px 25px;border-radius: 25px;font-weight: 500;'>Sign up</span>
+                                    </a>
+                                </li>
+                                ";
+                            }
+                            
+                            ?>
+
                         </ul>
                     </div>
                 </div>
@@ -97,7 +110,7 @@
             </h3>
             <p class="text-grey">Explore the world with us </p>
 
-            <form action="./include/handlers/voyagehandler.php" method="post" class="p-lg-5 needs-validation" novalidate autocomplete="off">
+            <form action="./include/handlers/voyagehandler.php" id="search-trips" method="post" class="p-lg-5 needs-validation" novalidate autocomplete="off">
                 <div class="row gy-3">
                     <div class="col-lg-6 text-start" style="position: relative;">
                         <label for="" class="form-label ms-2" style="color:#80808078;">gare de depart</label>
@@ -105,14 +118,14 @@
                         <div class="invalid-feedback ms-2">
                             veillez remplire la gare de départ.
                         </div>
-                        <input type="hidden" value="" name="id_ville_gare_depart">
+                        <input type="hidden" value="" name="id_ville_gare_depart" id="id_ville_gare_depart">
                         <div class="rounded-bottom" style="background-color:aliceblue;position:absolute; width: 94%;z-index:100;max-height:31vh;overflow:auto;" id="cities_rst1"></div>
                     </div>
                     <div class="col-lg-6 text-start" style="position: relative;">
                         <label for="" class="form-label ms-2" style="color:#80808078;">gare de distination (optionel)</label>
                         <input class="form-control " type="text" name="gare_distination" id="gare_distination" placeholder="Tanger ville.." autocomplete="false">
                         <div class="rounded-bottom" style="background-color:aliceblue;position:absolute; width: 94%;max-height:31vh;overflow:auto;" id="cities_rst2"></div>
-                        <input type="hidden" value="" name="id_ville_gare_distination">
+                        <input type="hidden" value="" name="id_ville_gare_distination" id="id_ville_gare_distination">
                     </div>
                     <div class="col-lg-6 text-start">
                         <label for="" class="form-label ms-2" style="color:#80808078;">date de départ</label>
@@ -167,7 +180,21 @@
 </body>
 <script src="assets/js/main2.js"></script>
 <script>
-    document
+    document.forms.namedItem("search-trips").addEventListener('submit',function (e){
+        let gare_entred1 = $("#id_ville_gare_depart").val();
+        if(gare_entred1==""){
+            e.preventDefault();
+            alert("invalid gare identiant");
+            return;
+        }
+        //alert(isGareExist(gare_entred))
+        isGareExist(gare_entred,"./include/handlers/garehandler.php").then(data=>{
+            if(!data){
+                e.preventDefault();
+                alert("invalid gare identiant");
+            }
+        })
+    })
 </script>
 
 </html>

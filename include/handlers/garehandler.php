@@ -7,6 +7,7 @@ session_start();
 if (isset($_POST["saveGare"])) saveGare();
 if (isset($_POST["editGare"])) editGare();
 if (isset($_POST["deleteGare"])) deleteVoyage();
+if(isset($_POST['getGares'])) getGares();
 
 //Add gare function 
 
@@ -16,9 +17,9 @@ function saveGare()
     $ville = $_POST['ville'];
     $gare = new GareController();
     $gare->ajouterGare(new gare($gareName, $ville));
-
+    die;
     echo "<script>
-    window.location.replace('../../gare/index.php')
+    window.location.replace('../../dash/index.php?page=gare')
 </script>";
 }
 
@@ -32,7 +33,7 @@ function editGare()
     $gare = new GareController();
 
     $gare->editGare(new Gare($gareName, $ville), $id);
-    echo "<script>window.location.replace('../../gare/index.php')</script>";
+    echo "<script>window.location.replace('../../dash/index.php?page=gare')</script>";
 }
 
 //Delete gare function 
@@ -44,6 +45,11 @@ function deleteVoyage()
         $gare = new GareController();
 
         $gare->supprimerGare($id);
-        echo "<script>window.location.replace('../../gare/index.php')</script>";
+        echo "<script>window.location.replace('../../dash/index.php?page=gare')</script>";
     }
+}
+
+function getGares(){
+    $gareCntr = new GareController();
+    echo json_encode($gareCntr->getAllGare());
 }

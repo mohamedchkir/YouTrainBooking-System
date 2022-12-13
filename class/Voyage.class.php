@@ -24,6 +24,7 @@ class Voyage
   $this->trainID = $trainID;
   $this->datetime = $datetime;
   $this->uniqueIdForBothAllerRotour = $uniqueIdForBothAllerRotour;
+//   $this->frequence = $frequence;
 
  }
 
@@ -117,7 +118,13 @@ class Voyage
     }
 
 
-    
+    public function getFrequence(){
+        return $this->frequence;
+    }
+
+    public function setFrequence($frequence){
+        $this->frequence=$frequence;
+    }
 
 
 

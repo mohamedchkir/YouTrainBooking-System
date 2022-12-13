@@ -1,19 +1,21 @@
 <?php
-session_start();
+// session_start();
 
 include_once('VoyageModel.php');
-
+include_once "TrainController.class.php";
 
 
 class VoyageController extends VoyageModel
 {
+
+    
  public function getVoyage(){
     
     return $this->getAllVoyage();
 
  }
 
- public function ajouterUnVoyage(Voyage $voyage)
+ public function ajouterUnVoyage(Voyage $voyage,$fr)
  {
     // do some verification
     //  if($voyage->setGareDepart($voyage->getGareDepart())==""){
@@ -22,7 +24,23 @@ class VoyageController extends VoyageModel
     
     // set Status call fun
     try{
-        $this->addVoyageInDB($voyage);
+        $train = new TrainController();
+        $date=$voyage->getDatetime();
+        $trainID=$voyage->getTrainID();
+        //
+        $d = new DateTime($date);
+        // echo $d->format('m/Y/d H:i:s');
+
+        // echo '<br>';
+        //duree
+        $time = date("H:i:s", strtotime($date."+".$voyage->getDureeIstime()." hours"));
+        $t = new DateTime($time);
+        // echo $t->format('H');
+        // echo '<br>';
+        $train->checkTrainAvailability($d,$trainID,$t,$fr);
+        // die;
+
+        $this->addVoyageInDB($voyage,$fr);
         $_SESSION['message']="Voyage has been added successfully";
     }catch(PDOException $er){
         $_SESSION['error']="Voyage has been not added";

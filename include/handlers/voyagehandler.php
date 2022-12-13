@@ -1,5 +1,8 @@
 <?php
-
+if(!isset($_SESSION))
+{
+    session_start();
+}
 
 include_once("../autoloader.php");
 
@@ -13,6 +16,7 @@ if (isset($_POST["search"])) getAvailableTrips();
 if (isset($_POST["saveVoyage"])) saveVoyage();
 if (isset($_POST["editVoyage"])) editVoyage();
 if (isset($_POST["deleteVoyage"])) deleteVoyage();
+if (isset($_POST["isTrainAvailable"])) checkTrainAvailability();
 
 
 //function validation input 
@@ -33,7 +37,6 @@ function getSuggestions()
 {
  $sugg = $_POST["suggestions"];
  $whatToGet =$_POST['whatToGet'];
-
 
 
  $variantToget=array();
@@ -98,18 +101,25 @@ function saveVoyage(){
     $id_train = Validation($_POST['id_train']);
     $date=Validation($_POST['datetime']);
     $unique= uniqid();
-
-    // var_dump($statut,$duree,$gare_depart,$gare_arrivee,$prix,$id_train,$date,$unique);
-    //     die;
-
+    $fr= $_POST['Frequence'];
     
-    $voyage = new VoyageController();
-    //aller
-    $voyage->ajouterUnVoyage(new Voyage($statut,$duree,$gare_depart,$gare_arrivee,$prix,$id_train,$date,$unique));
-    //roteur
-    $voyage->ajouterUnVoyage(new Voyage($statut,$duree,$gare_arrivee,$gare_depart,$prix,$id_train,$date,$unique));
+    if(empty($statut) && empty($duree) && empty($gare_depart) && empty($gare_arrivee) && empty($prix) && empty($id_train) && empty($date) && empty($unique)){
+        // var_dump($duree);
 
-    echo "<script>window.location.replace('../../voyage/index.php')</script>";
+        $_SESSION['error']="All is required !!!";
+    echo "<script>window.location.replace('../../dash/index.php?page=voyage')</script>";
+
+    }else{
+        $voyage = new VoyageController();
+    //aller
+    $voyage->ajouterUnVoyage(new Voyage($statut,$duree,$gare_depart,$gare_arrivee,$prix,$id_train,$date,$unique),$fr);
+    //roteur
+    $voyage->ajouterUnVoyage(new Voyage($statut,$duree,$gare_arrivee,$gare_depart,$prix,$id_train,$date,$unique),$fr);
+
+    echo "<script>window.location.replace('../../dash/index.php?page=voyage')</script>";
+    }
+    
+    
 
 }
 
@@ -125,14 +135,10 @@ function editVoyage(){
         $id_train = Validation($_POST['md_id_train']);
         $date = Validation($_POST['md_datetime']);
         $unique = Validation($_POST['md_unique_id']);
-
-        // var_dump($statut,$duree,$gare_depart,$gare_arrivee,$prix,$id_train,$date,$unique);
-        // die;
-
         $voyage = new VoyageController();
 
         $voyage->updateVoyageInfo(new Voyage($statut,$duree,$gare_depart,$gare_arrivee,$prix,$id_train,$date,$unique),$id);
-        echo "<script>window.location.replace('../../voyage/index.php')</script>";
+        echo "<script>window.location.replace('../../dash/index.php?page=voyage')</script>";
     }
 }
 
@@ -141,5 +147,23 @@ function deleteVoyage(){
     $id = Validation($_POST['md_id_tr']);
     $voyage = new VoyageController();
     $voyage->supprimerUnVoyage($id);
-    echo "<script>window.location.replace('../../voyage/index.php')</script>";
+    echo "<script>window.location.replace('../../dash/index.php?page=voyage')</script>";
+}
+
+
+function checkTrainAvailability(){
+    $trainCtr = new TrainController();
+    $date=$_POST['datetime'];
+    $train=$_POST['trainId'];
+    $duree=$_POST['duree'];
+    $Frequence=$_POST['Frequence'];
+
+
+    $d = new DateTime($date);
+    //echo $d->format('m/Y/d H:i:s');
+    $time = date("H:i:s", strtotime($date."+".$duree." hours"));
+    $t = new DateTime($time);
+
+    echo $trainCtr->checkTrainAvailability($d,$train,$t,$Frequence);  
+      
 }

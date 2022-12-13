@@ -1,7 +1,12 @@
 <?php
 
 include_once('DB.php');
-session_start();
+//session_start();
+
+if(!isset($_SESSION))
+{
+    session_start();
+}
 
 class GareModel extends DB
 {
@@ -27,7 +32,6 @@ class GareModel extends DB
         } catch (PDOException $er) {
             $_SESSION['error'] = "gare has been not added";
             $error = $er->getMessage();
-            echo $er->getMessage();
         }
         return $error;
     }
@@ -45,7 +49,6 @@ class GareModel extends DB
         } catch (PDOException $er) {
             $_SESSION['error'] = "gare has been not update";
             $error = $er->getMessage();
-            echo $er->getMessage();
         }
         return $error;
     }
@@ -60,7 +63,6 @@ class GareModel extends DB
         } catch (PDOException $er) {
             $_SESSION['error'] = "Gare has been not delete";
             $error = $er->getMessage();
-            echo $er->getMessage();
         }
         return $error;
     }

@@ -34,6 +34,7 @@ function makeaMargin(e) {
 // JQUERY STARTS HERE
 
 $(document).ready(function () {
+  //$("#train_msg_alert").hide();
   handleSuggestion({ inputFiled: "#gare_depart", resltOnNode: "#cities_rst1", treattedIn: "./include/handlers/voyagehandler.php",whatToGet:"gares" });
   handleSuggestion({ inputFiled: "#gare_distination", resltOnNode: "#cities_rst2", treattedIn: "./include/handlers/voyagehandler.php",whatToGet:"gares" });
   handleSuggestion({ inputFiled: "#gare_depart_reseach", resltOnNode: "#cities_rst1", treattedIn: "../include/handlers/voyagehandler.php",whatToGet:"gares" });
@@ -55,13 +56,42 @@ $(document).ready(function () {
   /* update modal voyage */
   handleSuggestion({inputFiled: "#md_gare_depart", resltOnNode: "#md_res", treattedIn: "../include/handlers/voyagehandler.php",whatToGet:"gares"});
   handleSuggestion({inputFiled: "#md_gare_arrivee", resltOnNode: "#md_res2", treattedIn: "../include/handlers/voyagehandler.php",whatToGet:"gares"});
+  var contents;
+  $('.changeable').click(function (){
+    contents=$(this).html();
+  });
+  $('.changeable').blur(function(e) {
+    if (contents!=$(this).html()){
+      let id_table=$(this).attr("id").split("_");
+      let column_name=id_table[0];
+      let id_element =id_table[1];
+      let data = $(this).text();
+      //console.log(data)
+      updateDB(column_name,data,id_element);
+      contents = $(this).html();
+    }
+  });
+  $("#cartBtn").click(function () {
+    //$("#cart").show("slow")
+    $("#cart").animate({
+      width: 'toggle'
+    });
+  });
+  $("#closeCartBtn").click(function () {
+    $("#cart").hide();
+  })
+
 });
+
+
+
+
 
 function handleSuggestion({ inputFiled: input, resltOnNode: node, treattedIn: phpfile,whatToGet:villeOrGare }) {
   $(input).keyup(
     function () {
       var ville = $(this).val();
-      console.log(ville)
+      //console.log(ville)
       $.post(
         phpfile,
         {
@@ -102,5 +132,45 @@ function bookTicket({id:id_voyage,from:ville_depart,to:vill_dis,date:date,prix:p
   $("#order_counter").next().attr("counter",count+1)
   //$.get("../include/handlers/voyageHandler.php",{getOrderCount:true,function(data,status){}})
 
-  console.log();
+  //console.log();
 }
+
+function updateDB(column,data,id){
+  $.post("../handlers/trainHandler.php",{
+    column : column,
+    data:data,
+    id:id
+  },function (data,status){
+    //alert(data)
+    $("#train_msg_alert").show();
+    $("#msg-label").text(data);
+  });
+}
+function deleteTran(id){
+  $.post("../handlers/trainHandler.php",{
+    deleteTranById:id
+  },function (data,status){
+    $("#train_msg_alert").show();
+    $("#msg-label").text(data);
+    setTimeout(function (){
+      window.location.reload()
+    },2000)
+  })
+}
+
+
+function isGareExist(gare_entred,filename) {
+  return new Promise(function(resolve, reject) {
+    $.post(filename, {
+      getGares: true
+    }, function (data, status) {
+      let found = false;
+      let gares = JSON.parse(data)
+      gares.forEach(elem => {
+        if (parseInt(elem.id) == parseInt(gare_entred)) found = true;
+      })
+      resolve(found)
+    })
+  })
+}
+

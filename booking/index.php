@@ -36,7 +36,17 @@ if(!isset($_SESSION['search-info'])){
  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
  <link rel="stylesheet" href="../assets/css/style2.css">
  <style>
-
+     div#cart {
+         position: absolute;
+         right: 0;
+         top: 0;
+         z-index: 1000;
+         background-color: #5bb7f5fa;
+         display: none;
+         /*
+         transform: translateX(537px);
+         */
+     }
  </style>
 </head>
 
@@ -67,7 +77,7 @@ if(!isset($_SESSION['search-info'])){
                 </span>
                <span style="display: none" counter="0">order counter</span>
 <!--               <span class="badge badge-danger" id="shoppingOrdersSpan">9</span>
--->               <i class="bi bi-cart me-2"></i>
+-->               <i class="bi bi-cart me-2" id="cartBtn" role="button"></i>
            </h4>
 
        </a>
@@ -112,7 +122,7 @@ if(!isset($_SESSION['search-info'])){
        </li>
       </ul>
      </div>
-     <form class="needs-validation" action="../include/handlers/voyagehandler.php" method="post" novalidate>
+     <form class="needs-validation" action="../include/handlers/voyagehandler.php" method="post" id="search_again" novalidate>
          <div class="row g-2">
              <div class="col-lg-6 text-start" style="position: relative;">
                  <label for="" class="form-label ms-2" style="color:#80808078;">gare de depart</label>
@@ -120,7 +130,7 @@ if(!isset($_SESSION['search-info'])){
                  <div class="invalid-feedback ms-2">
                      veillez remplire la gare de départ.
                  </div>
-                 <input type="hidden" value="" name="id_ville_gare_depart">
+                 <input type="hidden" value="" name="id_ville_gare_depart" id="id_ville_gare_depart">
                  <div class="rounded-bottom" style="background-color:aliceblue;position:absolute; width: 94%;z-index:100;max-height:31vh;overflow:auto;" id="cities_rst1"></div>
              </div>
              <div class="col-lg-6 text-start" style="position: relative;">
@@ -156,8 +166,8 @@ if(!isset($_SESSION['search-info'])){
       </div>
       <div class="row px-2 g-3 mt-3" style="width:100%;height:85vh;overflow:auto;">
        <div class="p-3 shadow " style="background-color:#f1fcff;border-radius:10px;">
-        <div class="d-flex align-items-center">
-         <div class="d-flex justify-content-between flex-grow-1 px-3">
+        <div class="row align-items-center">
+         <div class="col-lg-8 d-flex justify-content-between flex-grow-1 px-3">
           <div>
            <p>départ</p>
            <h4>8:30</h4>
@@ -181,7 +191,7 @@ if(!isset($_SESSION['search-info'])){
            <p><?= $_SESSION['search-info']['gare_distination'] ?></p>
           </div>
          </div>
-         <div class=" align-items-center text-center p-4" style="border-left: 2px dotted  #80808078;">
+         <div class="col-lg-4 align-items-center text-center p-4" style="border-left: 2px dotted  #80808078;">
           <h5>1 passager</h5>
           <h6>à partir </h6>
           <span>
@@ -371,11 +381,49 @@ if(!isset($_SESSION['search-info'])){
      </div>
  </section>
 </body>
-
 <!-- Modal: modalAbandonedCart-->
+
+<!--Cart Start-->
+<div class="container w-sm-100 w-md-75 w-lg-30 p-4" id="cart" style="height: 100vh;">
+    <div class="pb-3">
+        <i class="bi bi-x-lg text-light text-bold" role="button" id="closeCartBtn"></i>
+    </div>
+    <div class="bg-light rounded-3">
+        <div class="d-flex justify-content-between  flex-grow-1 p-3 align-items-center">
+           <div style="background: url('../assets/img/reserved-bg.jpg');background-size:cover;background-position:center;width: 100px;height: 100px"></div>
+            <div>
+                <p>De :  Tanger</p>
+                <p>vers :  Agadir</p>
+            </div>
+            <h5 class="text-center">199Dh</h5>
+            <div>
+                <i class="bi bi-x-lg text-danger btn btn-rounded" role="button" id="removeReservedBtn"></i>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!--Cart End-->
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="../assets/js/main2.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
+<script>
+    document.forms.namedItem("search_again").addEventListener('submit',function (e){
+        let gare_entred = $("#id_ville_gare_depart").val();
+        if(gare_entred==""){
+            e.preventDefault();
+            alert("invalid gare identiant");
+            return;
+        }
+        isGareExist(gare_entred,"../include/handlers/garehandler.php").then(data=>{
+            if(!data){
+                e.preventDefault();
+                alert("invalid gare identiant");
+            }
+        })
+    })
+</script>
 
 </html>
