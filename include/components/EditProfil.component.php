@@ -1,6 +1,5 @@
 <?php
-
-$userpr=$_SESSION['user'];
+$user=$_SESSION['user'];
 ?>
 
 <div class="w-100">
@@ -8,24 +7,24 @@ $userpr=$_SESSION['user'];
       
         <div class="card-header bg-transparent d-flex justify-content-center">
             <div class="position-relative" style="width: fit-content">
-                <div style="width: 150px;height:150px;background-image:url('./..<?php echo $userpr['image']?>'); background-position:center; border-radius: 50%; background-size: cover;"></div>
-                <button idedit="Edit_<?php echo $userpr['id']?>" class="rounded-circle border-0 position-absolute" id="edit_user_img" style="background-color: var(--main-color);bottom:10px;right: 20px;padding: 5px;padding-inline: 9px;"><i class="fas fa-light fa-pen text-light"></i></button>
+                <div style="width: 150px;height:150px;background-image:url('./../<?php echo $user['image']?>'); background-position:center; border-radius: 50%; background-size: cover;"></div>
+                <button idedit="Edit_<?php echo $user['id']?>" class="rounded-circle border-0 position-absolute" id="edit_user_img" style="background-color: var(--main-color);bottom:10px;right: 20px;padding: 5px;padding-inline: 9px;"><i class="fas fa-light fa-pen text-light"></i></button>
             </div>
 
         </div>
-        <form action="../include/handlers/UserHandler.php" method="POST" class="card-body= w-100" >
-            <input type="hidden" name="id" value="<?php echo $userpr['id']?>">
+        <form action="../include/handlers/UserHandler.php" method="POST" class="needs-validation" class="card-body= w-100" novalidate>
+            <input type="hidden" name="id" value="<?php echo $user['id']?>">
                 <div class="d-flex justify-content-between">
                     <div class="w-50">
                         <div class="p-3">
-                            <label for="">First name</label>
-                            <input class="form-control" type="text" name="first_name" value="<?php echo $userpr['prenom']?>">
+                            <label for="">First name</label>    
+                            <input class="form-control" type="text" name="first_name" value="" required>
                         </div>
                     </div>
                     <div class="w-50">
                         <div class="p-3">
                             <label for="">Second name</label>
-                            <input class="form-control"  type="text" name="last_name" value="<?php echo $userpr['nom']?>">
+                            <input class="form-control"  type="text" name="last_name" value="" required>
                         </div>
                     </div>
                 </div>
@@ -33,19 +32,19 @@ $userpr=$_SESSION['user'];
                     <div class="w-50">
                         <div class="p-3">
                             <label for="">Phone number</label>
-                            <input class="form-control" type="tel" name="tel" placeholder="06XXXXXXXX" value="<?php echo $userpr['tel']?>">
+                            <input class="form-control" type="tel" name="tel" placeholder="0XXXXXXXXX" value="">
                         </div>
                     </div>
                     <div class="w-100">
                         <div class="p-3">
                             <label for="">Bank number</label>
-                            <input class="form-control"  type="int" name="bank" value="<?php echo $userpr['compte_Bancaire']?>" >
+                            <input class="form-control"  type="int" name="bank" value="" >
                         </div>
                     </div>
                 </div>
                     <div class="p-3">
                         <label for="">Email</label>
-                        <input class="form-control"  type="email" name="email" value="<?php echo $userpr['email']?>">
+                        <input class="form-control"  type="email" name="email" value="" required>
                     </div>
                 <div class="d-flex justify-content-between">
                     <div class="w-50">
@@ -77,3 +76,7 @@ $userpr=$_SESSION['user'];
         </form>
     </div>
 </div>
+<!-- ================== BEGIN core-js ================== -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+<script src="./assets/js/validation.js"></script>
+<!-- ================== END core-js ================== -->

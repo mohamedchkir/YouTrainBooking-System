@@ -26,10 +26,10 @@ class UserModel extends DB
     }
     
 
-    protected function updateUserInfo($first_name,$last_name,$tel,$bank,$email,$new_password,$id){
-            $query = "UPDATE `users` SET `prenom`=?,`nom`=?,`tel`=?,`compte_Bancaire`=?,`email`=?,`password`=? WHERE id=?";        
-            $statement = $this->connect()->prepare($query);
-            $statement->execute(array($first_name,$last_name,$tel,$bank,$email,$new_password,$id));
+    protected function updateUserInfo($first_name,$last_name,$tel,$bank,$email,$id){
+        $query = "UPDATE `users` SET `prenom`=?,`nom`=?,`tel`=?,`compte_Bancaire`=?,`email`=? WHERE id=?;";        
+        $statement = $this->connect()->prepare($query);
+        $statement->execute(array($first_name,$last_name,$tel,$bank,$email,$id));
     }
 //     public function getUserInfo($id){
 //       $query = "SELECT * FROM `users` WHERE id=?;";
