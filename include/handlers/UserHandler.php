@@ -2,15 +2,18 @@
 
 include_once("../autoloader.php");
 
-if(isset($_POST['accept']))    accept();
-if(isset($_POST['deny']))      deny();
+
+if(isset($_POST['accept']))      accept();
+if(isset($_POST['deny']))        deny();
+if(isset($_POST['savechanges'])) update();
 
 if(isset($_POST["signup"]))
 {
 
    //collecting the data
-   $first_name = $_POST["First_name"];
-   $last_name = $_POST["Last_name"];
+   
+   $first_name = $_POST["first_name"];
+   $last_name = $_POST["last_name"];
    $email = $_POST["email"]; 
    $password = $_POST["password"]; 
    $confirm_password = $_POST["confirm_password"]; 
@@ -47,13 +50,35 @@ if(isset($_POST["login"]))
 // login---------------------------------
 
 
+
+// profil--------------------------------
+// profil--------------------------------
+function update(){
+   $userpr = new UserController();
+   $first_name = $_POST['first_name'];
+   $last_name = $_POST['last_name'];
+   $tel = $_POST['tel'];
+   $bank = $_POST['bank'];
+   $email = $_POST['email'];
+   $password = $_POST['password'];
+   $new_password = $_POST["newPassword"]; 
+   $id = $_POST['id'];
+   // var_dump($id);
+   // die;
+   $userpr->updateInfo($first_name,$last_name,$tel,$bank,$email,$id);
+   header("location:../../dashboard/index.php?page=profil");
+}
+// profil--------------------------------
+// profil--------------------------------
+
+
 function accept(){
    $id = $_POST['id'];
    $role = 1;
 
    $user = new UserController();
    $user->updateUser($role,$id);
-   echo "<script>window.location.replace('../../dash/index.php?page=allUsers')</script>";
+   echo "<script>window.location.replace('../components/uers.component.php')</script>";
 }
 function deny(){
    $id = $_POST['id'];
@@ -61,6 +86,6 @@ function deny(){
 
    $user = new UserController();
    $user->updateUser($role,$id);
-   echo "<script>window.location.replace('../../dash/index.php?page=allUsers')</script>";
+   echo "<script>window.location.replace('../components/uers.component.php')</script>";
    
 }

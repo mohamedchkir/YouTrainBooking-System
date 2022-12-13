@@ -1,11 +1,16 @@
 <?php
   include_once('../class/VoyageController.class.php');
-    $test = new VoyageController();
-    // var_dump($test->getVoyage());
-    $res = $test->getVoyage();
+  include_once('../class/TrainController.class.php');
+    $voyage = new VoyageController();
+    $train = new TrainController();
+    $options = $train->getAllTrains();
+    // var_dump($options);
+    // die;
+    $res = $voyage->getVoyage();
     // var_dump($res);
     // exit();
     
+
 
 ?>
 <!-- <!DOCTYPE html>
@@ -27,7 +32,7 @@
 
 <body> -->
   <section class="container">
-      <form action="../include/handlers/voyagehandler.php" class="needs-validation" method="POST" novalidate>
+      <form action="../include/handlers/voyagehandler.php" class="needs-validation" method="POST" novalidate id="voyage">
           <div class="row g-3">
             <div class="col-sm">
               <p class="aqua" style="font-weight: bold; color:#47B5FF;">Voyage Aller</p>
@@ -41,15 +46,11 @@
               </div>
               <div class="form-group">
                 <label for="prix" class="col-form-label">prix:</label>
-                <input type="number" class="form-control" id="duree" name="prix" step="0.1" required>
+                <input type="number" class="form-control" id="prix" name="prix" step="0.1" required>
               </div>
               <div class="form-group">
-                <label for="id_train" class="col-form-label">Train:</label>
-                <select name="id_train" id="id_train" class="form-select" required>
-                  <option selected>Open this select menu</option>
-                  <option value="1">TVG</option>
-                  <option value="2">ONCF</option>
-                </select>
+              <label for="datetime" class="col-form-label">datetime:</label>
+                <input type="datetime-local" class="form-control" id="datetime" name="datetime" required>
               </div>
               <div class="form-group">
               <label for="Frequence" class="col-form-label">Frequence:</label>
@@ -57,7 +58,6 @@
                   <option selected>Open this select menu</option>
                   <option value="1">Day</option>
                   <option value="2">week</option>
-                  <option value="3">spécifique</option>
                 </select>
               </div>
             </div>
@@ -70,17 +70,22 @@
                 <label for="gare_depart" class="col-form-label">gare depart:</label>
                 <input type="text" name="gare_depart"  id="gare_depart" class="form-control" required>
                 <div id="res" style="max-height:33vh ;overflow:auto;position:absolute;background-color:white;width:100%;z-index:100;"></div>
-                <input type="hidden" name="id_gare_depart" value="">
+                <input type="hidden" id="id_gare_depart" name="id_gare_depart" value="">
               </div>
               <div class="form-group">
                 <label for="gare_arrivee" class="col-form-label">gare arrivee:</label>
                 <input type="text" name="gare_arrivee"  id="gare_arrivee" class="form-control" required>
                 <div id="res2" style="max-height:33vh ;overflow:auto;position:absolute;background-color:white;width:100%;z-index:100;"></div>
-                <input type="hidden" name="id_gare_arrivee" value="">
+                <input type="hidden" id="id_gare_arrivee" name="id_gare_arrivee" value="">
               </div>
               <div class="form-group">
-              <label for="datetime" class="col-form-label">datetime:</label>
-                <input type="datetime-local" class="form-control" id="datetime" name="datetime" required>
+              <label for="id_train" class="col-form-label">Train:</label>
+                <select name="id_train" id="id_train" class="form-select" required>
+                  <option selected>Open this select menu</option>
+                  <?php foreach ($options as $opt) {
+                    echo '<option value="'.$opt['id'].'">'.$opt['nom'].'</option>';
+                  }?>
+                </select>
               </div>
             </div>
             <div class="col-sm">
@@ -208,8 +213,9 @@
             <label for="id_train" class="col-form-label">Train:</label>
             <select name="md_id_train" id="md_id_train" class="form-select" required>
               <option selected>Open this select menu</option>
-              <option value="1">TVG</option>
-              <option value="2">ONCF</option>
+              <?php foreach ($options as $opt) {
+                echo '<option value="'.$opt['id'].'">'.$opt['nom'].'</option>';
+              }?>
             </select>
           </div>
           <div class="form-group">
@@ -242,4 +248,46 @@
 <!-- <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
 <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script> -->
 <!-- parsley -->
+
+<script>
+   document.forms.namedItem("voyage").addEventListener('submit',function (e){
+        let gareDepart= $("#id_gare_depart").val();
+        let gareArrivee= $("#id_gare_arrivee").val();
+        if(gareDepart=="" && gareArrivee==""){
+            e.preventDefault();
+            alert("invalid gare identiant");
+            return;
+        }
+        isGareExist(gareDepart,"./include/handlers/voyagehandler.php").then(data=>{
+            if(!data){
+                e.preventDefault();
+                alert("invalid gare identiant");
+            }
+        })
+    });
+    
+    let train = document.querySelector("#id_train");
+    let duree = document.querySelector("#duree");
+    let date = document.querySelector("#datetime");
+    let fr = document.querySelector("#Frequence");
+    train.addEventListener("change",function(){
+      let d=date.value;
+      let duree=document.forms.namedItem("voyage").duree.value;
+      let i=train.value;
+      let f=fr.value;
+      //console.log(i,duree,f)
+      $.post("../include/handlers/voyagehandler.php",
+      {
+        isTrainAvailable:true,
+        datetime:d,
+        trainId: i,
+        duree:duree,
+        Frequence:f
+      },
+      function(data,status){
+        console.log(data);
+      }
+      )
+    });
+</script>
 </html>

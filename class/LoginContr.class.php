@@ -1,20 +1,17 @@
 <?php
 include_once("../autoloader.php");
-session_start();
+if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
 
 class LoginContr extends LoginModel {
-
-  
-    private $email;
-    private $password;
-    
-
-
     public function __construct($email,$password)
     {
        
         $this->email = $email;
         $this->password = $password;
+        
        
     }
 
@@ -48,9 +45,8 @@ class LoginContr extends LoginModel {
                 header("location:../../login.php?msg=Wrogn password");
             }elseif($checkpwd == true){
                 $_SESSION["user"] = $userinfo;
-               
-
                 header("location:../../index.php");
+                
             }
         }
         

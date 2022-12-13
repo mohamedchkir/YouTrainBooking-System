@@ -19,7 +19,7 @@ include_once "../autoloader.php";
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
 </head>
 
-<body> -->
+<body>
 <div class="container">
    <div class="py-5">
        <form action="../handlers/trainHandler.php" method="post" class="p-lg-5  needs-validation" id="add_train_form" novalidate>
