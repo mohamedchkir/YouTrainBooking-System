@@ -16,6 +16,7 @@ if (isset($_POST["search"])) getAvailableTrips();
 if (isset($_POST["saveVoyage"])) saveVoyage();
 if (isset($_POST["editVoyage"])) editVoyage();
 if (isset($_POST["deleteVoyage"])) deleteVoyage();
+if (isset($_POST["isTrainAvailable"])) checkTrainAvailability();
 
 
 //function validation input 
@@ -147,4 +148,22 @@ function deleteVoyage(){
     $voyage = new VoyageController();
     $voyage->supprimerUnVoyage($id);
     echo "<script>window.location.replace('../../dash/index.php?page=voyage')</script>";
+}
+
+
+function checkTrainAvailability(){
+    $trainCtr = new TrainController();
+    $date=$_POST['datetime'];
+    $train=$_POST['trainId'];
+    $duree=$_POST['duree'];
+    $Frequence=$_POST['Frequence'];
+
+
+    $d = new DateTime($date);
+    //echo $d->format('m/Y/d H:i:s');
+    $time = date("H:i:s", strtotime($date."+".$duree." hours"));
+    $t = new DateTime($time);
+
+    echo $trainCtr->checkTrainAvailability($d,$train,$t,$Frequence);  
+      
 }
