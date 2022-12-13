@@ -2,8 +2,6 @@
 session_start();
 include_once("../include/autoloader.php");
 if(!isset($_SESSION['search-info'])){
-    echo "i am here";
-    die();
     header("location:../");
 }
 
