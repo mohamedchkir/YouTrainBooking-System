@@ -5,7 +5,6 @@ class User
 {
 
     private $image;
-    private	$cin;
     private	$nom;
     private	$prenom;
     private	$tel;
@@ -14,10 +13,9 @@ class User
     private	$password;	
 
 
- public function __construct($image,$cin,$nom,$prenom,$tel,$compte_Bancaire,$email,$password)
+ public function __construct($image,$nom,$prenom,$tel,$compte_Bancaire,$email,$password)
  {
     $this->image = $image;
-    $this->cin = $cin;
     $this->nom = $nom;
     $this->prenom = $prenom;
     $this->tel = $tel;
@@ -38,17 +36,7 @@ class User
         $this->image = $image;
     }
 
-    public function getCin()
-    {
-        return $this->cin;
-    }
-
-
-    public function setCin($cin)
-    {
-        $this->cin = $cin;
-    }
-
+    
     public function getNom()
     {
         return $this->nom;

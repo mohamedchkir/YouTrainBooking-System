@@ -26,5 +26,22 @@ class UserModel extends DB
             echo $er->getMessage();
         }
     }
+    
+
+    protected function updateUserInfo($first_name,$last_name,$tel,$bank,$email,$new_password,$id){
+            $query = "UPDATE `users` SET `prenom`=?,`nom`=?,`tel`=?,`compte_Bancaire`=?,`email`=?,`password`=? WHERE id=?";        
+            $statement = $this->connect()->prepare($query);
+            $statement->execute(array($first_name,$last_name,$tel,$bank,$email,$new_password,$id));
+    }
+//     public function getUserInfo($id){
+//       $query = "SELECT * FROM `users` WHERE id=?;";
+//       $statement=$this->connect()->prepare($query);
+//       if(!$statement->execute(array($id))){
+//           $statement=null;
+//           exit();
+//       }
+//       $arr = $statement->fetchAll();
+//       return $arr;
+//   }
 
 }
