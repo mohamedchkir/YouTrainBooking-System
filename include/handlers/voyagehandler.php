@@ -65,11 +65,16 @@ function getSuggestions()
 
 function getAvailableTrips()
 {
-    // $gare_depart = $_POST["id_ville_gare_depart"];
-    // $date_depart = $_POST["date_depart"];
+    $gare_depart = $_POST["id_ville_gare_depart"];
+    $date_depart = $_POST["date_depart"];
     
-    // $voyage = new VoyageController();
-    // $res = $voyage->get();
+
+
+
+    $voyage = new VoyageController();
+    $res = $voyage->gatSearchVoyage($gare_depart,$date_depart);
+    var_dump($res);
+    die;
     // //day == heurs
     // $day_date = date("H:i:s",strtotime($date_depart));
     // //week == day
