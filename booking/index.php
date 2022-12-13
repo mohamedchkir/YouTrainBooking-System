@@ -62,20 +62,47 @@ if(!isset($_SESSION['search-info'])){
     </button>
     <div class="collapse navbar-collapse justify-content-end p-2" id="navbarSupportedContent">
      <ul class="navbar-nav mb-2 mb-lg-0">
-      <li class="nav-item">
-       <a class="nav-link active py-0 px-3 d-flex" aria-current="page" href="#">
-        <h4><i class="bi bi-person me-2"></i></h4>
-        <i>Mounir El-Bakkali</i>
-       </a>
-      </li>
+         <?php
+         if(isset($_SESSION["user"])){
+             echo "<li class='nav-item'>
+                                   <a class='nav-link active py-0 px-3' aria-current='page' href='#'>
+                                    <i class='bi bi-person me-2'></i>
+                                       <i>".$_SESSION['user']['prenom']." ".$_SESSION['user']['nom']."</i>
+                                   </a>
+                                   </li>
+                                   <li class='vr' style='background-color: var(--dark-blue);width: 1px ;'></li>
+                                   <li class='nav-item'>
+                                   <a class='nav-link active py-0 px-3 d-flex' aria-current='page' href='#'>
+                                    <h4><i class='bi bi-bookmarks me-2'></i></h4>
+                                    <i>Mes ancien réservations</i>
+                                   </a>
+                                  </li>
+                                   ";
+         }else{
+             echo "
+                                <li class='nav-item'>
+                                <a class='nav-link active py-0 px-3 ' id='login' aria-current='page' href='../login.php' style='font-weight: 500;'>
+                                    <span>Log in</span>
+                                </a>
+                                </li>
+                                <li class='vr' style='background-color: var(--dark-blue);width: 1px ;'></li>
+                                <li class='nav-item'>
+                                    <a class='nav-link active py-0 px-3' aria-current='page' href='../signup.php' id='sign_up'>
+                                        <span style='background-color: var(--aqua);color: white;padding: 7px 25px;border-radius: 25px;font-weight: 500;'>Sign up</span>
+                                    </a>
+                                </li>
+                                ";
+         }
+
+         ?>
       <li class="vr" style="background-color: var(--dark-blue);width: 1px ;"></li>
       <li class="nav-item">
        <a class="nav-link active py-0 px-3 d-flex align-items-center" aria-current="page" href="#">
            <h4 class="position-relative">
                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 10px;" id="order_counter" >
-                0
+                <?php echo isset($_SESSION['order-list']) ?  count($_SESSION['order-list']) :  '0'  ?>
                 </span>
-               <span style="display: none" counter="0">order counter</span>
+               <span style="display: none" counter="<?php echo isset($_SESSION['order-list']) ?  count($_SESSION['order-list']) :  '0'  ?>">order counter</span>
 <!--               <span class="badge badge-danger" id="shoppingOrdersSpan">9</span>
 -->               <i class="bi bi-cart me-2" id="cartBtn" role="button"></i>
            </h4>
@@ -197,7 +224,7 @@ if(!isset($_SESSION['search-info'])){
           <span>
            <h5 class="text-danger">219 DH</h5>
           </span>
-          <button class="btn text-light px-lg-4 "  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAbandonedCart" style="background-color:var(--aqua);border-radius:20px;" onclick="bookTicket({id:1,from:'Tanger',to:'Casablanca',date:'22/12/2022 12:30',prix:'99.99 DH'})">Réserver</button>
+          <button class="btn text-light px-lg-4 "  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAbandonedCart" style="background-color:var(--aqua);border-radius:20px;" onclick="bookTicket({id:2,from:'Agadir',to:'Casablanca',date:'22/12/2022 12:30',prix:'50.99'})">Réserver</button>
          </div>
         </div>
         <hr class="w-100 m-0">
@@ -372,7 +399,7 @@ if(!isset($_SESSION['search-info'])){
 
                  <!--Footer-->
                  <div class="modal-footer justify-content-center">
-                     <a type="button" class="btn btn-info">Go to cart</a>
+                     <a type="button" class="btn btn-info" id="goTocart" data-bs-dismiss="modal">Go to cart</a>
                      <a type="button" class="btn btn-outline-info waves-effect" data-bs-dismiss="modal">Cancel</a>
                  </div>
              </div>
@@ -388,24 +415,62 @@ if(!isset($_SESSION['search-info'])){
     <div class="pb-3">
         <i class="bi bi-x-lg text-light text-bold" role="button" id="closeCartBtn"></i>
     </div>
-    <div class="bg-light rounded-3">
-        <div class="d-flex justify-content-between  flex-grow-1 p-3 align-items-center">
-           <div style="background: url('../assets/img/reserved-bg.jpg');background-size:cover;background-position:center;width: 100px;height: 100px"></div>
-            <div>
-                <p>De :  Tanger</p>
-                <p>vers :  Agadir</p>
+    <h4 class="text-light">Your Cart</h4>
+    <div class="d-flex flex-column align-items-center" id="lis_orders_div" style="height: 88vh;overflow: auto">
+        <?php
+        if (isset($_SESSION['order-list']) && count($_SESSION['order-list'])>0){
+            $list_of_orders=$_SESSION['order-list'];
+            //print_r($list_of_orders);
+            $i=0;
+            $total=0;
+            foreach ($list_of_orders as $order) {
+                // echo "<script>alert('$order')</script>";
+                //var_dump($order);
+                $total+=floatval($order['prix_ticket'])*$order['quantity'];
+                echo "
+                <div class='bg-light rounded-3 mb-1 w-100'>
+                <div class='d-flex justify-content-between  flex-grow-1 p-3 align-items-center'>
+                   <div style=\"background: url('../assets/img/reserved-bg.jpg');background-size:cover;background-position:center;width: 100px;height: 100px\"></div>
+                    <div>
+                        <p>De :  " . $order['gare_depart'] . "</p>
+                        <p>vers :  " . $order['gare_arrive'] . "</p>
+                    </div>
+                    <div>
+                    <h6 style='color:orange;font-weight: bold'>".$order['quantity']." place(s)</h6cla>
+                    <h5 class='text-center'>" . floatval($order['prix_ticket'])*$order['quantity'] . "Dh</h5>
+                    </div>
+                    <div>
+                        <i class='bi bi-x-lg text-danger btn btn-rounded' role='button' onclick=\"removeReserved('" . $i . "')\"></i>
+                    </div>
+                </div>
             </div>
-            <h5 class="text-center">199Dh</h5>
-            <div>
-                <i class="bi bi-x-lg text-danger btn btn-rounded" role="button" id="removeReservedBtn"></i>
-            </div>
-        </div>
+            ";
+                $i++;
+            }
 
+            echo "<div class='mt-auto p-2 w-100'>
+                <button class='btn btn-light w-100' id='checkoutBtn'>check out</button>
+                <h6 class='text-light mt-1'> <i class='bi bi-check-circle-fill me-2'></i>Total à payer : <b>$total DH</b></h6>
+                <h6 class='text-light mt-1'> <i class='bi bi-check-circle-fill me-2'></i>Tout ticket de type FLEX sont changeable</h6>
+
+                </div>";
+            //unset($_SESSION['order-list']);
+        }else{
+            echo "
+                <div class='h-100 w-100'>
+                    <div class='h-50' style=\"background-image: url('../assets/img/empty_cart.png');background-position: center;background-size: cover;background-repeat: no-repeat\"></div>
+                </div>
+            ";
+        }
+        //print_r($_SESSION['order-list']);
+        ?>
     </div>
+
+
 </div>
 <!--Cart End-->
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.6.15/sweetalert2.min.js" integrity="sha512-Z4QYNSc2DFv8LrhMEyarEP3rBkODBZT90RwUC7dYQYF29V4dfkh+8oYZHt0R6T3/KNv32/u0W6icGWUUk9V0jA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="../assets/js/main2.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
