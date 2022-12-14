@@ -12,10 +12,6 @@ class VoyageModel extends DB
     }
 
     protected function getAll(){
-        // "SELECT v.*,s.nom as status,g.nom as gare_depart, ga.nom as gare_arriveefrom voyages as v INNER JOIN status as s on v.status = s.id
-        // INNER JOIN gares as g on v.gare_depart=g.id 
-        // INNER join  gares as ga on v.gare_arrivee=ga.id"
-        // $sql = "SELECT Date_Format(date, '%M %d, %Y') from voyages";
         $sql = "SELECT * from voyages";
         $statement = $this->Connect()->prepare($sql);
         $statement->execute();
@@ -24,10 +20,6 @@ class VoyageModel extends DB
     }
 
     protected function getAllVoyage(){
-        // "SELECT v.*,s.nom as status,g.nom as gare_depart, ga.nom as gare_arriveefrom voyages as v INNER JOIN status as s on v.status = s.id
-        // INNER JOIN gares as g on v.gare_depart=g.id 
-        // INNER join  gares as ga on v.gare_arrivee=ga.id"
-        // $sql = "SELECT Date_Format(date, '%M %d, %Y') from voyages";
         $sql = "SELECT v.*,s.nom as statusnom ,g.nom as garedepart, ga.nom as garearrivee,t.nom as train from voyages as v INNER JOIN status as s on v.status = s.id
         INNER JOIN gares as g on v.gare_depart=g.id 
         INNER join  gares as ga on v.gare_arrivee=ga.id
