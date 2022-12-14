@@ -1,5 +1,6 @@
 <?php
-include_once("../autoloader.php");
+// include_once("../autoloader.php");
+include_once("LoginModel.class.php");
 if(!isset($_SESSION)) 
     { 
         session_start(); 
@@ -48,6 +49,7 @@ class LoginContr extends LoginModel {
                 //header("location:../../index.php");
                 if(isset($_SESSION['search-info'])) header("location:../../booking");
                 else header("location:../../index.php");
+
 
             }
         }
