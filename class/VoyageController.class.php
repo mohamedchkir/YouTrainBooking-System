@@ -127,15 +127,12 @@ class VoyageController extends VoyageModel
         
         if($r['gare_depart'] == $gare_depart && $day_date < date("H:i:s",strtotime($r['date'])) && $r['frequence'] == 1){
             array_push($data,$r);
-            echo "<script>window.location.replace('../../booking/index.php')</script>";
         }elseif($r['gare_depart'] == $gare_depart && $week_date == date("D",strtotime($r['date'])) && $r['frequence'] == 2 && $week_heurs < date("H:i:s",strtotime($r['date'])) && $week >= date("y-m-d",strtotime($r['date']))  ){
             array_push($data,$r);
-            echo "<script>window.location.replace('../../booking/index.php')</script>";
         }
     }
-    return $data;
-    
- }
+    return $data; 
+    }
 
 }
 
