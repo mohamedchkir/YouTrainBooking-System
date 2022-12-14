@@ -27,19 +27,30 @@ class UserModel extends DB
     
 
     protected function updateUserInfo($first_name,$last_name,$tel,$bank,$email,$new_password,$id){
-            $query = "UPDATE `users` SET `prenom`=?,`nom`=?,`tel`=?,`compte_Bancaire`=?,`email`=?,`password`=? WHERE id=?";        
-            $statement = $this->connect()->prepare($query);
-            $statement->execute(array($first_name,$last_name,$tel,$bank,$email,$new_password,$id));
+        $query = "UPDATE `users` SET `prenom`=?,`nom`=?,`tel`=?,`compte_Bancaire`=?,`email`=?,`password`=? WHERE id=?";        
+        $statement = $this->connect()->prepare($query);
+        $statement->execute(array($first_name,$last_name,$tel,$bank,$email,$new_password,$id));
     }
-//     public function getUserInfo($id){
-//       $query = "SELECT * FROM `users` WHERE id=?;";
-//       $statement=$this->connect()->prepare($query);
-//       if(!$statement->execute(array($id))){
-//           $statement=null;
-//           exit();
-//       }
-//       $arr = $statement->fetchAll();
-//       return $arr;
-//   }
 
+
+
+
+
+
+
+
+
+
+    public function bookTrip($id_user,$orderList){
+        $date_now = (new DateTime())->format("Y-m-d");
+        foreach ($orderList as $order){
+            $sql = "INSERT INTO reservations values (NULL,'$date_now',".$order['quantity'].",".$order['id'].",$id_user)";
+            $statm = $this->Connect()->prepare($sql);
+            if(!$statm->execute()){
+                var_dump($statm);
+                return false;
+            }
+        }
+        return true;
+    }
 }

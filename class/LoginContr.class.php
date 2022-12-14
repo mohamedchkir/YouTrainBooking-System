@@ -1,13 +1,15 @@
 <?php
-//include_once("../autoloader.php");
-include_once 'LoginModel.class.php';
-if (!isset($_SESSION)) {
-    session_start();
-}
 
-class LoginContr extends LoginModel
-{
-    public function __construct($email, $password)
+// include_once("../autoloader.php");
+include_once("LoginModel.class.php");
+if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
+
+class LoginContr extends LoginModel {
+    public function __construct($email,$password)
+
     {
 
         $this->email = $email;
@@ -46,8 +48,12 @@ class LoginContr extends LoginModel
             } elseif ($checkpwd == true) {
                 $_SESSION["user"] = $userinfo;
 
+                //header("location:../../index.php");
+                if(isset($_SESSION['search-info'])) header("location:../../booking");
+                else header("location:../../index.php");
 
-                header("location:../../index.php");
+
+
             }
         }
     }

@@ -12,15 +12,17 @@ $reslt = $gare->getAllGare();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YouTrain™</title> -->
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
-<!--Boostrap Icons CDN -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
-<!-- Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<link rel="stylesheet" href="../assets/css/style3.css">
-<!-- Font Awesome-->
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css"> -->
+    <!--Boostrap Icons CDN -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"> -->
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="../assets/css/style3.css">
+    <!-- Font Awesome-->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+
 
 
 <!-- 
@@ -46,25 +48,48 @@ $reslt = $gare->getAllGare();
             <div class="mt-2 d-flex justify-content-center">
                 <button type="submit" class="btn text-light px-5" style="background-color:var(--aqua);border-radius: 20px;" name="saveGare">Add Gare</button>
             </div>
-        </div>
-</form>
+       </div>
+  </div>
 
-<section>
+    </form>
 
-    <table id="example" class="table table-striped">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>GareName</th>
-                <th>CityName</th>
-                <th>Action</th>
+    <?php if (isset($_SESSION['message'])) :  ?>
+      <div class="alert alert-success alert-dismissible fade show w-100">
+        <strong>successfully!</strong>
+        <?php
+        echo $_SESSION['message'];
+        unset($_SESSION['message']);
+        ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+    <?php endif ?>
+    <?php if (isset($_SESSION['error'])) :  ?>
+      <div class="alert alert-danger alert-dismissible fade show w-100">
+        <strong>Erreur!</strong>
+        <?php
+        echo $_SESSION['error'];
+        unset($_SESSION['error']);
+        ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+    <?php endif ?>
 
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($reslt as $g) {
-                echo
-                '<tr id="' . $g['id'] . '">
+    <section>
+
+        <table id="example" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>GareName</th>
+                    <th>CityName</th>
+                    <th>Action</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($reslt as $g) {
+                    echo
+                    '<tr id="' . $g['id'] . '">
                             <td>' . $g['id'] . '</td>
                             <td>' . $g['nom'] . '</td>
                             <td ville="' . $g['id_Ville'] . '">' . $g['nameVille'] . '</td>
