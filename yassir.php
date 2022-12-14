@@ -43,3 +43,61 @@ if(isset($_POST["login"]))
 }
 // login---------------------------------
 // login---------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// <nav class="navbar fixed-top navbar-expand-lg navbar-dark p-md-3">
+// <div class="container-fluid">
+//     <a class="navbar-brand p-0 " href="#">
+//         <img src="assets/img/YouTrain™2.png" alt="Youtrain logo" style="width: 100px">
+//     </a>
+//     <div class="collapse navbar-collapse justify-content-end" >
+//         <ul class="navbar-nav mb-2 mb-lg-0">
+//                 <li class="nav-item">
+//                     <a class="nav-link active py-0 px-3 text-dark" id="login" aria-current="page" href="login.php" style="font-weight: 500;">
+//                         <span>Log in</span>
+//                     </a>
+//                 </li>
+//                 <li class="vr" style="background-color: var(--dark-blue);width: 1px ;"></li>
+//                 <li class="nav-item">
+//                     <a class="nav-link active py-0 px-3" aria-current="page" href="signup.php" id="sign_up">
+//                         <span style="background-color: var(--aqua);color: white;padding: 7px 25px;border-radius: 25px;font-weight: 500;">Sign up</span>
+//                     </a>
+//                 </li>
+//             </ul>
+//     </div>
+// </div>    
+// </nav>
+
+// <!-- banner image  -->
+// <div class="banner-image w-100 vh-100 d-flex justify-content-center align-items-center bnr">
+// <div class="content text-center"></div>
+
+
+// <div class="content text-center">
+//     <h1 class="text-dark">WELCOME</h1>
+// </div>
+// </div> 
