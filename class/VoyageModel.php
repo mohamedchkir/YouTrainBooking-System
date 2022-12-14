@@ -79,6 +79,22 @@ class VoyageModel extends DB
             echo $er->getMessage();
         }
     }
+
+
+    public function capacite($id_voyage,$dateReservation){
+        try{
+            $sql="SELECT sum(quantity) as capacity  FROM `reservations` WHERE id_voyage=? and dateReservation =?";
+            $resultat = $this->Connect()->prepare($sql);
+            $resultat->execute(array($id_voyage,$dateReservation));
+            $r = $resultat->fetchColumn();
+            return $r;
+        }catch (PDOException $er){
+            echo $er->getMessage();
+        }
+    }
+
+
+    
 }
 
 
