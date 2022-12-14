@@ -5,6 +5,7 @@ if(!isset($_SESSION['search-info'])){
     header("location:../");
 }
 
+//var_dump($_SESSION['resultat']);
 
 
 ?>
@@ -192,172 +193,61 @@ if(!isset($_SESSION['search-info'])){
        <h3><i class="bi bi-sliders text-weight-bold aqua"></i></h3>
       </div>
       <div class="row px-2 g-3 mt-3" style="width:100%;height:85vh;overflow:auto;">
-       <div class="p-3 shadow " style="background-color:#f1fcff;border-radius:10px;">
-        <div class="row align-items-center">
-         <div class="col-lg-8 d-flex justify-content-between flex-grow-1 px-3">
-          <div>
-           <p>départ</p>
-           <h4>8:30</h4>
-           <p><?= $_SESSION['search-info']['gare_depart'] ?></p>
-          </div>
-          <div class="voyage-info  w-50 text-center">
-           <label for="">3h30min</label>
-           <div class="d-flex justify-content-between">
-                <span style="width:50%;position: relative">
-                    <span class="bubble bubble1"></span>
-                </span>
-               <span style="width: 50%">
-                   <span class="bubble"></span>
-               </span>
-           </div>
-           <label for="">Direct</label>
-          </div>
-          <div class="text-center">
-           <p>Arrivé</p>
-           <h4>11:15</h4>
-           <p><?= $_SESSION['search-info']['gare_distination'] ?></p>
-          </div>
-         </div>
-         <div class="col-lg-4 align-items-center text-center p-4" style="border-left: 2px dotted  #80808078;">
-          <h5>1 passager</h5>
-          <h6>à partir </h6>
-          <span>
-           <h5 class="text-danger">219 DH</h5>
-          </span>
-          <button class="btn text-light px-lg-4 "  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAbandonedCart" style="background-color:var(--aqua);border-radius:20px;" onclick="bookTicket({id:2,from:'Agadir',to:'Casablanca',date:'22/12/2022 12:30',prix:'50.99'})">Réserver</button>
-         </div>
-        </div>
-        <hr class="w-100 m-0">
-        <div class="d-flex align-items-center">
-         <h3>
-          <i class="bi bi-train-lightrail-front"></i>
-         </h3>
-         <h6 class="ms-3">Atlas</h6>
-        </div>
-       </div>
-       <!-- YouTrain™2 -->
-          <div class="px-5 py-3 shadow " style="background-color:white;border-radius:10px;">
-              <div class="d-flex align-items-center">
-                  <div class="d-flex justify-content-between flex-grow-1 px-3">
-                      <div>
-                          <p>départ</p>
-                          <h3>8:30</h3>
-                          <p><?= $_SESSION['search-info']['gare_depart'] ?></p>
-                      </div>
-                      <div class="voyage-info  w-50 text-center">
-                          <label for="">3h30min</label>
-                          <div class="d-flex justify-content-between">
-                              <span class="bubble"></span>
-                              <span class="bubble"></span>
-                          </div>
-                          <label for="">Direct</label>
-                      </div>
-                      <div class="text-center">
-                          <p>Arrivé</p>
-                          <h3>11:15</h3>
-                          <p><?= $_SESSION['search-info']['gare_distination'] ?></p>
-                      </div>
+          <?php
+          foreach ($_SESSION['resultat'] as $voyage){
+              echo "
+              <div class='p-3 shadow ' style='background-color:#f1fcff;border-radius:10px;height: fit-content;'>
+                <div class='row align-items-center'>
+                 <div class='col-lg-8 d-flex justify-content-between flex-grow-1 px-3'>
+                  <div>
+                   <p>départ</p>
+                   <h4>".date("H:i",strtotime($voyage["date"]))."</h4>
+                   <p>".$voyage['garedepart']."</p>
                   </div>
-                  <div class=" align-items-center text-center p-4" style="border-left: 2px dotted  #80808078;">
-                      <h4>1 passager</h4>
-                      <h5>à partir </h5>
-                      <span>
-           <h4 class="text-danger">219 DH</h4>
-          </span>
-                      <button class="btn text-light px-5 "  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAbandonedCart" style="background-color:var(--aqua);border-radius:20px;">Réserver</button>
+                  <div class='voyage-info  w-50 text-center'>
+                   <label for=''>".$voyage["duree"].'h'.'00min'."</label>
+                   <div class='d-flex justify-content-between'>
+                        <span style='width:50%;position: relative'>
+                            <span class='bubble bubble1'></span>
+                        </span>
+                       <span style='width: 50%'>
+                           <span class='bubble'></span>
+                       </span>
+                   </div>
+                   <label for=''>Direct</label>
                   </div>
-              </div>
-              <hr class="w-100">
-              <div class="d-flex align-items-center">
-                  <h3>
-                      <i class="bi bi-train-lightrail-front"></i>
-                  </h3>
-                  <h6 class="p-3">Atlas</h6>
-              </div>
-          </div>
+                  <div class='text-center'>
+                   <p>Arrivé</p>
+                   <h4>".date("H:i",strtotime($voyage["date"]." +".$voyage['duree']." hours"))."</h4>
+                   <p>".$voyage['garearrivee']."</p>
+                  </div>
+                 </div>
+                 <div class='col-lg-4 align-items-center text-center p-4' style='border-left: 2px dotted  #80808078;'>
+                  <h5>1 passager</h5>
+                  <h6>à partir </h6>
+                  <span>
+                   <h5 class='text-danger'>".$voyage['prix']." DH</h5>
+                  </span>
+                  <button class='btn text-light px-lg-4 '  type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#modalAbandonedCart' style='background-color:var(--aqua);border-radius:20px;'
+                   onclick=\"bookTicket({id:'".$voyage['id']."',from:'".$voyage['garedepart']."',to:'".$voyage['garearrivee']."',date:'".$voyage['date']."',prix:'".$voyage['prix']."'})\">Réserver</button>
+                 </div>
+                </div>
+                <hr class='w-100 m-0'>
+                <div class='d-flex align-items-center'>
+                 <h3>
+                  <i class='bi bi-train-lightrail-front'></i>
+                 </h3>
+                 <h6 class='ms-3'>".$voyage['train']."</h6>
+                </div>
+               </div>
+              ";
+          }
 
-          <!-- YOU TRAIN 3--->
-          <div class="px-5 py-3 shadow " style="background-color:white;border-radius:10px;">
-              <div class="d-flex align-items-center">
-                  <div class="d-flex justify-content-between flex-grow-1 px-3">
-                      <div>
-                          <p>départ</p>
-                          <h3>8:30</h3>
-                          <p><?= $_SESSION['search-info']['gare_depart'] ?></p>
-                      </div>
-                      <div class="voyage-info  w-50 text-center">
-                          <label for="">3h30min</label>
-                          <div class="d-flex justify-content-between">
-                              <span class="bubble"></span>
-                              <span class="bubble"></span>
-                          </div>
-                          <label for="">Direct</label>
-                      </div>
-                      <div class="text-center">
-                          <p>Arrivé</p>
-                          <h3>11:15</h3>
-                          <p><?= $_SESSION['search-info']['gare_distination'] ?></p>
-                      </div>
-                  </div>
-                  <div class=" align-items-center text-center p-4" style="border-left: 2px dotted  #80808078;">
-                      <h4>1 passager</h4>
-                      <h5>à partir </h5>
-                      <span>
-           <h4 class="text-danger">219 DH</h4>
-          </span>
-                      <button class="btn text-light px-5 "  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAbandonedCart" style="background-color:var(--aqua);border-radius:20px;">Réserver</button>
-                  </div>
-              </div>
-              <hr class="w-100">
-              <div class="d-flex align-items-center">
-                  <h3>
-                      <i class="bi bi-train-lightrail-front"></i>
-                  </h3>
-                  <h6 class="p-3">Atlas</h6>
-              </div>
-          </div>
+          ?>
 
-          <!-------4----->
 
-          <di class="px-5 py-3 shadow " style="background-color:white;border-radius:10px;">
-              <div class="d-flex align-items-center">
-                  <div class="d-flex justify-content-between flex-grow-1 px-3">
-                      <div>
-                          <p>départ</p>
-                          <h3>8:30</h3>
-                          <p><?= $_SESSION['search-info']['gare_depart'] ?></p>
-                      </div>
-                      <div class="voyage-info  w-50 text-center">
-                          <label for="">3h30min</label>
-                          <div class="d-flex justify-content-between">
-                              <span class="bubble"></span>
-                              <span class="bubble"></span>
-                          </div>
-                          <label for="">Direct</label>
-                      </div>
-                      <div class="text-center">
-                          <p>Arrivé</p>
-                          <h3>11:15</h3>
-                          <p><?= $_SESSION['search-info']['gare_distination'] ?></p>
-                      </div>
-                  </div>
-                  <div class=" align-items-center text-center p-4" style="border-left: 2px dotted  #80808078;">
-                      <h4>1 passager</h4>
-                      <h5>à partir </h5>
-                      <span>
-           <h4 class="text-danger">219 DH</h4>
-          </span>
-                      <button class="btn text-light px-5 "  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAbandonedCart" style="background-color:var(--aqua);border-radius:20px;">Réserver</button>
-                  </div>
-              </div>
-              <hr class="w-100">
-              <div class="d-flex align-items-center">
-                  <h3>
-                      <i class="bi bi-train-lightrail-front"></i>
-                  </h3>
-                  <h6 class="p-3">Atlas</h6>
-              </div>
-          </di>
+
+
       </div>
      </div>
     </div>
