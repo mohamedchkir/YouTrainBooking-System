@@ -111,7 +111,7 @@ class VoyageController extends VoyageModel
     // $date_depart = $_POST["date_depart"];
     
     $voyage = new VoyageController();
-    $res = $voyage->get();
+    $res = $voyage->getVoyage();
     //day == heurs
     $day_date = date("H:i:s",strtotime($date_depart));
     //week == day
