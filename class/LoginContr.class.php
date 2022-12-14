@@ -45,8 +45,10 @@ class LoginContr extends LoginModel {
                 header("location:../../login.php?msg=Wrogn password");
             }elseif($checkpwd == true){
                 $_SESSION["user"] = $userinfo;
-                header("location:../../index.php");
-                
+                //header("location:../../index.php");
+                if(isset($_SESSION['search-info'])) header("location:../../booking");
+                else header("location:../../index.php");
+
             }
         }
         

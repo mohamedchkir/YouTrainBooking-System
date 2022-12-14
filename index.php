@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <?php
-
+session_start();
 
 ?>
 <head>
@@ -30,7 +30,7 @@
                     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                         <ul class="navbar-nav mb-2 mb-lg-0">
                             <?php
-/*                            if(isset($_SESSION["user"])){
+                            if(isset($_SESSION["user"])){
                                 echo "<li class='nav-item'>
                                    <a class='nav-link active py-0 px-3' aria-current='page' href='#'>
                                     <i class='bi bi-person me-2'></i>
@@ -45,20 +45,24 @@
         
                                        </a>
                                    </li>";
-                            }
-                            
-                            */?>
-                            <li class="nav-item">
-                                <a class="nav-link active py-0 px-3 " id="login" aria-current="page" href="login.php" style="font-weight: 500;">
+                            }else{
+                                echo "
+                                <li class='nav-item'>
+                                <a class='nav-link active py-0 px-3 ' id='login' aria-current='page' href='login.php' style='font-weight: 500;'>
                                     <span>Log in</span>
                                 </a>
-                            </li>
-                            <li class="vr" style="background-color: var(--dark-blue);width: 1px ;"></li>
-                            <li class="nav-item">
-                                <a class="nav-link active py-0 px-3" aria-current="page" href="signup.php" id="sign_up">
-                                    <span style="background-color: var(--aqua);color: white;padding: 7px 25px;border-radius: 25px;font-weight: 500;">Sign up</span>
-                                </a>
-                            </li>
+                                </li>
+                                <li class='vr' style='background-color: var(--dark-blue);width: 1px ;'></li>
+                                <li class='nav-item'>
+                                    <a class='nav-link active py-0 px-3' aria-current='page' href='signup.php' id='sign_up'>
+                                        <span style='background-color: var(--aqua);color: white;padding: 7px 25px;border-radius: 25px;font-weight: 500;'>Sign up</span>
+                                    </a>
+                                </li>
+                                ";
+                            }
+                            
+                            ?>
+
                         </ul>
                     </div>
                 </div>

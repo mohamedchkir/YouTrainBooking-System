@@ -1,4 +1,5 @@
 <?php
+include_once "../autoloader.php";
 session_start();
 if (isset($_POST['addTripToCart'])) addTripToCart();
 if (isset($_POST['deleteOrderByIndex'])) deleteOrderFromCart();
@@ -47,4 +48,8 @@ function deleteOrderFromCart(){
 function processCheckingOut(){
     $id_user=$_SESSION['user']['id'];
     $orders=$_SESSION['order-list'];
+    //echo json_encode($orders);
+    $userModel = new UserModel();
+    echo $userModel->bookTrip($id_user,$orders);
+
 }

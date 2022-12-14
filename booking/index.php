@@ -7,7 +7,6 @@ if(!isset($_SESSION['search-info'])){
 
 //var_dump($_SESSION['resultat']);
 
-
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +25,8 @@ if(!isset($_SESSION['search-info'])){
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
             rel="stylesheet"
     />
-    <!-- MDB -->
+    <!-- sweet alert -->
+    <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
 
 
 
@@ -154,7 +154,7 @@ if(!isset($_SESSION['search-info'])){
          <div class="row g-2">
              <div class="col-lg-6 text-start" style="position: relative;">
                  <label for="" class="form-label ms-2" style="color:#80808078;">gare de depart</label>
-                 <input class="form-control" type="text" name="gare_depart" id="gare_depart_reseach" value="<?= $_SESSION['search-info']['gare_depart'] ?>" placeholder="Casa voyageur.." autocomplete="off" required>
+                 <input class="form-control" type="text" name="gare_depart" id="gare_depart_reseach" placeholder="Casa voyageur.." autocomplete="off" required>
                  <div class="invalid-feedback ms-2">
                      veillez remplire la gare de départ.
                  </div>
@@ -163,13 +163,13 @@ if(!isset($_SESSION['search-info'])){
              </div>
              <div class="col-lg-6 text-start" style="position: relative;">
                  <label for="" class="form-label ms-2" style="color:#80808078;">gare de distination</label>
-                 <input class="form-control " type="text" name="gare_distination" id="gare_distination_reseach" autocomplete="off" value="<?= $_SESSION['search-info']['gare_distination'] ?>" placeholder="Tanger ville..">
+                 <input class="form-control " type="text" name="gare_distination" id="gare_distination_reseach" autocomplete="off" value="" placeholder="Tanger ville..">
                  <div class="rounded-bottom" style="background-color:aliceblue;position:absolute; width: 94%;z-index:100;max-height:31vh;overflow:auto;" id="cities_rst2"></div>
                  <input type="hidden" value="" name="id_ville_gare_distination">
              </div>
              <div class="col-12">
                  <label class="form-label ms-2" for="" style="color:#80808078;" >date départ</label>
-                 <input class="form-control" type="datetime-local" name="date_depart" value="<?= $_SESSION['search-info']['date_depart'] ?>" required>
+                 <input class="form-control" type="datetime-local" name="date_depart" required>
                  <div class="invalid-feedback ms-2">
                      veillez remplire la date de départ de votre voyage.
                  </div>
@@ -186,9 +186,9 @@ if(!isset($_SESSION['search-info'])){
     <div class="container ">
      <div>
       <div class="d-flex justify-content-between align-items-center border-bottom">
-       <H2>Available Trains</H2>
+       <H2>Voyage Disponible</H2>
        <small class="text-secondary">
-        5 Trains Avialable
+        <?php echo count($_SESSION['resultat']) ?> voyage disponible
        </small>
        <h3><i class="bi bi-sliders text-weight-bold aqua"></i></h3>
       </div>
@@ -339,7 +339,7 @@ if(!isset($_SESSION['search-info'])){
             }
 
             echo "<div class='mt-auto p-2 w-100'>
-                <button class='btn btn-light w-100' id='checkoutBtn'>check out</button>
+                <button class='btn btn-light w-100' onclick='processCheckingOut()'>check out</button>
                 <h6 class='text-light mt-1'> <i class='bi bi-check-circle-fill me-2'></i>Total à payer : <b>$total DH</b></h6>
                 <h6 class='text-light mt-1'> <i class='bi bi-check-circle-fill me-2'></i>Tout ticket de type FLEX sont changeable</h6>
 
@@ -360,7 +360,7 @@ if(!isset($_SESSION['search-info'])){
 </div>
 <!--Cart End-->
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.6.15/sweetalert2.min.js" integrity="sha512-Z4QYNSc2DFv8LrhMEyarEP3rBkODBZT90RwUC7dYQYF29V4dfkh+8oYZHt0R6T3/KNv32/u0W6icGWUUk9V0jA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="../assets/js/main2.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

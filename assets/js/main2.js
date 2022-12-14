@@ -91,9 +91,7 @@ $(document).ready(function () {
   /*
       checkout
                   */
-  $("#checkoutBtn").click(function (){
-    processCheckingOut();
-  })
+
 
 });
 
@@ -243,7 +241,7 @@ function loadOrderData(ordersList){
                 `;
   })
   document.getElementById("lis_orders_div").innerHTML=output+`<div class='mt-auto p-2 w-100'>
-                      <button class='btn btn-light w-100' id='checkoutBtn'>check out</button>
+                      <button class='btn btn-light w-100' onclick='processCheckingOut()'>check out</button>
                       <h6 class='text-light mt-1'> <i class='bi bi-check-circle-fill me-2'></i>Total à payer : <b>${total} DH</b></h6>
                       <h6 class='text-light mt-1'> <i class='bi bi-check-circle-fill me-2'></i>Tout ticket de type FLEX sont changeable</h6>
                       </div>`;
@@ -252,9 +250,40 @@ function loadOrderData(ordersList){
 
 function processCheckingOut(){
     //login first
+
     $.post("../include/handlers/ordersHandler.php",{
       processCheckingOut:true
     },function (data,status){
-      console.log(data)
+      //console.log(JSON.parse(data))
+      if(data==1){
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+
+        Toast.fire({
+          icon: 'success',
+          title: 'voyages réservé avec success :)'
+        })
+      }
+      //console.log(getEmail());
+
     })
+}
+
+async function getEmail(){
+  const { value: email } = await Swal.fire({
+    title: 'Input email address',
+    input: 'email',
+    inputLabel: 'Your email address',
+    inputPlaceholder: 'Confirmez votre email afin de recevoir votre ticket'
+  })
+  return eamil;
 }
