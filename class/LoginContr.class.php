@@ -41,20 +41,16 @@ class LoginContr extends LoginModel {
 
         if (!$userinfo) {
             header("location:../../login.php?msg=Your email is not part of our records");
-        } else {
-            $checkpwd = password_verify($this->password, $userinfo["password"]);
-            if ($checkpwd == false) {
+
+        }elseif($this->password != $userinfo["password"]){
                 header("location:../../login.php?msg=Wrogn password");
-            } elseif ($checkpwd == true) {
+        }else{
                 $_SESSION["user"] = $userinfo;
-
-                //header("location:../../index.php");
-                if(isset($_SESSION['search-info'])) header("location:../../booking");
-                else header("location:../../index.php");
-
-
+                header("location:../../index.php");
+                
 
             }
         }
     }
 }
+

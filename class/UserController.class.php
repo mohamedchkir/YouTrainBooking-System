@@ -96,9 +96,6 @@ public function PrEmail(){
 public function passwordMatch(){
    if(password_verify($this->password,$_SESSION['user']["password"]))
    {
-      // var_dump(password_verify($this->password,$_SESSION['user']["password"]));
-      // var_dump($this->password);
-      // die;
        $result = false ;
    }
    else {

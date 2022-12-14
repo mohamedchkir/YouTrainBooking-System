@@ -63,10 +63,12 @@ function update(){
    $password = $_POST['password'];
    $new_password = $_POST["newPassword"]; 
    $id = $_POST['id'];
-   //$first_name="default",$last_name="default",$email="default",$password="default",$tel="default",$bank="default"
+
+   // $hashedPwd = password_hash($new_password,PASSWORD_DEFAULT);
+   // $hashedPwd2 = password_hash($password,PASSWORD_DEFAULT);
+
    $userpr = new UserController($first_name,$last_name,$email,$password,$tel,$bank);
-   // var_dump($email);
-   // die;
+  
    $userpr->profilSubmit();
    $userpr->updateInfo($first_name,$last_name,$tel,$bank,$email,$new_password,$id);
    header("location:../../dash/index.php?page=profil");
