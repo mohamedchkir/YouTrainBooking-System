@@ -63,53 +63,63 @@ if(!isset($_SESSION['search-info'])){
     </button>
     <div class="collapse navbar-collapse justify-content-end p-2" id="navbarSupportedContent">
      <ul class="navbar-nav mb-2 mb-lg-0">
-         <?php
-         if(isset($_SESSION["user"])){
-             echo "<li class='nav-item'>
-                                   <a class='nav-link active py-0 px-3' aria-current='page' href='#'>
-                                    <i class='bi bi-person me-2'></i>
-                                       <i>".$_SESSION['user']['prenom']." ".$_SESSION['user']['nom']."</i>
-                                   </a>
-                                   </li>
-                                   <li class='vr' style='background-color: var(--dark-blue);width: 1px ;'></li>
-                                   <li class='nav-item'>
-                                   <a class='nav-link active py-0 px-3 d-flex' aria-current='page' href='#'>
-                                    <h4><i class='bi bi-bookmarks me-2'></i></h4>
-                                    <i>Mes ancien réservations</i>
-                                   </a>
-                                  </li>
-                                   ";
-         }else{
-             echo "
-                                <li class='nav-item'>
-                                <a class='nav-link active py-0 px-3 ' id='login' aria-current='page' href='../login.php' style='font-weight: 500;'>
-                                    <span>Log in</span>
-                                </a>
-                                </li>
-                                <li class='vr' style='background-color: var(--dark-blue);width: 1px ;'></li>
-                                <li class='nav-item'>
-                                    <a class='nav-link active py-0 px-3' aria-current='page' href='../signup.php' id='sign_up'>
-                                        <span style='background-color: var(--aqua);color: white;padding: 7px 25px;border-radius: 25px;font-weight: 500;'>Sign up</span>
-                                    </a>
-                                </li>
-                                ";
-         }
-
-         ?>
-      <li class="vr" style="background-color: var(--dark-blue);width: 1px ;"></li>
-      <li class="nav-item">
+     <li class="nav-item">
        <a class="nav-link active py-0 px-3 d-flex align-items-center" aria-current="page" href="#">
-           <h4 class="position-relative">
+           <h4 class="position-relative mt-1">
                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 10px;" id="order_counter" >
                 <?php echo isset($_SESSION['order-list']) ?  count($_SESSION['order-list']) :  '0'  ?>
                 </span>
                <span style="display: none" counter="<?php echo isset($_SESSION['order-list']) ?  count($_SESSION['order-list']) :  '0'  ?>">order counter</span>
-<!--               <span class="badge badge-danger" id="shoppingOrdersSpan">9</span>
--->               <i class="bi bi-cart me-2" id="cartBtn" role="button"></i>
+              <!-- <span class="badge badge-danger" id="shoppingOrdersSpan">9</span> -->
+               <i class="bi bi-cart me-2" id="cartBtn" role="button"></i>
            </h4>
 
        </a>
       </li>
+        <?php
+        if(isset($_SESSION["user"])){
+            echo "
+            <li class='nav-item dropdown no-arrow mb-3 me-4'>
+                <a class='nav-link dropdown-toggle nav-link active py-0 px-3' href='#' id='userDropdown' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                <i class='bi bi-person me-2 fs-3'></i>
+                <i>".$_SESSION['user']['prenom']." ".$_SESSION['user']['nom']."</i>
+                </a>
+                <!-- Dropdown -->
+                <div class='dropdown-menu dropdown-menu-right shadow animated--grow-in' aria-labelledby='userDropdown'>
+                    <a class='dropdown-item d-flex align-items-center' href='#'>
+                        <i class='bi bi-bookmarks me-2'></i>
+                        <i> Mes ancien réservations </i>
+                    </a>
+                    <a class='dropdown-item d-flex' href='profile.php'>
+                        <i class='bi bi-person-circle me-2'></i>
+                        <i>Profil</i>
+                    </a>
+                    <div class='dropdown-divider'></div>
+                    <a class='dropdown-item d-flex' href='#'>
+                        <i class='bi bi-box-arrow-left me-2'></i>
+                        <i>Logout</i>
+                    </a>
+                </div>
+            </li>";
+        }else{
+            echo "
+            <li class='nav-item'>
+            <a class='nav-link active py-0 px-3 ' id='login' aria-current='page' href='../login.php' style='font-weight: 500;'>
+                <span>Log in</span>
+            </a>
+            </li>
+            <li class='vr' style='background-color: var(--dark-blue);width: 1px ;'></li>
+            <li class='nav-item'>
+                <a class='nav-link active py-0 px-3' aria-current='page' href='../signup.php' id='sign_up'>
+                    <span style='background-color: var(--aqua);color: white;padding: 7px 25px;border-radius: 25px;font-weight: 500;'>Sign up</span>
+                </a>
+            </li>
+            ";
+        }
+
+         ?>
+      <!-- <li class="vr" style="background-color: var(--dark-blue);width: 1px ;"></li> -->
+      
       <!-- <li class="nav-item">
        <a class="nav-link active py-0 px-3 " id="login" aria-current="page" href="login.php" style="font-weight: 500;">
         <span>Log in</span>

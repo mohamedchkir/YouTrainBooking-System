@@ -52,5 +52,5 @@ class LoginContr extends LoginModel {
             }
         }
     }
-}
+// }
 
