@@ -134,5 +134,13 @@ class VoyageController extends VoyageModel
     return $data; 
     }
 
+
+    public function  checkCapacite($id_voyage,$dateReservation){
+        return $this->capacite($id_voyage,$dateReservation);
+    }
+
 }
+
+
+
 

@@ -58,6 +58,16 @@ class TrainModel extends DB
 
     }
 
-
+    public function capaciteTrain($idTrain){
+        try{
+            $sql="SELECT capacite from trains WHERE id =?";
+            $resultat = $this->Connect()->prepare($sql);
+            $resultat->execute(array($idTrain));
+            $r = $resultat->fetchColumn();
+            return $r;
+        }catch (PDOException $er){
+            echo $er->getMessage();
+        }
+    }
 
 }

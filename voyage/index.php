@@ -7,7 +7,8 @@
 
   $options = $train->getAllTrains();
   $res = $voyage->getVoyage();
-    
+  
+  
 ?>
 <!-- <!DOCTYPE html>
 <html lang="en">
