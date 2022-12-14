@@ -23,7 +23,7 @@ class VoyageModel extends DB
         $sql = "SELECT v.*,s.nom as statusnom ,g.nom as garedepart, ga.nom as garearrivee,t.nom as train from voyages as v INNER JOIN status as s on v.status = s.id
         INNER JOIN gares as g on v.gare_depart=g.id 
         INNER join  gares as ga on v.gare_arrivee=ga.id
-        INNER JOIN trains as t on v.id_train=t.id";
+        INNER JOIN trains as t on v.id_train=t.id where v.disabled is null";
         $statement = $this->Connect()->prepare($sql);
         $statement->execute();
         $res = $statement->fetchAll();
@@ -60,9 +60,9 @@ class VoyageModel extends DB
 
     protected function deleteVoyageInDB($id){
         try{
-            $sql="DELETE FROM `voyages` WHERE unique_id=?";
+            $sql=" UPDATE `voyages` SET `disabled`=? WHERE unique_id=?";
             $resultat =$this->connect()->prepare($sql);
-            $resultat->execute(array($id));
+            $resultat->execute(array(0,$id));
         }catch (PDOException $er){
             echo $er->getMessage();
         }
