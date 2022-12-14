@@ -1,5 +1,6 @@
 <?php
-include_once("../autoloader.php");
+// include_once("../autoloader.php");
+include_once("LoginModel.class.php");
 if(!isset($_SESSION)) 
     { 
         session_start(); 
@@ -45,6 +46,8 @@ class LoginContr extends LoginModel {
                 header("location:../../login.php?msg=Wrogn password");
             }elseif($checkpwd == true){
                 $_SESSION["user"] = $userinfo;
+                // var_dump($_SESSION["user"]);
+                // die;
                 header("location:../../index.php");
                 
             }
