@@ -73,9 +73,7 @@ function getAvailableTrips()
 
     $voyage = new VoyageController();
     $res = $voyage->gatSearchVoyage($gare_depart,$date_depart);
-    foreach ($res as $r) {
-        $_SESSION['resultat'] = array($r);
-    }
+    $_SESSION['resultat'] = $res;
     return $_SESSION['resultat'];
     // //day == heurs
     // $day_date = date("H:i:s",strtotime($date_depart));

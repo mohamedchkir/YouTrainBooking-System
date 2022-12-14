@@ -46,7 +46,7 @@
               </div>
               <div class="form-group">
                 <label for="prix" class="col-form-label">prix:</label>
-                <input type="number" class="form-control" id="prix" name="prix" step="0.1" required>
+                <input type="number" class="form-control" id="prix" name="prix" placeholder="prix" step="0.1" required>
               </div>
               <div class="form-group">
               <label for="datetime" class="col-form-label">datetime:</label>
@@ -64,17 +64,17 @@
             <div class="col-sm">
               <div class="form-group" style="margin-top: 40px;">
                 <label for="duree" class="col-form-label">duree:</label>
-                <input type="number" class="form-control" id="duree" name="duree" required>
+                <input type="number" class="form-control" id="duree" placeholder="duree" name="duree" required>
               </div>
               <div class="form-group">
                 <label for="gare_depart" class="col-form-label">gare depart:</label>
-                <input type="text" name="gare_depart"  id="gare_depart" class="form-control" required>
+                <input type="text" name="gare_depart"  id="gare_depart" class="form-control" placeholder="gare depart" required>
                 <div id="res" style="max-height:33vh ;overflow:auto;position:absolute;background-color:white;width:100%;z-index:100;"></div>
                 <input type="hidden" id="id_gare_depart" name="id_gare_depart" value="">
               </div>
               <div class="form-group">
                 <label for="gare_arrivee" class="col-form-label">gare arrivee:</label>
-                <input type="text" name="gare_arrivee"  id="gare_arrivee" class="form-control" required>
+                <input type="text" name="gare_arrivee"  id="gare_arrivee" placeholder="gare arrivee" class="form-control" required>
                 <div id="res2" style="max-height:33vh ;overflow:auto;position:absolute;background-color:white;width:100%;z-index:100;"></div>
                 <input type="hidden" id="id_gare_arrivee" name="id_gare_arrivee" value="">
               </div>
@@ -92,9 +92,9 @@
               <p class="aqua" style="font-weight: bold; color:#47B5FF;">Voyage Roteur</p>
               <div class="form-group">
                 <label for="status" class="col-form-label">gare depart:</label>
-                <input type="text" class="form-control" id="gare_depart_roteur" disabled>
+                <input type="text" class="form-control" id="gare_depart_roteur" placeholder="gare depart" disabled>
                 <label for="gare_depart" class="col-form-label">gare arrivee:</label>
-                <input type="text" class="form-control" id="gare_arrivee_roteur" disabled>
+                <input type="text" class="form-control" id="gare_arrivee_roteur" placeholder="gare arrivee" disabled>
               </div>
             </div>
           </div>

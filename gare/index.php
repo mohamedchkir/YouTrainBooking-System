@@ -49,6 +49,27 @@ $reslt = $gare->getAllGare();
             </div>
     </form>
 
+    <?php if (isset($_SESSION['message'])) :  ?>
+      <div class="alert alert-success alert-dismissible fade show w-100">
+        <strong>successfully!</strong>
+        <?php
+        echo $_SESSION['message'];
+        unset($_SESSION['message']);
+        ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+    <?php endif ?>
+    <?php if (isset($_SESSION['error'])) :  ?>
+      <div class="alert alert-danger alert-dismissible fade show w-100">
+        <strong>Erreur!</strong>
+        <?php
+        echo $_SESSION['error'];
+        unset($_SESSION['error']);
+        ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+    <?php endif ?>
+
     <section>
 
         <table id="example" class="table table-striped">
