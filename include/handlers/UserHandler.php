@@ -1,16 +1,20 @@
 <?php
 
 include_once("../autoloader.php");
+include_once('../../class/UserController.class.php');
 
-if(isset($_POST['accept']))    accept();
-if(isset($_POST['deny']))      deny();
+if(isset($_POST['accept']))      accept();
+if(isset($_POST['deny']))        deny();
+if(isset($_POST['savechanges'])) update();
+if(isset($_POST['updateImgUrl'])) updateImg();
 
 if(isset($_POST["signup"]))
 {
 
    //collecting the data
-   $first_name = $_POST["First_name"];
-   $last_name = $_POST["Last_name"];
+   
+   $first_name = $_POST["first_name"];
+   $last_name = $_POST["last_name"];
    $email = $_POST["email"]; 
    $password = $_POST["password"]; 
    $confirm_password = $_POST["confirm_password"]; 
@@ -47,13 +51,37 @@ if(isset($_POST["login"]))
 // login---------------------------------
 
 
+
+// profil--------------------------------
+// profil--------------------------------
+function update(){
+   $first_name = $_POST['first_name'];
+   $last_name = $_POST['last_name'];
+   $tel = $_POST['tel'];
+   $bank = $_POST['bank'];
+   $email = $_POST['email'];
+   $password = $_POST['password'];
+   $new_password = $_POST["newPassword"]; 
+   $id = $_POST['id'];
+   //$first_name="default",$last_name="default",$email="default",$password="default",$tel="default",$bank="default"
+   $userpr = new UserController($first_name,$last_name,$email,$password,$tel,$bank);
+   // var_dump($email);
+   // die;
+   $userpr->profilSubmit();
+   $userpr->updateInfo($first_name,$last_name,$tel,$bank,$email,$new_password,$id);
+   header("location:../../dash/index.php?page=profil");
+}
+// profil--------------------------------
+// profil--------------------------------
+
+
 function accept(){
    $id = $_POST['id'];
    $role = 1;
 
    $user = new UserController();
    $user->updateUser($role,$id);
-   echo "<script>window.location.replace('../../dash/index.php?page=allUsers')</script>";
+   echo "<script>window.location.replace('../components/uers.component.php')</script>";
 }
 function deny(){
    $id = $_POST['id'];
@@ -61,6 +89,12 @@ function deny(){
 
    $user = new UserController();
    $user->updateUser($role,$id);
-   echo "<script>window.location.replace('../../dash/index.php?page=allUsers')</script>";
+   echo "<script>window.location.replace('../components/uers.component.php')</script>";
    
+}
+
+
+
+function updateImg(){
+   echo $_POST['updateImgUrl'];
 }

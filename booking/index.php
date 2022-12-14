@@ -2,12 +2,10 @@
 session_start();
 include_once("../include/autoloader.php");
 if(!isset($_SESSION['search-info'])){
-    echo "i am here";
-    die();
     header("location:../");
 }
 
-
+//var_dump($_SESSION['resultat']);
 
 ?>
 
@@ -27,7 +25,8 @@ if(!isset($_SESSION['search-info'])){
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
             rel="stylesheet"
     />
-    <!-- MDB -->
+    <!-- sweet alert -->
+    <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
 
 
 
@@ -64,20 +63,47 @@ if(!isset($_SESSION['search-info'])){
     </button>
     <div class="collapse navbar-collapse justify-content-end p-2" id="navbarSupportedContent">
      <ul class="navbar-nav mb-2 mb-lg-0">
-      <li class="nav-item">
-       <a class="nav-link active py-0 px-3 d-flex" aria-current="page" href="#">
-        <h4><i class="bi bi-person me-2"></i></h4>
-        <i>Mounir El-Bakkali</i>
-       </a>
-      </li>
+         <?php
+         if(isset($_SESSION["user"])){
+             echo "<li class='nav-item'>
+                                   <a class='nav-link active py-0 px-3' aria-current='page' href='#'>
+                                    <i class='bi bi-person me-2'></i>
+                                       <i>".$_SESSION['user']['prenom']." ".$_SESSION['user']['nom']."</i>
+                                   </a>
+                                   </li>
+                                   <li class='vr' style='background-color: var(--dark-blue);width: 1px ;'></li>
+                                   <li class='nav-item'>
+                                   <a class='nav-link active py-0 px-3 d-flex' aria-current='page' href='#'>
+                                    <h4><i class='bi bi-bookmarks me-2'></i></h4>
+                                    <i>Mes ancien réservations</i>
+                                   </a>
+                                  </li>
+                                   ";
+         }else{
+             echo "
+                                <li class='nav-item'>
+                                <a class='nav-link active py-0 px-3 ' id='login' aria-current='page' href='../login.php' style='font-weight: 500;'>
+                                    <span>Log in</span>
+                                </a>
+                                </li>
+                                <li class='vr' style='background-color: var(--dark-blue);width: 1px ;'></li>
+                                <li class='nav-item'>
+                                    <a class='nav-link active py-0 px-3' aria-current='page' href='../signup.php' id='sign_up'>
+                                        <span style='background-color: var(--aqua);color: white;padding: 7px 25px;border-radius: 25px;font-weight: 500;'>Sign up</span>
+                                    </a>
+                                </li>
+                                ";
+         }
+
+         ?>
       <li class="vr" style="background-color: var(--dark-blue);width: 1px ;"></li>
       <li class="nav-item">
        <a class="nav-link active py-0 px-3 d-flex align-items-center" aria-current="page" href="#">
            <h4 class="position-relative">
                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 10px;" id="order_counter" >
-                0
+                <?php echo isset($_SESSION['order-list']) ?  count($_SESSION['order-list']) :  '0'  ?>
                 </span>
-               <span style="display: none" counter="0">order counter</span>
+               <span style="display: none" counter="<?php echo isset($_SESSION['order-list']) ?  count($_SESSION['order-list']) :  '0'  ?>">order counter</span>
 <!--               <span class="badge badge-danger" id="shoppingOrdersSpan">9</span>
 -->               <i class="bi bi-cart me-2" id="cartBtn" role="button"></i>
            </h4>
@@ -128,7 +154,7 @@ if(!isset($_SESSION['search-info'])){
          <div class="row g-2">
              <div class="col-lg-6 text-start" style="position: relative;">
                  <label for="" class="form-label ms-2" style="color:#80808078;">gare de depart</label>
-                 <input class="form-control" type="text" name="gare_depart" id="gare_depart_reseach" value="<?= $_SESSION['search-info']['gare_depart'] ?>" placeholder="Casa voyageur.." autocomplete="off" required>
+                 <input class="form-control" type="text" name="gare_depart" id="gare_depart_reseach" placeholder="Casa voyageur.." autocomplete="off" required>
                  <div class="invalid-feedback ms-2">
                      veillez remplire la gare de départ.
                  </div>
@@ -137,13 +163,13 @@ if(!isset($_SESSION['search-info'])){
              </div>
              <div class="col-lg-6 text-start" style="position: relative;">
                  <label for="" class="form-label ms-2" style="color:#80808078;">gare de distination</label>
-                 <input class="form-control " type="text" name="gare_distination" id="gare_distination_reseach" autocomplete="off" value="<?= $_SESSION['search-info']['gare_distination'] ?>" placeholder="Tanger ville..">
+                 <input class="form-control " type="text" name="gare_distination" id="gare_distination_reseach" autocomplete="off" value="" placeholder="Tanger ville..">
                  <div class="rounded-bottom" style="background-color:aliceblue;position:absolute; width: 94%;z-index:100;max-height:31vh;overflow:auto;" id="cities_rst2"></div>
                  <input type="hidden" value="" name="id_ville_gare_distination">
              </div>
              <div class="col-12">
                  <label class="form-label ms-2" for="" style="color:#80808078;" >date départ</label>
-                 <input class="form-control" type="datetime-local" name="date_depart" value="<?= $_SESSION['search-info']['date_depart'] ?>" required>
+                 <input class="form-control" type="datetime-local" name="date_depart" required>
                  <div class="invalid-feedback ms-2">
                      veillez remplire la date de départ de votre voyage.
                  </div>
@@ -160,179 +186,68 @@ if(!isset($_SESSION['search-info'])){
     <div class="container ">
      <div>
       <div class="d-flex justify-content-between align-items-center border-bottom">
-       <H2>Available Trains</H2>
+       <H2>Voyage Disponible</H2>
        <small class="text-secondary">
-        5 Trains Avialable
+        <?php echo count($_SESSION['resultat']) ?> voyage disponible
        </small>
        <h3><i class="bi bi-sliders text-weight-bold aqua"></i></h3>
       </div>
       <div class="row px-2 g-3 mt-3" style="width:100%;height:85vh;overflow:auto;">
-       <div class="p-3 shadow " style="background-color:#f1fcff;border-radius:10px;">
-        <div class="row align-items-center">
-         <div class="col-lg-8 d-flex justify-content-between flex-grow-1 px-3">
-          <div>
-           <p>départ</p>
-           <h4>8:30</h4>
-           <p><?= $_SESSION['search-info']['gare_depart'] ?></p>
-          </div>
-          <div class="voyage-info  w-50 text-center">
-           <label for="">3h30min</label>
-           <div class="d-flex justify-content-between">
-                <span style="width:50%;position: relative">
-                    <span class="bubble bubble1"></span>
-                </span>
-               <span style="width: 50%">
-                   <span class="bubble"></span>
-               </span>
-           </div>
-           <label for="">Direct</label>
-          </div>
-          <div class="text-center">
-           <p>Arrivé</p>
-           <h4>11:15</h4>
-           <p><?= $_SESSION['search-info']['gare_distination'] ?></p>
-          </div>
-         </div>
-         <div class="col-lg-4 align-items-center text-center p-4" style="border-left: 2px dotted  #80808078;">
-          <h5>1 passager</h5>
-          <h6>à partir </h6>
-          <span>
-           <h5 class="text-danger">219 DH</h5>
-          </span>
-          <button class="btn text-light px-lg-4 "  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAbandonedCart" style="background-color:var(--aqua);border-radius:20px;" onclick="bookTicket({id:1,from:'Tanger',to:'Casablanca',date:'22/12/2022 12:30',prix:'99.99 DH'})">Réserver</button>
-         </div>
-        </div>
-        <hr class="w-100 m-0">
-        <div class="d-flex align-items-center">
-         <h3>
-          <i class="bi bi-train-lightrail-front"></i>
-         </h3>
-         <h6 class="ms-3">Atlas</h6>
-        </div>
-       </div>
-       <!-- YouTrain™2 -->
-          <div class="px-5 py-3 shadow " style="background-color:white;border-radius:10px;">
-              <div class="d-flex align-items-center">
-                  <div class="d-flex justify-content-between flex-grow-1 px-3">
-                      <div>
-                          <p>départ</p>
-                          <h3>8:30</h3>
-                          <p><?= $_SESSION['search-info']['gare_depart'] ?></p>
-                      </div>
-                      <div class="voyage-info  w-50 text-center">
-                          <label for="">3h30min</label>
-                          <div class="d-flex justify-content-between">
-                              <span class="bubble"></span>
-                              <span class="bubble"></span>
-                          </div>
-                          <label for="">Direct</label>
-                      </div>
-                      <div class="text-center">
-                          <p>Arrivé</p>
-                          <h3>11:15</h3>
-                          <p><?= $_SESSION['search-info']['gare_distination'] ?></p>
-                      </div>
+          <?php
+          foreach ($_SESSION['resultat'] as $voyage){
+              echo "
+              <div class='p-3 shadow ' style='background-color:#f1fcff;border-radius:10px;height: fit-content;'>
+                <div class='row align-items-center'>
+                 <div class='col-lg-8 d-flex justify-content-between flex-grow-1 px-3'>
+                  <div>
+                   <p>départ</p>
+                   <h4>".date("H:i",strtotime($voyage["date"]))."</h4>
+                   <p>".$voyage['garedepart']."</p>
                   </div>
-                  <div class=" align-items-center text-center p-4" style="border-left: 2px dotted  #80808078;">
-                      <h4>1 passager</h4>
-                      <h5>à partir </h5>
-                      <span>
-           <h4 class="text-danger">219 DH</h4>
-          </span>
-                      <button class="btn text-light px-5 "  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAbandonedCart" style="background-color:var(--aqua);border-radius:20px;">Réserver</button>
+                  <div class='voyage-info  w-50 text-center'>
+                   <label for=''>".$voyage["duree"].'h'.'00min'."</label>
+                   <div class='d-flex justify-content-between'>
+                        <span style='width:50%;position: relative'>
+                            <span class='bubble bubble1'></span>
+                        </span>
+                       <span style='width: 50%'>
+                           <span class='bubble'></span>
+                       </span>
+                   </div>
+                   <label for=''>Direct</label>
                   </div>
-              </div>
-              <hr class="w-100">
-              <div class="d-flex align-items-center">
-                  <h3>
-                      <i class="bi bi-train-lightrail-front"></i>
-                  </h3>
-                  <h6 class="p-3">Atlas</h6>
-              </div>
-          </div>
+                  <div class='text-center'>
+                   <p>Arrivé</p>
+                   <h4>".date("H:i",strtotime($voyage["date"]." +".$voyage['duree']." hours"))."</h4>
+                   <p>".$voyage['garearrivee']."</p>
+                  </div>
+                 </div>
+                 <div class='col-lg-4 align-items-center text-center p-4' style='border-left: 2px dotted  #80808078;'>
+                  <h5>1 passager</h5>
+                  <h6>à partir </h6>
+                  <span>
+                   <h5 class='text-danger'>".$voyage['prix']." DH</h5>
+                  </span>
+                  <button class='btn text-light px-lg-4 '  type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#modalAbandonedCart' style='background-color:var(--aqua);border-radius:20px;'
+                   onclick=\"bookTicket({id:'".$voyage['id']."',from:'".$voyage['garedepart']."',to:'".$voyage['garearrivee']."',date:'".$voyage['date']."',prix:'".$voyage['prix']."'})\">Réserver</button>
+                 </div>
+                </div>
+                <hr class='w-100 m-0'>
+                <div class='d-flex align-items-center'>
+                 <h3>
+                  <i class='bi bi-train-lightrail-front'></i>
+                 </h3>
+                 <h6 class='ms-3'>".$voyage['train']."</h6>
+                </div>
+               </div>
+              ";
+          }
 
-          <!-- YOU TRAIN 3--->
-          <div class="px-5 py-3 shadow " style="background-color:white;border-radius:10px;">
-              <div class="d-flex align-items-center">
-                  <div class="d-flex justify-content-between flex-grow-1 px-3">
-                      <div>
-                          <p>départ</p>
-                          <h3>8:30</h3>
-                          <p><?= $_SESSION['search-info']['gare_depart'] ?></p>
-                      </div>
-                      <div class="voyage-info  w-50 text-center">
-                          <label for="">3h30min</label>
-                          <div class="d-flex justify-content-between">
-                              <span class="bubble"></span>
-                              <span class="bubble"></span>
-                          </div>
-                          <label for="">Direct</label>
-                      </div>
-                      <div class="text-center">
-                          <p>Arrivé</p>
-                          <h3>11:15</h3>
-                          <p><?= $_SESSION['search-info']['gare_distination'] ?></p>
-                      </div>
-                  </div>
-                  <div class=" align-items-center text-center p-4" style="border-left: 2px dotted  #80808078;">
-                      <h4>1 passager</h4>
-                      <h5>à partir </h5>
-                      <span>
-           <h4 class="text-danger">219 DH</h4>
-          </span>
-                      <button class="btn text-light px-5 "  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAbandonedCart" style="background-color:var(--aqua);border-radius:20px;">Réserver</button>
-                  </div>
-              </div>
-              <hr class="w-100">
-              <div class="d-flex align-items-center">
-                  <h3>
-                      <i class="bi bi-train-lightrail-front"></i>
-                  </h3>
-                  <h6 class="p-3">Atlas</h6>
-              </div>
-          </div>
+          ?>
 
-          <!-------4----->
 
-          <di class="px-5 py-3 shadow " style="background-color:white;border-radius:10px;">
-              <div class="d-flex align-items-center">
-                  <div class="d-flex justify-content-between flex-grow-1 px-3">
-                      <div>
-                          <p>départ</p>
-                          <h3>8:30</h3>
-                          <p><?= $_SESSION['search-info']['gare_depart'] ?></p>
-                      </div>
-                      <div class="voyage-info  w-50 text-center">
-                          <label for="">3h30min</label>
-                          <div class="d-flex justify-content-between">
-                              <span class="bubble"></span>
-                              <span class="bubble"></span>
-                          </div>
-                          <label for="">Direct</label>
-                      </div>
-                      <div class="text-center">
-                          <p>Arrivé</p>
-                          <h3>11:15</h3>
-                          <p><?= $_SESSION['search-info']['gare_distination'] ?></p>
-                      </div>
-                  </div>
-                  <div class=" align-items-center text-center p-4" style="border-left: 2px dotted  #80808078;">
-                      <h4>1 passager</h4>
-                      <h5>à partir </h5>
-                      <span>
-           <h4 class="text-danger">219 DH</h4>
-          </span>
-                      <button class="btn text-light px-5 "  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAbandonedCart" style="background-color:var(--aqua);border-radius:20px;">Réserver</button>
-                  </div>
-              </div>
-              <hr class="w-100">
-              <div class="d-flex align-items-center">
-                  <h3>
-                      <i class="bi bi-train-lightrail-front"></i>
-                  </h3>
-                  <h6 class="p-3">Atlas</h6>
-              </div>
-          </di>
+
+
       </div>
      </div>
     </div>
@@ -374,7 +289,7 @@ if(!isset($_SESSION['search-info'])){
 
                  <!--Footer-->
                  <div class="modal-footer justify-content-center">
-                     <a type="button" class="btn btn-info">Go to cart</a>
+                     <a type="button" class="btn btn-info" id="goTocart" data-bs-dismiss="modal">Go to cart</a>
                      <a type="button" class="btn btn-outline-info waves-effect" data-bs-dismiss="modal">Cancel</a>
                  </div>
              </div>
@@ -390,24 +305,62 @@ if(!isset($_SESSION['search-info'])){
     <div class="pb-3">
         <i class="bi bi-x-lg text-light text-bold" role="button" id="closeCartBtn"></i>
     </div>
-    <div class="bg-light rounded-3">
-        <div class="d-flex justify-content-between  flex-grow-1 p-3 align-items-center">
-           <div style="background: url('../assets/img/reserved-bg.jpg');background-size:cover;background-position:center;width: 100px;height: 100px"></div>
-            <div>
-                <p>De :  Tanger</p>
-                <p>vers :  Agadir</p>
+    <h4 class="text-light">Your Cart</h4>
+    <div class="d-flex flex-column align-items-center" id="lis_orders_div" style="height: 88vh;overflow: auto">
+        <?php
+        if (isset($_SESSION['order-list']) && count($_SESSION['order-list'])>0){
+            $list_of_orders=$_SESSION['order-list'];
+            //print_r($list_of_orders);
+            $i=0;
+            $total=0;
+            foreach ($list_of_orders as $order) {
+                // echo "<script>alert('$order')</script>";
+                //var_dump($order);
+                $total+=floatval($order['prix_ticket'])*$order['quantity'];
+                echo "
+                <div class='bg-light rounded-3 mb-1 w-100'>
+                <div class='d-flex justify-content-between  flex-grow-1 p-3 align-items-center'>
+                   <div style=\"background: url('../assets/img/reserved-bg.jpg');background-size:cover;background-position:center;width: 100px;height: 100px\"></div>
+                    <div>
+                        <p>De :  " . $order['gare_depart'] . "</p>
+                        <p>vers :  " . $order['gare_arrive'] . "</p>
+                    </div>
+                    <div>
+                    <h6 style='color:orange;font-weight: bold'>".$order['quantity']." place(s)</h6cla>
+                    <h5 class='text-center'>" . floatval($order['prix_ticket'])*$order['quantity'] . "Dh</h5>
+                    </div>
+                    <div>
+                        <i class='bi bi-x-lg text-danger btn btn-rounded' role='button' onclick=\"removeReserved('" . $i . "')\"></i>
+                    </div>
+                </div>
             </div>
-            <h5 class="text-center">199Dh</h5>
-            <div>
-                <i class="bi bi-x-lg text-danger btn btn-rounded" role="button" id="removeReservedBtn"></i>
-            </div>
-        </div>
+            ";
+                $i++;
+            }
 
+            echo "<div class='mt-auto p-2 w-100'>
+                <button class='btn btn-light w-100' onclick='processCheckingOut()'>check out</button>
+                <h6 class='text-light mt-1'> <i class='bi bi-check-circle-fill me-2'></i>Total à payer : <b>$total DH</b></h6>
+                <h6 class='text-light mt-1'> <i class='bi bi-check-circle-fill me-2'></i>Tout ticket de type FLEX sont changeable</h6>
+
+                </div>";
+            //unset($_SESSION['order-list']);
+        }else{
+            echo "
+                <div class='h-100 w-100'>
+                    <div class='h-50' style=\"background-image: url('../assets/img/empty_cart.png');background-position: center;background-size: cover;background-repeat: no-repeat\"></div>
+                </div>
+            ";
+        }
+        //print_r($_SESSION['order-list']);
+        ?>
     </div>
+
+
 </div>
 <!--Cart End-->
 
-
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="../assets/js/main2.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

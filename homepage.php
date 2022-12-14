@@ -9,10 +9,23 @@
     <link rel="stylesheet" href="assets/css/homepage.css">
     <title>YouTrain™</title>
 </head>
+<!-- <style>
+    .banner-image{
+        background-image: url('assets/img/bg.png');
+        background-color: grey;
+        background-size: cover;
+    }
+   
+</style> -->
 
 <body>
-    <div id="homeImg"style="background-color: #0c2e56c9;">
+    <div id="homeImg">
         <header>
+            <!-- main content area ----------------------------------------->
+            <!-- main content area ----------------------------------------->
+            <!-- main content area ----------------------------------------->
+            <!-- main content area ----------------------------------------->
+
             <nav class="navbar navbar-expand-lg navbar-light bg-gradient ">
                 <div class="container-fluid d-flex justify-content-between">
                     <a class="navbar-brand p-0 " href="#">
@@ -23,20 +36,20 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                         <ul class="navbar-nav mb-2 mb-lg-0">
-                            <!--<li class="nav-item">
+                            <!-- <li class="nav-item">
                                <a class="nav-link active py-0 px-3" aria-current="page" href="#">
                                    <i class="bi bi-person me-2"></i>
                                    <i>Mounir El Bakkali</i>
                                </a>
-                           </li>
-                           <li class="vr" style="background-color: var(--dark-blue);width: 1px ;"></li>
+                           </li> -->
+                           <!-- <li class="vr" style="background-color: var(--dark-blue);width: 1px ;"></li>
                            <li class="nav-item">
                                <a class="nav-link active py-0 px-3" aria-current="page" href="#">
                                    <i class="bi bi-bag me-2"></i>
                                    <i>My Orders</i>
 
                                </a>
-                           </li>-->
+                           </li> -->
                             <li class="nav-item">
                                 <a class="nav-link active py-0 px-3 " id="login" aria-current="page" href="login.php" style="font-weight: 500;">
                                     <span>Log in</span>
@@ -58,7 +71,7 @@
             <div class="row h-100">
                 <div class="col d-flex align-items-center justify-content-center">
                     <div class="w-100 ">
-                        <div class="d-flex align-items-center justify-content-center p-5 text-light  w-100" style="background-color: #0c2e56c9; height:100%">
+                        <div class="d-flex align-items-center justify-content-center p-5 text-light  w-100" style="background-color:rgb(60 60 60 / 74%);height:100%">
                             <div class="">
                                 <p><span style="background-color: var(--aqua);padding: 10px 15px;border-radius: 20px">Hello Travler,</span></p>
                                 <h3 class="h1">
@@ -78,6 +91,8 @@
         </section>
 
     </div>
+
+    <!-- ------------------------------------------ -->
     <section id="reservation" class="pt-5">
         <div class="container p-5 text-center">
             <h3 class="aqua" style="font-weight: bold;">
@@ -147,7 +162,7 @@
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
-    </section>
+    </section> 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
@@ -157,7 +172,14 @@
 </body>
 <script src="assets/js/main2.js"></script>
 <script>
-    document
+    var nav = document.querySelector('nav');
+    window.addEventListener('scroll',function(){
+        if(window.pageYOffset>100){
+            nav.classList.add('bg-dark','shadow');
+        }else{
+            nav.classList.remove('bg-dark','shadow');
+        }
+    });
 </script>
 
 </html>

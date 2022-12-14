@@ -75,7 +75,7 @@ function getAvailableTrips()
     $res = $voyage->gatSearchVoyage($gare_depart,$date_depart);
     $_SESSION['resultat'] = $res;
 
-    // return $_SESSION['resultat'];
+
     // //day == heurs
     // $day_date = date("H:i:s",strtotime($date_depart));
     // //week == day
@@ -120,7 +120,8 @@ function getAvailableTrips()
     echo "</pre>";
     $date = strtotime($date_depart);
     $_SESSION['search-info']= array("gare_depart"=>$gare_depart,"gare_distination"=>$gare_distination,"date_depart"=>$date_depart,"date_formed"=>date('d M Y h:i', $date),"date_retour"=>$date_retour_formed);
-    echo "<script>setTimeout(function (){window.location.replace('../../booking')},3000)</script>";
+    if(!isset($_SESSION['user'])) echo "<script>window.location.replace('../../login')</script>";
+    else echo "<script>window.location.replace('../../booking')</script>";
 }
 
 
