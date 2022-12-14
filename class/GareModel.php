@@ -1,10 +1,8 @@
 <?php
 
 include_once('DB.php');
-//session_start();
 
-if(!isset($_SESSION))
-{
+if (!isset($_SESSION)) {
     session_start();
 }
 
@@ -13,7 +11,7 @@ class GareModel extends DB
 
     protected function getAllgareFromDB()
     {
-        // 
+
         $sql = "SELECT * from gares";
         $sql = "SELECT gares.*, villes.nom as nameVille FROM gares INNER JOIN villes on gares.id_Ville=villes.id";
         $statement = $this->Connect()->prepare($sql);

@@ -6,3 +6,7 @@
     color: #000000 !important;
     background-color:#f8f9fc !important;
 }
+.borderstyle{
+    border-radius: 20px;
+    background-color: #06283D;
+}
