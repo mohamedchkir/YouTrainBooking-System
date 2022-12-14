@@ -136,4 +136,9 @@ class TrainController extends TrainModel
     }
 
 
+    public function  checkCapacite($idTrain){
+        return $this->capaciteTrain($idTrain);
+    }
+
+
 }

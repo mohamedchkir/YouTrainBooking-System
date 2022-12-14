@@ -1,17 +1,14 @@
 <?php
   include_once('../class/VoyageController.class.php');
   include_once('../class/TrainController.class.php');
-    $voyage = new VoyageController();
-    $train = new TrainController();
-    $options = $train->getAllTrains();
-    // var_dump($options);
-    // die;
-    $res = $voyage->getVoyage();
-    // var_dump($res);
-    // exit();
-    
 
+  $voyage = new VoyageController();
+  $train = new TrainController();
 
+  $options = $train->getAllTrains();
+  $res = $voyage->getVoyage();
+  
+  
 ?>
 <!-- <!DOCTYPE html>
 <html lang="en">
@@ -46,7 +43,7 @@
               </div>
               <div class="form-group">
                 <label for="prix" class="col-form-label">prix:</label>
-                <input type="number" class="form-control" id="prix" name="prix" step="0.1" required>
+                <input type="number" class="form-control" id="prix" name="prix" placeholder="prix" step="0.1" required>
               </div>
               <div class="form-group">
               <label for="datetime" class="col-form-label">datetime:</label>
@@ -64,17 +61,17 @@
             <div class="col-sm">
               <div class="form-group" style="margin-top: 40px;">
                 <label for="duree" class="col-form-label">duree:</label>
-                <input type="number" class="form-control" id="duree" name="duree" required>
+                <input type="number" class="form-control" id="duree" placeholder="duree" name="duree" required>
               </div>
               <div class="form-group">
                 <label for="gare_depart" class="col-form-label">gare depart:</label>
-                <input type="text" name="gare_depart"  id="gare_depart" class="form-control" required>
+                <input type="text" name="gare_depart"  id="gare_depart" class="form-control" placeholder="gare depart" required>
                 <div id="res" style="max-height:33vh ;overflow:auto;position:absolute;background-color:white;width:100%;z-index:100;"></div>
                 <input type="hidden" id="id_gare_depart" name="id_gare_depart" value="">
               </div>
               <div class="form-group">
                 <label for="gare_arrivee" class="col-form-label">gare arrivee:</label>
-                <input type="text" name="gare_arrivee"  id="gare_arrivee" class="form-control" required>
+                <input type="text" name="gare_arrivee"  id="gare_arrivee" placeholder="gare arrivee" class="form-control" required>
                 <div id="res2" style="max-height:33vh ;overflow:auto;position:absolute;background-color:white;width:100%;z-index:100;"></div>
                 <input type="hidden" id="id_gare_arrivee" name="id_gare_arrivee" value="">
               </div>
@@ -92,9 +89,9 @@
               <p class="aqua" style="font-weight: bold; color:#47B5FF;">Voyage Roteur</p>
               <div class="form-group">
                 <label for="status" class="col-form-label">gare depart:</label>
-                <input type="text" class="form-control" id="gare_depart_roteur" disabled>
+                <input type="text" class="form-control" id="gare_depart_roteur" placeholder="gare depart" disabled>
                 <label for="gare_depart" class="col-form-label">gare arrivee:</label>
-                <input type="text" class="form-control" id="gare_arrivee_roteur" disabled>
+                <input type="text" class="form-control" id="gare_arrivee_roteur" placeholder="gare arrivee" disabled>
               </div>
             </div>
           </div>
@@ -232,18 +229,18 @@
   </div>
 </body>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> -->
 <!-- main -->
-<script src="../assets/js/main3.js"></script>
+<!-- <script src="../assets/js/main3.js"></script>
 <script src="../assets/js/main2.js"></script>
 <script src="../assets/js/main1.js"></script>
-<script src="../assets/js/validation.js"></script>
+<script src="../assets/js/validation.js"></script> -->
 <!-- dataTable -->
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
-<script src="../assets/js/datatable/code.js"></script>
+<script src="../assets/js/datatable/code.js"></script> -->
 <!-- Font Awesome JS -->
 <!-- <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
 <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script> -->
