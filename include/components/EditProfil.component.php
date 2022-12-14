@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-;
 ?>
 
 <div class="w-100">
@@ -48,7 +47,6 @@
                         <label for="">Email</label>
                         <input class="form-control"  type="email" name="email" value="" required>
                     </div>
-                   
                 <div class="d-flex justify-content-between">
                     <div class="w-50">
                         <div class="form-outline p-3">

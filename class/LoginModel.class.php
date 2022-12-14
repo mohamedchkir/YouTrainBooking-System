@@ -4,7 +4,7 @@ include_once("DB.php");
 
 class LoginModel extends DB{
 
-    public function getUser($email){
+    public function getUser($email,$password){
         // $query = "SELECT * FROM users WHERE email = ? AND disabled=1;";
         $query = "SELECT * FROM users WHERE email = ? ;";
         $statement = $this->connect()->prepare($query);

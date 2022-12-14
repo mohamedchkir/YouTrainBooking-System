@@ -8,9 +8,9 @@ class SignupModel extends DB{
         
         $query = "INSERT INTO users (prenom,nom,email,password) VALUES (?,?,?,?);";
         $statement = $this->connect()->prepare($query);
-        $hashedPwd = password_hash($password,PASSWORD_DEFAULT);
+        // $hashedPwd = password_hash($password,PASSWORD_DEFAULT);
        
-        if(!$statement->execute(array($first_name,$last_name,$email, $hashedPwd))){
+        if(!$statement->execute(array($first_name,$last_name,$email, $password))){
             $statement=null;
             header("location : ../signup.php");
             exit();
