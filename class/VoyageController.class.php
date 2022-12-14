@@ -118,24 +118,21 @@ class VoyageController extends VoyageModel
     $week_date = date("D",strtotime($date_depart));
     //week == heurs
     $week_heurs = date("H:i:s",strtotime($date_depart));
+    //week
+    $week = date("y-m-d",strtotime($date_depart));
     //array resultat
     $data = array(); 
-    
+
     foreach ($res as $r) {
         
         if($r['gare_depart'] == $gare_depart && $day_date < date("H:i:s",strtotime($r['date'])) && $r['frequence'] == 1){
             array_push($data,$r);
-            echo "<script>window.location.replace('../../booking/index.php')</script>";
-        }elseif($r['gare_depart'] == $gare_depart && $week_date <= date("D",strtotime($r['date'])) && $r['frequence'] == 2 && $week_heurs < date("H:i:s",strtotime($r['date']))){
+        }elseif($r['gare_depart'] == $gare_depart && $week_date == date("D",strtotime($r['date'])) && $r['frequence'] == 2 && $week_heurs < date("H:i:s",strtotime($r['date'])) && $week >= date("y-m-d",strtotime($r['date']))  ){
             array_push($data,$r);
-            echo "<script>window.location.replace('../../booking/index.php')</script>";
-        }else{
-            echo "<script>window.location.replace('../../index.php')</script>";
         }
-        
     }
-    return $data;
- }
+    return $data; 
+    }
 
 }
 
