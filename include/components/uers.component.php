@@ -45,7 +45,7 @@ $res = $test->getUser();
         </div>
     <?php endif ?>
     <h5 class="h5 mb-5">Manage Users Status</h5>
-
+    <div class="table-responsive container">
     <table id="example" class="table table-striped" style="width:100%">
         <thead>
         <tr>
@@ -92,6 +92,7 @@ $res = $test->getUser();
         ?>
         </tbody>
     </table>
+    </div>
 </div>
 <!-- </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
