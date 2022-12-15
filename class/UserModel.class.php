@@ -40,6 +40,15 @@ class UserModel extends DB
     }
 
 
+    public function updateUserImg($newURL,$id_user)
+    {
+        $query = "UPDATE `users` SET `image`=? WHERE id=?";        
+        $statement = $this->connect()->prepare($query);
+        if($statement->execute(array($newURL,$id_user)))return true;
+        else return false;
+    }
+
+
 
 
 
