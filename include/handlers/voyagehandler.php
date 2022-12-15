@@ -68,31 +68,38 @@ function getAvailableTrips()
     $gare_depart = $_POST["id_ville_gare_depart"];
     $date_depart = $_POST["date_depart"];
     
-    $voyage = new VoyageController();
-    $res = $voyage->get();
-    //day == heurs
-    $day_date = date("H:i:s",strtotime($date_depart));
-    //week == day
-    $week_date = date("D",strtotime($date_depart));
-    //week == heurs
-    $week_heurs = date("H:i:s",strtotime($date_depart));
-    //array resultat
-    $data = array(); 
-    foreach ($res as $r) {
-        if($r['gare_depart'] == $gare_depart && $day_date < date("H:i:s",strtotime($r['date'])) && $r['frequence'] == 1){
-            array_push($data,$r);
-            return $data;
-            echo "<script>window.location.replace('../../booking/index.php')</script>";
-        }elseif($r['gare_depart'] == $gare_depart && $week_date == date("D",strtotime($r['date'])) && $r['frequence'] == 2 && $week_heurs < date("H:i:s",strtotime($r['date']))){
-            array_push($data,$r);
-            return $data;
-            echo "<script>window.location.replace('../../booking/index.php')</script>";
-        }else{
-            echo "<script>window.location.replace('../../index.php')</script>";
-        }
-    }
 
-    
+
+
+    $voyage = new VoyageController();
+    $res = $voyage->gatSearchVoyage($gare_depart,$date_depart);
+    $_SESSION['resultat'] = $res;
+
+
+    // //day == heurs
+    // $day_date = date("H:i:s",strtotime($date_depart));
+    // //week == day
+    // $week_date = date("D",strtotime($date_depart));
+    // //week == heurs
+    // $week_heurs = date("H:i:s",strtotime($date_depart));
+    // //array resultat
+    // $data = array(); 
+    // foreach ($res as $r) {
+    //     if($r['gare_depart'] == $gare_depart && $day_date < date("H:i:s",strtotime($r['date'])) && $r['frequence'] == 1){
+    //         array_push($data,$r);
+    //         return $data;
+    //         echo "<script>window.location.replace('../../booking/index.php')</script>";
+    //     }elseif($r['gare_depart'] == $gare_depart && $week_date == date("D",strtotime($r['date'])) && $r['frequence'] == 2 && $week_heurs < date("H:i:s",strtotime($r['date']))){
+    //         array_push($data,$r);
+    //         return $data;
+    //         echo "<script>window.location.replace('../../booking/index.php')</script>";
+    //     }else{
+    //         echo "<script>window.location.replace('../../index.php')</script>";
+    //     }
+    // }
+
+    $date_depart = $_POST["date_depart"];
+    $gare_depart = $_POST["gare_depart"];
     $gare_distination = $_POST["gare_distination"];
     if(isset($_POST["date_retour"])){
         $date_retour =$_POST["date_retour"];
@@ -112,8 +119,11 @@ function getAvailableTrips()
     echo $gare_depart."    ".$gare_distination."      ".$date_depart;
     echo "</pre>";
     $date = strtotime($date_depart);
+    //var_dump($date_depart);
+    //die();
     $_SESSION['search-info']= array("gare_depart"=>$gare_depart,"gare_distination"=>$gare_distination,"date_depart"=>$date_depart,"date_formed"=>date('d M Y h:i', $date),"date_retour"=>$date_retour_formed);
-    echo "<script>setTimeout(function (){window.location.replace('../../booking')},3000)</script>";
+    if(!isset($_SESSION['user'])) echo "<script>window.location.replace('../../login')</script>";
+    else echo "<script>window.location.replace('../../booking')</script>";
 }
 
 

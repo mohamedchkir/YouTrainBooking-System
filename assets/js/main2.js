@@ -40,7 +40,7 @@ $(document).ready(function () {
   handleSuggestion({ inputFiled: "#gare_depart_reseach", resltOnNode: "#cities_rst1", treattedIn: "../include/handlers/voyagehandler.php",whatToGet:"gares" });
   handleSuggestion({ inputFiled: "#gare_distination_reseach", resltOnNode: "#cities_rst2", treattedIn: "../include/handlers/voyagehandler.php",whatToGet:"gares" });
   /*train*/
-  handleSuggestion({ inputFiled: "#id_gare", resltOnNode: "#cities_rst2", treattedIn: "../handlers/voyagehandler.php",whatToGet:"gares" });
+  handleSuggestion({ inputFiled: "#id_gare", resltOnNode: "#cities_rst2", treattedIn: "../include/handlers/voyagehandler.php",whatToGet:"gares" });
   // gare
   handleSuggestion({ inputFiled: "#ville", resltOnNode: "#gareres", treattedIn: "../include/handlers/voyagehandler.php",whatToGet:"villes" });
   handleSuggestion({ inputFiled: "#gare_ville", resltOnNode: "#md_gareres", treattedIn: "../include/handlers/voyagehandler.php",whatToGet:"villes" });
@@ -77,9 +77,21 @@ $(document).ready(function () {
       width: 'toggle'
     });
   });
+  $("#goTocart").click(function () {
+    //$("#cart").show("slow")
+    $("#cart").animate({
+      width: 'toggle'
+    });
+  });
   $("#closeCartBtn").click(function () {
     $("#cart").hide();
   })
+
+
+  /*
+      checkout
+                  */
+
 
 });
 
@@ -126,11 +138,23 @@ function putValue(ele) {
 
 
 function bookTicket({id:id_voyage,from:ville_depart,to:vill_dis,date:date,prix:price}){
-  console.log({id:id_voyage,from:ville_depart,to:vill_dis,date:date,prix:price});
+  //console.log({id:id_voyage,from:ville_depart,to:vill_dis,date:date,prix:price});
   let count = parseInt($("#order_counter").next().attr("counter"));
-  $("#order_counter").text(count+1);
-  $("#order_counter").next().attr("counter",count+1)
-  //$.get("../include/handlers/voyageHandler.php",{getOrderCount:true,function(data,status){}})
+  $("#order_counter").text(count);
+  //$("#order_counter").next().attr("counter",count)
+  $.post("../include/handlers/ordersHandler.php",
+      {
+        addTripToCart:true,
+        id:id_voyage,
+        gare_depart:ville_depart,
+        gare_arrive:vill_dis,
+        date_voyage:date,
+        prix_ticket:price
+      },
+        function(data,status){
+            let orders = JSON.parse(data);
+            loadOrderData(orders);
+        })
 
   //console.log();
 }
@@ -174,3 +198,113 @@ function isGareExist(gare_entred,filename) {
   })
 }
 
+function removeReserved(id){
+  $.post("../include/handlers/ordersHandler.php",
+      {
+        deleteOrderByIndex:id
+      },
+      function (data,status){
+        alert('deleted successfuly')
+        loadOrderData(JSON.parse(data))
+
+      })
+}
+
+
+
+function loadOrderData(ordersList){
+  let output="";
+  let i =0 ;
+  //console.log(ordersList)
+  let total =0;
+  ordersList.forEach((order)=>{
+    total+=parseFloat(order['prix_ticket'])*order['quantity'];
+    console.log('order at 0 : '+order['quantity']);
+    console.log(ordersList)
+    output+=`
+                <div class='bg-light rounded-3 mb-1 w-100'>
+                <div class='d-flex justify-content-between  flex-grow-1 p-3 align-items-center'>
+                   <div style="background: url('../assets/img/reserved-bg.jpg');background-size:cover;background-position:center;width: 100px;height: 100px"></div>
+                    <div>
+                        <p>De :  ${order['gare_depart']}</p>
+                        <p>vers : ${order['gare_arrive']}</p>
+                    </div>
+                    <div>
+                    <h6 style='color:orange;font-weight: bold'>${order['quantity']} place(s)</h6>
+                    <h5 class='text-center'>${parseFloat(order['prix_ticket'])*order['quantity']} Dh</h5>
+                    </div>
+                    <div>
+                        <i class='bi bi-x-lg text-danger btn btn-rounded' role='button' onclick="removeReserved('${i}')"></i>
+                    </div>
+                </div>
+            </div>
+                `;
+  })
+  document.getElementById("lis_orders_div").innerHTML=output+`<div class='mt-auto p-2 w-100'>
+                      <button class='btn btn-light w-100' onclick='processCheckingOut()'>check out</button>
+                      <h6 class='text-light mt-1'> <i class='bi bi-check-circle-fill me-2'></i>Total à payer : <b>${total} DH</b></h6>
+                      <h6 class='text-light mt-1'> <i class='bi bi-check-circle-fill me-2'></i>Tout ticket de type FLEX sont changeable</h6>
+                      </div>`;
+}
+
+
+function processCheckingOut(){
+    //login first
+
+    $.post("../include/handlers/ordersHandler.php",{
+      processCheckingOut:true
+    },function (data,status){
+      //console.log(JSON.parse(data))
+      if(data==1){
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+
+        Toast.fire({
+          icon: 'success',
+          title: 'voyages réservé avec success :)'
+        })
+        loadOrderData([]);
+      }
+      //setTimeout(()=>getEmail(),3500)
+      //console.log(getEmail());
+
+    })
+}
+
+async function getEmail(){
+  const { value: email } = await Swal.fire({
+    title: 'Confirmez votre email afin de recevoir votre ticket par boite mail',
+    input: 'email',
+    inputLabel: 'Your email address',
+    inputPlaceholder: 'votre email personel',
+    confirmButtonText: 'verifier',
+    showCancelButton: true
+
+  }).then((result) => {
+    if (!result.isConfirmed) {
+      return false;
+    }
+  })
+  $.get("../include/handlers/ordersHandler.php",{verifyCustomerEmail:email},
+      function (data,status){
+        if (data==1){
+          Swal.fire(
+              'Bien verifié !',
+              'You avez bien reçu votre ticket(s) par mail',
+              'success'
+          )
+        }else{
+          getEmail();
+        }
+      })
+  return true;
+}

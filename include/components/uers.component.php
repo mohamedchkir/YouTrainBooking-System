@@ -1,4 +1,6 @@
 <?php
+// echo getcwd();
+// die;
 include_once('../class/UserController.class.php');
 $test = new UserController();
 $res = $test->getUser();

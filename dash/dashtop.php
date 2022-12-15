@@ -1,6 +1,5 @@
 <?php
 include_once "../class/TrainController.class.php";
-session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,34 +47,34 @@ session_start();
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="../dash/index.php?page=gare" style="color: white;">
+                <a class="navv nav-link" href="../dash/index.php?page=gare" style="color: white;">
                     <i class="px-3 fa-solid fa-house"></i>
                     <span>Gares</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a style="color: white;" class="nav-link" href="../dash/index.php?page=train">
+                <a style="color: white;" class="navv nav-link" href="../dash/index.php?page=train">
                     <i class="px-3 fa-solid fa-train"></i>
                     <span>Train</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="../dash/index.php?page=voyage" style="color: white;">
+                <a class="navv nav-link" href="../dash/index.php?page=voyage" style="color: white;">
                     <i class="px-3 fa-solid fa-route"></i>
                     <span style="color:inherit;">Voyages</span></a>
             </li>
 
             <!-- Nav Item - Spec -->
             <li class="nav-item">
-                <a class="nav-link" href="../dash/index.php?page=allUsers" style="color: white;">
+                <a class="navv nav-link" href="../dash/index.php?page=allUsers" style="color: white;">
                     <i class="px-3 fa-solid fa-people-group"></i>
                     <span>Gestion des roles</span></a>
             </li>
             <!-- Nav Item - Spec -->
             <li class="nav-item">
-                <a class="nav-link" href="../dash/index.php?page=satistique" style="color: white;">
+                <a class="navv nav-link" href="../dash/index.php?page=satistique" style="color: white;">
                     <i class="px-3 fas fa-chart-bar"></i>
                     <span>statistiques</span></a>
             </li>

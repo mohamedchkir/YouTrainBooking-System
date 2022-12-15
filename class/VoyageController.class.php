@@ -105,7 +105,42 @@ class VoyageController extends VoyageModel
     $this->getAvailableVoyageInDb($gare_depart,$date_depart);
  }
 
+ public function gatSearchVoyage($gare_depart,$date_depart){
 
+    // $gare_depart = $_POST["id_ville_gare_depart"];
+    // $date_depart = $_POST["date_depart"];
+    
+    $voyage = new VoyageController();
+    $res = $voyage->getAllVoyage();
+    //day == heurs
+    $day_date = date("H:i:s",strtotime($date_depart));
+    //week == day
+    $week_date = date("D",strtotime($date_depart));
+    //week == heurs
+    $week_heurs = date("H:i:s",strtotime($date_depart));
+    //week
+    $week = date("y-m-d",strtotime($date_depart));
+    //array resultat
+    $data = array(); 
+
+    foreach ($res as $r) {
+        
+        if($r['gare_depart'] == $gare_depart && $day_date < date("H:i:s",strtotime($r['date'])) && $r['frequence'] == 1){
+            array_push($data,$r);
+        }elseif($r['gare_depart'] == $gare_depart && $week_date == date("D",strtotime($r['date'])) && $r['frequence'] == 2 && $week_heurs < date("H:i:s",strtotime($r['date'])) && $week >= date("y-m-d",strtotime($r['date']))  ){
+            array_push($data,$r);
+        }
+    }
+    return $data; 
+    }
+
+
+    public function  checkCapacite($id_voyage,$dateReservation){
+        return $this->capacite($id_voyage,$dateReservation);
+    }
 
 }
+
+
+
 

@@ -35,7 +35,7 @@ include_once "../autoloader.php";
                <div class="col-lg-6 text-start" style="position: relative;">
                    <label for="" class="form-label ms-2" style="color:#80808078;">La gare</label>
                    <input class="form-control " type="text" name="id_gare" id="id_gare" placeholder="exemple : Gare tanger ville.." autocomplete="false" required >
-                   <div class="rounded-bottom" style="background-color:aliceblue;position:absolute; width: 94%;max-height:31vh;overflow:auto;" id="cities_rst2"></div>
+                   <div class="rounded-bottom" style="background-color:aliceblue;position:absolute;z-index: 1000; width: 94%;max-height:31vh;overflow:auto;" id="cities_rst2"></div>
                    <input type="hidden" value="" name="id_gare" id="id_holder">
                </div>
                <div class="col-lg-6 text-start">
@@ -108,10 +108,10 @@ include_once "../autoloader.php";
 </body>
 
 
-<!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script> -->
-<!-- <script>
+<script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+<script>
     $(document).ready(function () {
         $('#example').DataTable();
     });
@@ -135,4 +135,4 @@ include_once "../autoloader.php";
     })
 </script>
 <script src="../../assets/js/main2.js"></script>
-</html> -->
+</html>

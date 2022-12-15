@@ -40,4 +40,24 @@ class UserModel extends DB
     }
 
 
+
+
+
+
+
+
+
+
+    public function bookTrip($id_user,$orderList){
+        $date_now = (new DateTime())->format("Y-m-d");
+        foreach ($orderList as $order){
+            $sql = "INSERT INTO reservations values (NULL,'$date_now',".$order['quantity'].",".$order['id'].",$id_user)";
+            $statm = $this->Connect()->prepare($sql);
+            if(!$statm->execute()){
+                var_dump($statm);
+                return false;
+            }
+        }
+        return true;
+    }
 }

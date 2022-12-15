@@ -1,19 +1,7 @@
 <!doctype html>
 <html lang="en">
 <?php
-include_once "./class/TrainController.class.php";
-include_once "./class/Voyage.class.php";
-$train= new TrainController();
-$v = new Voyage(1,5,1,3,32.33,1,(new DateTime())->add(new DateInterval("P2D")),"@eisjcnk");
-$v->setFrequence(2);
-$interval = new DateInterval('PT21H');
-// echo $train->checkTrainAvailability((new DateTime())->add(new DateInterval("PT0H")),32,(new DateTime())->add(new DateInterval("PT1H")),2);
-
-// exit();
-
-// echo $train->checkTrainAvailability((new DateTime())->add(new DateInterval("PT0H")),10,(new DateTime())->add(new DateInterval("PT5H")),2);
-
-// exit();
+session_start();
 
 ?>
 <head>
@@ -42,35 +30,39 @@ $interval = new DateInterval('PT21H');
                     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                         <ul class="navbar-nav mb-2 mb-lg-0">
                             <?php
-/*                            if(isset($_SESSION["user"])){
+                            if(isset($_SESSION["user"])){
                                 echo "<li class='nav-item'>
-                                   <a class='nav-link active py-0 px-3' aria-current='page' href='#'>
+                                   <a class='nav-link active py-0 px-3' aria-current='page' href='booking/profile.php'>
                                     <i class='bi bi-person me-2'></i>
                                        <i>".$_SESSION['user']['prenom']." ".$_SESSION['user']['nom']."</i>
                                    </a>
                                    </li>
                                    <li class='vr' style='background-color: var(--dark-blue);width: 1px ;'></li>
                                    <li class='nav-item'>
-                                       <a class='nav-link active py-0 px-3' aria-current='page' href='#'>
+                                       <a class='nav-link active py-0 px-3' aria-current='page' href='booking/index.php'>
                                            <i class='bi bi-bag me-2'></i>
                                            <i>My Orders</i>
         
                                        </a>
                                    </li>";
-                            }
-                            
-                            */?>
-                            <li class="nav-item">
-                                <a class="nav-link active py-0 px-3 " id="login" aria-current="page" href="login.php" style="font-weight: 500;">
+                            }else{
+                                echo "
+                                <li class='nav-item'>
+                                <a class='nav-link active py-0 px-3 ' id='login' aria-current='page' href='login.php' style='font-weight: 500;'>
                                     <span>Log in</span>
                                 </a>
-                            </li>
-                            <li class="vr" style="background-color: var(--dark-blue);width: 1px ;"></li>
-                            <li class="nav-item">
-                                <a class="nav-link active py-0 px-3" aria-current="page" href="signup.php" id="sign_up">
-                                    <span style="background-color: var(--aqua);color: white;padding: 7px 25px;border-radius: 25px;font-weight: 500;">Sign up</span>
-                                </a>
-                            </li>
+                                </li>
+                                <li class='vr' style='background-color: var(--dark-blue);width: 1px ;'></li>
+                                <li class='nav-item'>
+                                    <a class='nav-link active py-0 px-3' aria-current='page' href='signup.php' id='sign_up'>
+                                        <span style='background-color: var(--aqua);color: white;padding: 7px 25px;border-radius: 25px;font-weight: 500;'>Sign up</span>
+                                    </a>
+                                </li>
+                                ";
+                            }
+                            
+                            ?>
+
                         </ul>
                     </div>
                 </div>
