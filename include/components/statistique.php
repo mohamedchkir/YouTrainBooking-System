@@ -176,7 +176,7 @@ foreach ($voyage->getVoyage() as $sum) {
 
 
     </div>
-    </body>
+    </head>
 
 
     </html>
