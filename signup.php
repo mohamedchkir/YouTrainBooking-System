@@ -62,13 +62,15 @@
           color: white;
 
         }
-        .btn:focus-visible {
-            color: #000;
-            background-color: #ffffff;
-            border-color: #ffffff(--bs-btn-hover-border-color);
-            outline: 3;
-            box-shadow: #ffffff(--bs-btn-focus-box-shadow);
+        .btn-outline-dark {
+         --bs-btn-color: #ffffff;
+        --bs-btn-border-color: #ffffff;
+        --bs-btn-hover-bg: #ffffff;        
         }
+        .hvr:hover{
+          color: black;
+        }
+       
   </style>
 
 
@@ -160,7 +162,7 @@
 
 
                           <!-- Submit button -->
-                          <button type="submit" name="signup" class="btn btn-outline-dark  btn-block w-100">
+                          <button type="submit" name="signup" class="btn btn-outline-dark hvr btn-block w-100">
                             Sign up
                           </button>
                   </form>
