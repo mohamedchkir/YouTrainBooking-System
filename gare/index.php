@@ -12,6 +12,7 @@ $reslt = $gare->getAllGare();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YouTrain™</title> -->
+
     <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css"> -->
     <!--Boostrap Icons CDN -->
@@ -23,30 +24,33 @@ $reslt = $gare->getAllGare();
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
 
 
+
 <!-- 
 </head>
 
 <body> -->
 
-    <form action="../include/handlers/garehandler.php" method="POST">
-        <div class="container mt-5">
+<form action="../include/handlers/garehandler.php" method="POST">
+    <div class="container mt-5">
 
-            <div class="row mb-5">
-                <div class="col-lg-6 text-start" style="position: relative;">
-                    <label for="" class="form-label ms-2">NOM DU GARE</label>
-                    <input class="form-control" type="text" name="gare_name" id="name" placeholder="Entrer le nom du Gare" autocomplete="off">
-                </div>
-                <div class="col-lg-6 text-start" style="position: relative;">
-                    <label for="" class="form-label ms-2">VILLE</label>
-                    <input class="form-control " type="text" name="gare_ville" id="ville" autocomplete="off" placeholder="Entrer le nom du Ville">
-                    <div id="gareres" style="max-height:33vh ;overflow:auto;position:absolute;background-color:white;width:100%;z-index:100;"></div>
-                    <input type="hidden" name="ville" value="">
-                </div>
-
-                <div class="mt-2 d-flex justify-content-center">
-                    <button type="submit" class="btn text-light px-5" style="background-color:var(--aqua);border-radius: 20px;" name="saveGare">Add Gare</button>
-                </div>
+        <div class="row mb-5">
+            <div class="col-lg-6 text-start" style="position: relative;">
+                <label for="" class="form-label ms-2">NOM DU GARE</label>
+                <input class="form-control" type="text" name="gare_name" id="name" placeholder="Entrer le nom du Gare" autocomplete="off">
             </div>
+            <div class="col-lg-6 text-start" style="position: relative;">
+                <label for="" class="form-label ms-2">VILLE</label>
+                <input class="form-control " type="text" name="gare_ville" id="ville" autocomplete="off" placeholder="Entrer le nom du Ville">
+                <div id="gareres" style="max-height:33vh ;overflow:auto;position:absolute;background-color:white;width:100%;z-index:100;"></div>
+                <input type="hidden" name="ville" value="">
+            </div>
+
+            <div class="mt-2 d-flex justify-content-center">
+                <button type="submit" class="btn text-light px-5" style="background-color:var(--aqua);border-radius: 20px;" name="saveGare">Add Gare</button>
+            </div>
+       </div>
+  </div>
+
     </form>
 
     <?php if (isset($_SESSION['message'])) :  ?>
@@ -97,44 +101,44 @@ $reslt = $gare->getAllGare();
                             </form>
                             </td>
                         </tr>';
-                }
-                ?>
-            </tbody>
-        </table>
-        </div>
-    </section>
-    <!-- Modal -->
-    <div class="modal fade" id="AddGare" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel"> <strong>Edit Gare</strong> </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="../include/handlers/garehandler.php" method="POST">
-                        <input type="hidden" id="id_gare" name="id_gare" value="">
-                        <div class="form-group">
-                            <div class="col-lg-6 text-start" style="position: relative;">
-                                <label for="" class="form-label ms-2">NOM DU GARE</label>
-                                <input class="form-control" type="text" name="gare_name" id="gare_name" placeholder="Entrer le nom du Gare" autocomplete="off">
-                            </div>
-                            <div class="col-lg-6 text-start mt-2" style="position: relative;">
-                                <label for="" class="form-label ms-2">VILLE</label>
-                                <input class="form-control " type="text" name="gareville" id="gare_ville" autocomplete="on" placeholder="Entrer le nom du Ville">
-                                <div id="md_gareres" style="max-height:33vh ;overflow:auto;position:absolute;background-color:white;width:100%;z-index:100;"></div>
-                                <input type="hidden" name="gare_ville" id="id_ville" value="">
-                            </div>
+            }
+            ?>
+        </tbody>
+    </table>
+    </div>
+</section>
+<!-- Modal -->
+<div class="modal fade" id="AddGare" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel"> <strong>Edit Gare</strong> </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="../include/handlers/garehandler.php" method="POST">
+                    <input type="hidden" id="id_gare" name="id_gare" value="">
+                    <div class="form-group">
+                        <div class="col-lg-6 text-start" style="position: relative;">
+                            <label for="" class="form-label ms-2">NOM DU GARE</label>
+                            <input class="form-control" type="text" name="gare_name" id="gare_name" placeholder="Entrer le nom du Gare" autocomplete="off">
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary" name="editGare">Edit</button>
+                        <div class="col-lg-6 text-start mt-2" style="position: relative;">
+                            <label for="" class="form-label ms-2">VILLE</label>
+                            <input class="form-control " type="text" name="gareville" id="gare_ville" autocomplete="on" placeholder="Entrer le nom du Ville">
+                            <div id="md_gareres" style="max-height:33vh ;overflow:auto;position:absolute;background-color:white;width:100%;z-index:100;"></div>
+                            <input type="hidden" name="gare_ville" id="id_ville" value="">
                         </div>
-                    </form>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" name="editGare">Edit</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 
 
 <!-- </body>

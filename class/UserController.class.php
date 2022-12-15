@@ -8,20 +8,34 @@ include_once('LoginContr.class.php');
 class UserController extends UserModel
 {
   
-   
+
+   private $first_name;
+   private $last_name;
+   private $email;
+   private $password;
+   private $tel;
+   private $bank;
+   private $new_password;
+
+
+   public function __construct($first_name="default",$last_name="default",$email="default",$password="default",$tel="default",$bank="default",$new_password="default")
+   {
+       $this->first_name = $first_name;
+       $this->last_name = $last_name;
+       $this->email = $email;
+       $this->password = $password;
+       $this->tel = $tel;
+       $this->bank = $bank;
+       $this->new_password = $new_password;
+   }
+   public  function getUserInfoe()
+   {
+   return array($this->last_name,$this->first_name,$this->email,$this->password);
+   } 
 
 
 
-//    public function getUserInfo($id){
-//       $query = "SELECT * FROM `users` WHERE id=?;";
-//       $statement=$this->connect()->prepare($query);
-//       if(!$statement->execute(array($id))){
-//           $statement=null;
-//           exit();
-//       }
-//       $arr = $statement->fetchAll();
-//       return $arr;
-//   }
+
 
  public function getUser(){
     
@@ -44,9 +58,9 @@ class UserController extends UserModel
         
  }
 
- public function updateInfo($first_name, $last_name, $tel, $bank, $email, $id)
+ public function updateInfo($first_name, $last_name, $tel, $bank, $email,$new_password,$id)
  {
-   return $this->updateUserInfo($first_name, $last_name, $tel, $bank, $email,$id);
+   return $this->updateUserInfo($first_name, $last_name, $tel, $bank, $email,$new_password,$id);
  }
 
 
@@ -55,39 +69,23 @@ class UserController extends UserModel
 
 
 
-// public function profilSubmit(User $user){
-//    if($this->emptyInputProfil()==false){
-//        header("location:../../dash/index.php?page=profil?msg=fill all fields");
-//        exit();
-//    }elseif ($this->PrEmail()==false){
-//        header("location:../../dash/index.php?page=profil?msg=Enter a valid email ");
-//        exit();
-//    }elseif ($this->passwordMatch()==false){
-//        header("location:../../signup.php?msg=Wrong Password");
-//        exit();
-//    }elseif ($this->emailTaken() == false){
-//        header("location:../../signup.php?msg=Email is already taken");
-//        exit();
-//    }
-//        $this->updateUserInfo($this->first_name,$this->last_name,$this->tel,$this->bank,$this->email,$this->password);
-// }
+public function profilSubmit(){
+   if ($this->PrEmail()==false){
+       header("location:../../dash/index.php?page=profil?msg=Enter a valid email ");
+       exit();
+   }else if ($this->passwordMatch()==false){
+       header("location:../../dash/index.php?page=profil?msg=Wrong Password");
+       exit();
+   }else{
+      $this->updateUserInfo($this->first_name,$this->last_name,$this->tel,$this->bank,$this->email,$this->new_password,$this->id);
 
-
-
-
- public function 
- emptyInputProfil($first_name, $last_name, $tel, $bank, $email, $password){
-   if(empty($this->first_name) || empty($this->last_name) || empty($this->$tel) || empty($this->password) || empty($this->$bank) || empty($this->new_password)){
-       $result = false;
    }
-   else {
-       $result = true;
-   }
-   return $result;
 }
+
+
 public function PrEmail(){
    if(!filter_var($this->email, FILTER_VALIDATE_EMAIL)){
-       $result = false;
+      $result = false;
    }
    else{
        $result = true ;
@@ -95,25 +93,16 @@ public function PrEmail(){
    return $result;
 }
 
-// public function passwordMatch(){
-//    if($this->password !== $user["password"]){
-//        $result = false ;
-//    }
-//    else {
-//        $result = true;
-//    }
-//    return $result;
-// }
-
-// public function emailTaken(){
-//    if($this->email == $user["email"]){
-//        $result = false ;
-//    }
-//    else {
-//        $result = true;
-//    }
-//    return $result;
-// }
+public function passwordMatch(){
+   if(password_verify($this->password,$_SESSION['user']["password"]))
+   {
+       $result = false ;
+   }
+   else {
+       $result = true;
+   }
+   return $result;
+}
 
 
  

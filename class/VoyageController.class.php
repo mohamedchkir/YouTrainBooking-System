@@ -111,7 +111,7 @@ class VoyageController extends VoyageModel
     // $date_depart = $_POST["date_depart"];
     
     $voyage = new VoyageController();
-    $res = $voyage->getVoyage();
+    $res = $voyage->getAllVoyage();
     //day == heurs
     $day_date = date("H:i:s",strtotime($date_depart));
     //week == day
@@ -134,5 +134,13 @@ class VoyageController extends VoyageModel
     return $data; 
     }
 
+
+    public function  checkCapacite($id_voyage,$dateReservation){
+        return $this->capacite($id_voyage,$dateReservation);
+    }
+
 }
+
+
+
 

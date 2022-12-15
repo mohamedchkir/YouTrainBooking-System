@@ -1,11 +1,12 @@
 <?php
 
 include_once("../autoloader.php");
-
+include_once('../../class/UserController.class.php');
 
 if(isset($_POST['accept']))      accept();
 if(isset($_POST['deny']))        deny();
 if(isset($_POST['savechanges'])) update();
+if(isset($_POST['updateImgUrl'])) updateImg();
 
 if(isset($_POST["signup"]))
 {
@@ -54,7 +55,6 @@ if(isset($_POST["login"]))
 // profil--------------------------------
 // profil--------------------------------
 function update(){
-   $userpr = new UserController();
    $first_name = $_POST['first_name'];
    $last_name = $_POST['last_name'];
    $tel = $_POST['tel'];
@@ -63,10 +63,15 @@ function update(){
    $password = $_POST['password'];
    $new_password = $_POST["newPassword"]; 
    $id = $_POST['id'];
-   // var_dump($id);
-   // die;
-   $userpr->updateInfo($first_name,$last_name,$tel,$bank,$email,$id);
-   header("location:../../dashboard/index.php?page=profil");
+
+   // $hashedPwd = password_hash($new_password,PASSWORD_DEFAULT);
+   // $hashedPwd2 = password_hash($password,PASSWORD_DEFAULT);
+
+   $userpr = new UserController($first_name,$last_name,$email,$password,$tel,$bank);
+  
+   $userpr->profilSubmit();
+   $userpr->updateInfo($first_name,$last_name,$tel,$bank,$email,$new_password,$id);
+   header("location:../../dash/index.php?page=profil");
 }
 // profil--------------------------------
 // profil--------------------------------
@@ -88,4 +93,10 @@ function deny(){
    $user->updateUser($role,$id);
    echo "<script>window.location.replace('../components/uers.component.php')</script>";
    
+}
+
+
+
+function updateImg(){
+   echo $_POST['updateImgUrl'];
 }

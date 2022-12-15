@@ -75,6 +75,7 @@ function getAvailableTrips()
     $res = $voyage->gatSearchVoyage($gare_depart,$date_depart);
     $_SESSION['resultat'] = $res;
 
+
     // //day == heurs
     // $day_date = date("H:i:s",strtotime($date_depart));
     // //week == day
