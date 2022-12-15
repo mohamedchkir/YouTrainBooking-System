@@ -107,5 +107,9 @@ function deny(){
 
 
 function updateImg(){
-   echo $_POST['updateImgUrl'];
+   $imgURL =  $_POST['updateImgUrl'];
+   $id_user = $_SESSION['user']['id'];
+   $UserModel = new UserModel();
+   if($UserModel->updateUserImg($imgURL,$id_user)) $_SESSION['user']['image']=$imgURL;
+   else echo "failed";
 }

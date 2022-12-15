@@ -121,6 +121,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
       </div>
     <?php endif ?>
+    <div class="table-responsive container">
     <table id="example" class="table table-striped" style="width:100%">
       <thead>
         <tr>
@@ -165,6 +166,7 @@
         ?>
       </tbody>
     </table>
+    </div>
 </section>
 <!-- Modal -->
 <div class="modal fade" id="AddVoyage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

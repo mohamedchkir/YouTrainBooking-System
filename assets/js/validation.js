@@ -62,7 +62,6 @@
             //here to write a code :
             document.getElementById("img_holder").style.backgroundImage="url('"+e.target.result+"')";
             $.post("../include/handlers/UserHandler.php",{updateImgUrl:e.target.result},function(data,satatus){console.log(data)})
-            console.log(e.target.result);
           }
           reader.readAsDataURL(file)
         }
