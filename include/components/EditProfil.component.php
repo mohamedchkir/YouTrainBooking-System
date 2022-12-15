@@ -2,7 +2,10 @@
 <html lang="en">
 <?php
 ?>
-
+<!-- ================== BEGIN core-css ================== -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <!-- ================== END core-css ================== -->
 <div class="w-100">
     <div class=" p-5 mt-5">
       
@@ -53,6 +56,16 @@
                             <label class="form-label" for="">Old Password</label>
                             <input type="password"  name="password" class="form-control"  value="" required/>
                         </div>
+                        <?php
+                            if(isset($_GET["msg"])){
+                                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                                ".$_GET["msg"]."
+                                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                                </div>";
+                            
+                            }
+                        
+                        ?>
                     </div>
                     
 
@@ -67,7 +80,7 @@
                 
 
                 <div class="d-flex justify-content-end">
-                     <div class="card-footer bg-transparent mt-5">
+                     <div class="card-footer bg-transparent mt-5 me-3">
                         <button type="submit" class="btn btn-danger" name="deleteaccount">Delete account</button>
                     </div>
                     <div class="card-footer bg-transparent mt-5">

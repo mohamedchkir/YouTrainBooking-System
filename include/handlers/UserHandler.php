@@ -7,6 +7,8 @@ if(isset($_POST['accept']))      accept();
 if(isset($_POST['deny']))        deny();
 if(isset($_POST['savechanges'])) update();
 if(isset($_POST['updateImgUrl'])) updateImg();
+if(isset($_POST['deleteaccount'])) delete();
+
 
 if(isset($_POST["signup"]))
 {
@@ -76,6 +78,13 @@ function update(){
 // profil--------------------------------
 // profil--------------------------------
 
+function delete()
+ {
+        $id = $_POST['id'];
+        $user = new UserController($id);
+        $user->deleteUser(intval($id));
+        header("location:../../login.php?msg2=Account deleted succesfully");
+ }
 
 function accept(){
    $id = $_POST['id'];
