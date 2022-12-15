@@ -4,6 +4,7 @@ session_start();
 if (isset($_POST['addTripToCart'])) addTripToCart();
 if (isset($_POST['deleteOrderByIndex'])) deleteOrderFromCart();
 if (isset($_POST['processCheckingOut'])) processCheckingOut();
+if (isset($_GET['verifyCustomerEmail'])) verifyCustomerEmail();
 
 
 
@@ -50,6 +51,11 @@ function processCheckingOut(){
     $orders=$_SESSION['order-list'];
     //echo json_encode($orders);
     $userModel = new UserModel();
-    echo $userModel->bookTrip($id_user,$orders);
-
+    $done= $userModel->bookTrip($id_user,$orders);
+    echo $done ;
+    if($done==true) unset($_SESSION['order-list']);
+}
+function verifyCustomerEmail(){
+    //echo $_GET['verifyCustomerEmail'];
+    echo $_GET['verifyCustomerEmail']==$_SESSION['user']['email'];
 }

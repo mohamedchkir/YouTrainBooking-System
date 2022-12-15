@@ -272,7 +272,9 @@ function processCheckingOut(){
           icon: 'success',
           title: 'voyages réservé avec success :)'
         })
+        loadOrderData([]);
       }
+      //setTimeout(()=>getEmail(),3500)
       //console.log(getEmail());
 
     })
@@ -280,10 +282,29 @@ function processCheckingOut(){
 
 async function getEmail(){
   const { value: email } = await Swal.fire({
-    title: 'Input email address',
+    title: 'Confirmez votre email afin de recevoir votre ticket par boite mail',
     input: 'email',
     inputLabel: 'Your email address',
-    inputPlaceholder: 'Confirmez votre email afin de recevoir votre ticket'
+    inputPlaceholder: 'votre email personel',
+    confirmButtonText: 'verifier',
+    showCancelButton: true
+
+  }).then((result) => {
+    if (!result.isConfirmed) {
+      return false;
+    }
   })
-  return eamil;
+  $.get("../include/handlers/ordersHandler.php",{verifyCustomerEmail:email},
+      function (data,status){
+        if (data==1){
+          Swal.fire(
+              'Bien verifié !',
+              'You avez bien reçu votre ticket(s) par mail',
+              'success'
+          )
+        }else{
+          getEmail();
+        }
+      })
+  return true;
 }

@@ -97,7 +97,7 @@ function getAvailableTrips()
     //     }
     // }
 
-    $date_depart = $_POST["id_ville_gare_depart"];
+    $date_depart = $_POST["date_depart"];
     $gare_depart = $_POST["gare_depart"];
     $gare_distination = $_POST["gare_distination"];
     if(isset($_POST["date_retour"])){
@@ -118,6 +118,8 @@ function getAvailableTrips()
     echo $gare_depart."    ".$gare_distination."      ".$date_depart;
     echo "</pre>";
     $date = strtotime($date_depart);
+    //var_dump($date_depart);
+    //die();
     $_SESSION['search-info']= array("gare_depart"=>$gare_depart,"gare_distination"=>$gare_distination,"date_depart"=>$date_depart,"date_formed"=>date('d M Y h:i', $date),"date_retour"=>$date_retour_formed);
     if(!isset($_SESSION['user'])) echo "<script>window.location.replace('../../login')</script>";
     else echo "<script>window.location.replace('../../booking')</script>";
