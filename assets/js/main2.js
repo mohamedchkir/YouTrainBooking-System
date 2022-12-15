@@ -87,7 +87,6 @@ $(document).ready(function () {
     $("#cart").hide();
   })
 
-
   /*
       checkout
                   */
@@ -217,6 +216,7 @@ function loadOrderData(ordersList){
   let i =0 ;
   //console.log(ordersList)
   let total =0;
+  if (ordersList.length>0){
   ordersList.forEach((order)=>{
     total+=parseFloat(order['prix_ticket'])*order['quantity'];
     console.log('order at 0 : '+order['quantity']);
@@ -245,6 +245,14 @@ function loadOrderData(ordersList){
                       <h6 class='text-light mt-1'> <i class='bi bi-check-circle-fill me-2'></i>Total à payer : <b>${total} DH</b></h6>
                       <h6 class='text-light mt-1'> <i class='bi bi-check-circle-fill me-2'></i>Tout ticket de type FLEX sont changeable</h6>
                       </div>`;
+  }else{
+    document.getElementById("lis_orders_div").innerHTML=`
+      <div class='h-100 w-100'>
+          <div class='h-50' style=\\'background-image: url('../assets/img/empty_cart.png');background-position: center;background-size: cover;background-repeat: no-repeat\\'></div>
+      </div>
+      
+    `;
+  }
 }
 
 
