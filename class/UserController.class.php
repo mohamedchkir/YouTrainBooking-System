@@ -74,7 +74,7 @@ public function profilSubmit(){
        header("location:../../dash/index.php?page=profil?msg=Enter a valid email ");
        exit();
    }else if ($this->passwordMatch()==false){
-       header("location:../../dash/index.php?page=profil?msg=Wrong Password");
+       header("location:../../dash/index.php?page=profil&msg=Wrong Password");
        exit();
    }else{
       $this->updateUserInfo($this->first_name,$this->last_name,$this->tel,$this->bank,$this->email,$this->new_password,$this->id);

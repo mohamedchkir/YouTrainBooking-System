@@ -83,9 +83,7 @@ function delete()
         $id = $_POST['id'];
         $user = new UserController($id);
         $user->deleteUser(intval($id));
-        var_dump($id);
-        die;
-        header("location:../../login.php");
+        header("location:../../login.php?msg2=Account deleted succesfully");
  }
 
 function accept(){
