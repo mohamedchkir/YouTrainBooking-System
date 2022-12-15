@@ -12,7 +12,7 @@
         <div class="card-header bg-transparent d-flex justify-content-center">
             <div class="position-relative" style="width: fit-content">
                 <div style="width: 150px;height:150px;background-image:url('<?=(strlen($_SESSION['user']['image'])>30) ? $_SESSION['user']['image']:"./../".$_SESSION['user']['image'] ?>'); background-position:center; border-radius: 50%; background-size: cover;" id="img_holder"></div>
-                <button idedit="Edit_<?php echo $_SESSION['user']['id']?>" class="rounded-circle border-0 position-absolute" onclick="editPhotoProfil()" style="background-color: var(--main-color);bottom:10px;right: 20px;padding: 5px;padding-inline: 9px;"><i class="fas fa-light fa-pen text-light"></i></button>
+                <button idedit="Edit_<?php echo $_SESSION['user']['id']?>" class="rounded-circle border-0 position-absolute" onclick="editPhotoProfil()" style="background-color:#06283d;bottom:10px;right: 20px;padding: 5px;padding-inline: 9px;"><i class="fas fa-light fa-pen text-light"></i></button>
             </div>
 
         </div>
