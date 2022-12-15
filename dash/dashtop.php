@@ -1,6 +1,5 @@
 <?php
 include_once "../class/TrainController.class.php";
-session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
