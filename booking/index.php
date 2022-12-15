@@ -86,7 +86,7 @@ if(!isset($_SESSION['search-info'])){
                 </a>
                 <!-- Dropdown -->
                 <div class='dropdown-menu dropdown-menu-right shadow animated--grow-in' aria-labelledby='userDropdown'>
-                    <a class='dropdown-item d-flex align-items-center' href='#'>
+                    <a class='dropdown-item d-flex align-items-center' href='index.php'>
                         <i class='bi bi-bookmarks me-2'></i>
                         <i> Mes ancien réservations </i>
                     </a>
@@ -95,7 +95,7 @@ if(!isset($_SESSION['search-info'])){
                         <i>Profil</i>
                     </a>
                     <div class='dropdown-divider'></div>
-                    <a class='dropdown-item d-flex' href='#'>
+                    <a class='dropdown-item d-flex' href='../include/logout.inc.php'>
                         <i class='bi bi-box-arrow-left me-2'></i>
                         <i>Logout</i>
                     </a>
