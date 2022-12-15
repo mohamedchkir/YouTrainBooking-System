@@ -35,7 +35,7 @@ if(!isset($_SESSION['search-info'])){
  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
  <!-- Bootstrap CSS -->
  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
- <link rel="stylesheet" href="../assets/css/style2.css">
+ <link rel="stylesheet" href="../assets/css/style2.css"    >
  <style>
      div#cart {
          position: absolute;
@@ -79,13 +79,13 @@ if(!isset($_SESSION['search-info'])){
         <?php
         if(isset($_SESSION["user"])){
             echo "
-            <li class='nav-item dropdown no-arrow mb-3 me-4'>
+            <li class='nav-item dropdown no-arrow mb-3 '>
                 <a class='nav-link dropdown-toggle nav-link active py-0 px-3' href='#' id='userDropdown' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
                 <i class='bi bi-person me-2 fs-3'></i>
                 <i>".$_SESSION['user']['prenom']." ".$_SESSION['user']['nom']."</i>
                 </a>
                 <!-- Dropdown -->
-                <div class='dropdown-menu dropdown-menu-right shadow animated--grow-in' aria-labelledby='userDropdown'>
+                <div class='dropdown-menu dropdown-menu-end shadow animated--grow-in' aria-labelledby='userDropdown'>
                     <a class='dropdown-item d-flex align-items-center' href='index.php'>
                         <i class='bi bi-bookmarks me-2'></i>
                         <i> Mes ancien réservations </i>
