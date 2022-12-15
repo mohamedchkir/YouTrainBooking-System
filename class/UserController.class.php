@@ -53,9 +53,9 @@ class UserController extends UserModel
     
      // do some verification
  }
- public function supprimerUser($id)
+ public function deleteUser($id)
  {
-        
+        return $this->deleteUserAcc($id);
  }
 
  public function updateInfo($first_name, $last_name, $tel, $bank, $email,$new_password,$id)
@@ -94,7 +94,7 @@ public function PrEmail(){
 }
 
 public function passwordMatch(){
-   if(password_verify($this->password,$_SESSION['user']["password"]))
+   if($this->password!=$_SESSION['user']["password"])
    {
        $result = false ;
    }

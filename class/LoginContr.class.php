@@ -42,12 +42,23 @@ class LoginContr extends LoginModel {
             header("location:../../login.php?msg=Your email is not part of our records");
         }elseif($this->password != $userinfo["password"]){
                 header("location:../../login.php?msg=Wrogn password");
+        }elseif($this->checkRole($userinfo)== true){
+            $_SESSION["user"] = $userinfo;
+            header("location:../../booking");
         }else{
-                $_SESSION["user"] = $userinfo;
-                header("location:../../index.php");
-                
-            }
+            $_SESSION["user"] = $userinfo;
+            header("location:../../dash/");
         }
+    }
+
+    private function checkRole($userinfo){
+            if($userinfo['role']==0){
+               $result = true;
+            }else{
+                $result = false;
+            }
+            return $result;
+    }
         
 }
 
