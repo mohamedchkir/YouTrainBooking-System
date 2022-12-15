@@ -40,7 +40,7 @@ $(document).ready(function () {
   handleSuggestion({ inputFiled: "#gare_depart_reseach", resltOnNode: "#cities_rst1", treattedIn: "../include/handlers/voyagehandler.php",whatToGet:"gares" });
   handleSuggestion({ inputFiled: "#gare_distination_reseach", resltOnNode: "#cities_rst2", treattedIn: "../include/handlers/voyagehandler.php",whatToGet:"gares" });
   /*train*/
-  handleSuggestion({ inputFiled: "#id_gare", resltOnNode: "#cities_rst2", treattedIn: "../handlers/voyagehandler.php",whatToGet:"gares" });
+  handleSuggestion({ inputFiled: "#id_gare", resltOnNode: "#cities_rst2", treattedIn: "../include/handlers/voyagehandler.php",whatToGet:"gares" });
   // gare
   handleSuggestion({ inputFiled: "#ville", resltOnNode: "#gareres", treattedIn: "../include/handlers/voyagehandler.php",whatToGet:"villes" });
   handleSuggestion({ inputFiled: "#gare_ville", resltOnNode: "#md_gareres", treattedIn: "../include/handlers/voyagehandler.php",whatToGet:"villes" });
@@ -272,7 +272,9 @@ function processCheckingOut(){
           icon: 'success',
           title: 'voyages réservé avec success :)'
         })
+        loadOrderData([]);
       }
+      //setTimeout(()=>getEmail(),3500)
       //console.log(getEmail());
 
     })
@@ -280,10 +282,29 @@ function processCheckingOut(){
 
 async function getEmail(){
   const { value: email } = await Swal.fire({
-    title: 'Input email address',
+    title: 'Confirmez votre email afin de recevoir votre ticket par boite mail',
     input: 'email',
     inputLabel: 'Your email address',
-    inputPlaceholder: 'Confirmez votre email afin de recevoir votre ticket'
+    inputPlaceholder: 'votre email personel',
+    confirmButtonText: 'verifier',
+    showCancelButton: true
+
+  }).then((result) => {
+    if (!result.isConfirmed) {
+      return false;
+    }
   })
-  return eamil;
+  $.get("../include/handlers/ordersHandler.php",{verifyCustomerEmail:email},
+      function (data,status){
+        if (data==1){
+          Swal.fire(
+              'Bien verifié !',
+              'You avez bien reçu votre ticket(s) par mail',
+              'success'
+          )
+        }else{
+          getEmail();
+        }
+      })
+  return true;
 }

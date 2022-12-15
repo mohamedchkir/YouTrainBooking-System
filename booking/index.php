@@ -25,7 +25,7 @@ if(!isset($_SESSION['search-info'])){
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
             rel="stylesheet"
     />
-    <!-- sweet alert -->
+    <!-- sweet alert     -->
     <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
 
 
