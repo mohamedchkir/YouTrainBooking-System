@@ -17,9 +17,7 @@ function saveGare()
     $ville = $_POST['ville'];
     $gare = new GareController();
     $gare->ajouterGare(new gare($gareName, $ville));
-    die;
-    echo "<script>window.location.replace('../../dash/index.php?page=gare')
-        </script>";
+    echo "<script>window.location.replace('../../dash/index.php?page=gare')</script>";
 }
 
 //Edit gare function 

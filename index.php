@@ -32,14 +32,14 @@ session_start();
                             <?php
                             if(isset($_SESSION["user"])){
                                 echo "<li class='nav-item'>
-                                   <a class='nav-link active py-0 px-3' aria-current='page' href='#'>
+                                   <a class='nav-link active py-0 px-3' aria-current='page' href='booking/profile.php'>
                                     <i class='bi bi-person me-2'></i>
                                        <i>".$_SESSION['user']['prenom']." ".$_SESSION['user']['nom']."</i>
                                    </a>
                                    </li>
                                    <li class='vr' style='background-color: var(--dark-blue);width: 1px ;'></li>
                                    <li class='nav-item'>
-                                       <a class='nav-link active py-0 px-3' aria-current='page' href='#'>
+                                       <a class='nav-link active py-0 px-3' aria-current='page' href='booking/index.php'>
                                            <i class='bi bi-bag me-2'></i>
                                            <i>My Orders</i>
         
