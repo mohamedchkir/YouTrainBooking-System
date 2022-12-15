@@ -53,9 +53,9 @@ class UserController extends UserModel
     
      // do some verification
  }
- public function supprimerUser($id)
+ public function deleteUser($id)
  {
-        
+        return $this->deleteUserAcc($id);
  }
 
  public function updateInfo($first_name, $last_name, $tel, $bank, $email,$new_password,$id)
@@ -74,7 +74,7 @@ public function profilSubmit(){
        header("location:../../dash/index.php?page=profil?msg=Enter a valid email ");
        exit();
    }else if ($this->passwordMatch()==false){
-       header("location:../../dash/index.php?page=profil?msg=Wrong Password");
+       header("location:../../dash/index.php?page=profil&msg=Wrong Password");
        exit();
    }else{
       $this->updateUserInfo($this->first_name,$this->last_name,$this->tel,$this->bank,$this->email,$this->new_password,$this->id);
@@ -94,7 +94,7 @@ public function PrEmail(){
 }
 
 public function passwordMatch(){
-   if(password_verify($this->password,$_SESSION['user']["password"]))
+   if($this->password!=$_SESSION['user']["password"])
    {
        $result = false ;
    }

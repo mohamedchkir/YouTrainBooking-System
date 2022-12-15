@@ -32,6 +32,13 @@ class UserModel extends DB
         $statement->execute(array($first_name,$last_name,$tel,$bank,$email,$new_password,$id));
     }
 
+    protected function deleteUserAcc($id){
+        $query = "DELETE FROM `users` WHERE id=?";
+        $statement = $this->connect()->prepare($query);
+        $statement->execute(array($id));
+        
+    }
+
 
 
 
