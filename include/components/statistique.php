@@ -140,8 +140,8 @@ foreach ($voyage->getVoyage() as $sum) {
                 data: {
                     labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
                     datasets: [{
-                        label: '# of Votes',
-                        data: [12, 19, 3, 5, 2, 3],
+                        label: '',
+                        data: [30, 25, 20, 15, 10, 5],
                         borderWidth: 1
                     }]
                 },
@@ -158,8 +158,8 @@ foreach ($voyage->getVoyage() as $sum) {
                 data: {
                     labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
                     datasets: [{
-                        label: '# of Votes',
-                        data: [12, 19, 3, 5, 2, 3],
+                        label: '',
+                        data: [5, 10, 15, 20, 25, 30],
                         borderWidth: 1
                     }]
                 },
@@ -176,7 +176,7 @@ foreach ($voyage->getVoyage() as $sum) {
 
 
     </div>
-    </head>
+</head>
 
 
-    </html>
+</html>
