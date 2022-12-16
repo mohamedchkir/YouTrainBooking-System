@@ -25,7 +25,7 @@ if(!isset($_SESSION['search-info'])){
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
             rel="stylesheet"
     />
-    <!-- sweet alert     -->
+    <!-- sweet alert -->
     <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
 
 
@@ -82,13 +82,13 @@ if(!isset($_SESSION['search-info'])){
         <?php
         if(isset($_SESSION["user"])){
             echo "
-            <li class='nav-item dropdown no-arrow mb-3 me-4'>
+            <li class='nav-item dropdown no-arrow mb-3 '>
                 <a class='nav-link dropdown-toggle nav-link active py-0 px-3' href='#' id='userDropdown' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
                 <i class='bi bi-person me-2 fs-3'></i>
                 <i>".$_SESSION['user']['prenom']." ".$_SESSION['user']['nom']."</i>
                 </a>
                 <!-- Dropdown -->
-                <div class='dropdown-menu dropdown-menu-right shadow animated--grow-in' aria-labelledby='userDropdown'>
+                <div class='dropdown-menu dropdown-menu-end shadow animated--grow-in' aria-labelledby='userDropdown'>
                     <a class='dropdown-item d-flex align-items-center' href='index.php'>
                         <i class='bi bi-bookmarks me-2'></i>
                         <i> Mes ancien réservations </i>

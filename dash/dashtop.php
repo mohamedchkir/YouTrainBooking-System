@@ -145,7 +145,7 @@ include_once "../class/TrainController.class.php";
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-white small"><?= $_SESSION['user']['prenom'] . ' ' . $_SESSION['user']['nom'] ?></span>
-                                <div style="width:40px;height:40px;background-image:url('../assets/img/default.jpg');background-position:center;background-size:cover;border-radius:50%;"></div>
+                                <div style="width:40px;height:40px;background-image:url('<?= (strlen($_SESSION['user']['image']) > 30) ? $_SESSION['user']['image'] : "./../" . $_SESSION['user']['image'] ?>');background-position:center;background-size:cover;border-radius:50%;"></div>
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
