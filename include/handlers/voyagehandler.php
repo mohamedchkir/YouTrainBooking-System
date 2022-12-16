@@ -112,12 +112,6 @@ function getAvailableTrips()
 
 
     $available = $voyageCtr->getAvailableTrains($gare_depart,$gare_distination,$date_depart);
-    echo "<pre>";
-    print_r($available);
-    echo "</pre>";
-    echo "<pre>";
-    echo $gare_depart."    ".$gare_distination."      ".$date_depart;
-    echo "</pre>";
     $date = strtotime($date_depart);
     //var_dump($date_depart);
     //die();

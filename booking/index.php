@@ -48,6 +48,9 @@ if(!isset($_SESSION['search-info'])){
          transform: translateX(537px);
          */
      }
+     .swal2-popup.swal2-modal.swal2-show {
+         background-color: #007cdf;
+     }
  </style>
 </head>
 
@@ -299,7 +302,7 @@ if(!isset($_SESSION['search-info'])){
 
                  <!--Footer-->
                  <div class="modal-footer justify-content-center">
-                     <a type="button" class="btn btn-info" id="goTocart" data-bs-dismiss="modal">Go to cart</a>
+                     <a type="button" class="btn btn-info text-light" id="goTocart" data-bs-dismiss="modal">Go to cart</a>
                      <a type="button" class="btn btn-outline-info waves-effect" data-bs-dismiss="modal">Cancel</a>
                  </div>
              </div>
