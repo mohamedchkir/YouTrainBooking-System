@@ -159,7 +159,7 @@ function bookTicket({id:id_voyage,from:ville_depart,to:vill_dis,date:date,prix:p
 }
 
 function updateDB(column,data,id){
-  $.post("../handlers/trainHandler.php",{
+  $.post("../include/handlers/trainHandler.php",{
     column : column,
     data:data,
     id:id
@@ -170,7 +170,7 @@ function updateDB(column,data,id){
   });
 }
 function deleteTran(id){
-  $.post("../handlers/trainHandler.php",{
+  $.post("../include/handlers/trainHandler.php",{
     deleteTranById:id
   },function (data,status){
     $("#train_msg_alert").show();
@@ -248,7 +248,7 @@ function loadOrderData(ordersList){
   }else{
     document.getElementById("lis_orders_div").innerHTML=`
       <div class='h-100 w-100'>
-          <div class='h-50' style=\\'background-image: url('../assets/img/empty_cart.png');background-position: center;background-size: cover;background-repeat: no-repeat\\'></div>
+          <div class='h-50' style=\"background-image: url('../assets/img/empty_cart.png');background-position: center;background-size: cover;background-repeat: no-repeat\"></div>
       </div>
       
     `;
@@ -258,34 +258,49 @@ function loadOrderData(ordersList){
 
 function processCheckingOut(){
     //login first
+  Swal.fire({
+    title: 'Vous comfirmez votre achat ?',
+    showDenyButton: true,
+    showCancelButton: false,
+    confirmButtonColor: '#59aeff',
+    denyButtonColor: '#a3a3a3',
+    confirmButtonText: 'Oui',
+    denyButtonText: `Annuler`,
+  }).then((result) => {
+    /* Read more about isConfirmed, isDenied below */
+    if (result.isConfirmed) {
+      $.post("../include/handlers/ordersHandler.php",{
+        processCheckingOut:true
+      },function (data,status){
+        //console.log(JSON.parse(data))
+        if(data==1){
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 5000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          })
 
-    $.post("../include/handlers/ordersHandler.php",{
-      processCheckingOut:true
-    },function (data,status){
-      //console.log(JSON.parse(data))
-      if(data==1){
-        const Toast = Swal.mixin({
-          toast: true,
-          position: 'top-end',
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-          }
-        })
+          Toast.fire({
+            icon: 'success',
+            title: '<h3>voyages réservé avec success :)</h3><br> <small>You receivez par la suite vos tickets par mail</small>'
+          })
+          loadOrderData([]);
+        }
+        //setTimeout(()=>getEmail(),3500)
+        //console.log(getEmail());
 
-        Toast.fire({
-          icon: 'success',
-          title: 'voyages réservé avec success :)'
-        })
-        loadOrderData([]);
-      }
-      //setTimeout(()=>getEmail(),3500)
-      //console.log(getEmail());
+      })
+    } else if (result.isDenied) {
+      Swal.fire({title:'checkout n est pas validé',type: 'info'})
+    }
+  })
 
-    })
 }
 
 async function getEmail(){
