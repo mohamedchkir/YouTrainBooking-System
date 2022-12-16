@@ -74,7 +74,7 @@ $reslt = $gare->getAllGare();
       </div>
     <?php endif ?>
 
-    <section>
+    <section class="container">
 
         <table id="example" class="table table-striped">
             <thead>

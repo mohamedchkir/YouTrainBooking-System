@@ -21,7 +21,7 @@ function saveTrain()
     $newTrain = new Train($nom_train,intval($capacite),intval($id_gare),intval($status));
     $trainCtr = new TrainController();
     $trainCtr->addTrain($newTrain);
-    header("location:../components/trains.component.php");
+    header("location:../../dash/index.php?page=train");
 }
 
 
@@ -33,6 +33,7 @@ function updateTrainInfo()
     $trainCntr = new TrainController();
     $trainCntr->updateTrainInfo($column,$data,$id);
     echo "Train updated sucessfuly :)";
+    
 }
 
 function deleteTrain()
