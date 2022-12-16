@@ -22,7 +22,7 @@ include_once "../autoloader.php";
 <body>
 <div class="container">
    <div class="py-5">
-       <form action="../handlers/trainHandler.php" method="post" class="p-lg-5  needs-validation" id="add_train_form" novalidate>
+       <form action="../include/handlers/trainHandler.php" method="post" class="p-lg-5  needs-validation" id="add_train_form" novalidate>
            <div class="row gy-3">
                <div class="col-lg-6 text-start" style="position: relative;">
                    <label for="" class="form-label ms-2" style="color:#80808078;">Nom de train</label>
