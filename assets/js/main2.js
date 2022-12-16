@@ -170,7 +170,7 @@ function updateDB(column,data,id){
   });
 }
 function deleteTran(id){
-  $.post("../handlers/trainHandler.php",{
+  $.post("../include/handlers/trainHandler.php",{
     deleteTranById:id
   },function (data,status){
     $("#train_msg_alert").show();
