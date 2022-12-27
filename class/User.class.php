@@ -3,7 +3,6 @@
 
 class User
 {
-
     private $image;
     private	$nom;
     private	$prenom;
